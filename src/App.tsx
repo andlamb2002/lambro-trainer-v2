@@ -1,10 +1,10 @@
-
+import TrainerPage from './TrainerPage'
 
 function App() {
 
   return (
     <>
-      Hello World!
+      <TrainerPage />
     </>
   )
 }
