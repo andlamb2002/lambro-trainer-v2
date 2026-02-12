@@ -10,7 +10,7 @@ function App() {
     return (
         <>
             <Routes>
-                <Route path="/" element={<TimerPage />} />
+                <Route path="/" element={<TimerPage cases={zbllCases}/>} />
                 <Route path="/cases" element={<CaseSelectPage />} />
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
