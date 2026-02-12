@@ -11,7 +11,7 @@ type Props = {
 
 function TimerPage({ cases }: Props) {
 
-    const [{ case: initialCase, scramble: initialScramble }] = useState(() =>
+    const [{ caseItem: initialCase, scramble: initialScramble }] = useState(() =>
         getRandomCaseAndScramble(cases)
     );
     const [currentCase, setCurrentCase] = useState(initialCase);
@@ -23,7 +23,7 @@ function TimerPage({ cases }: Props) {
         const solve = createSolve(currentCase, currentScramble);
         setSolves((solves) => appendSolve(solves, solve));
 
-        const {case: c, scramble} = getRandomCaseAndScramble(cases);
+        const {caseItem: c, scramble} = getRandomCaseAndScramble(cases);
         setCurrentCase(c);
         setCurrentScramble(scramble);
     }
