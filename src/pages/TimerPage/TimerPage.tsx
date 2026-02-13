@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import type { Case, CaseToggles, Subset, Solve } from '../types/types'
+import type { Case, CaseToggles, Subset, Solve } from '../../types/types'
 
 import { 
     setInitialToggles, 
@@ -9,9 +9,9 @@ import {
     toggleSubset,
     toggle,
     getEnabledCases 
-} from '../lib/caseToggles'
-import { getRandomCaseAndScramble } from '../lib/randomScramble'
-import { createSolve, appendSolve } from '../lib/solves'
+} from '../../lib/caseToggles'
+import { getRandomCaseAndScramble } from '../../lib/randomScramble'
+import { createSolve, appendSolve } from '../../lib/solves'
 
 type Props = {
     cases: Case[]
