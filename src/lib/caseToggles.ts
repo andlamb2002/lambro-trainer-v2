@@ -16,12 +16,24 @@ export function toggleAll(toggles: CaseToggles, enabled: boolean): CaseToggles {
     return next;
 }
 
-export function toggleSet() {
-
+export function toggleSet(toggles: CaseToggles, cases: Case[], set: string, enabled: boolean): CaseToggles {
+    const next: CaseToggles = { ...toggles };
+    for (const c of cases) {
+        if (c.set === set) {
+            next[c.id] = enabled;
+        }
+    }
+    return next;
 }
 
-export function toggleSubset() {
-
+export function toggleSubset(toggles: CaseToggles, cases: Case[], subset: string, enabled: boolean): CaseToggles {
+    const next: CaseToggles = { ...toggles };
+    for (const c of cases) {
+        if (c.subset === subset) {
+            next[c.id] = enabled;
+        }
+    }
+    return next;
 }
 
 export function toggle(toggles: CaseToggles, caseId: string): CaseToggles {

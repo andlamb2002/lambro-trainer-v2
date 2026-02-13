@@ -206,6 +206,7 @@
       "L2 D B2 L2 D F2 L2 B2 L2 U R' U' L2 U R' D' L2"
     ],
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=ll&bg=t&alg=U2L2B2F2U'B2DL2D'L2B'UF2U'BUL2",
+    "subset": "U02", 
     "variant": 2
   },
   {
