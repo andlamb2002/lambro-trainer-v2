@@ -23,18 +23,24 @@ function TimerPage({ cases, subsets }: Props) {
 
     const enabledCases = getEnabledCases(cases, toggles);
 
-    const [{ caseItem: initialCase, scramble: initialScramble }] = useState(() =>
-        getRandomCaseAndScramble(enabledCases)
+    // const [{ caseItem: initialCase, scramble: initialScramble }] = useState(() =>
+    //     getRandomCaseAndScramble(enabledCases)
+    // );
+    const initialCaseAndScramble = enabledCases.length > 0 ? getRandomCaseAndScramble(enabledCases) : null;
+
+    const [currentCase, setCurrentCase] = useState<Case | null>(
+        () => (initialCaseAndScramble ? initialCaseAndScramble.caseItem : null)
     );
-    const [currentCase, setCurrentCase] = useState(initialCase);
-    const [currentScramble, setCurrentScramble] = useState(initialScramble);
+    const [currentScramble, setCurrentScramble] = useState(
+        () => (initialCaseAndScramble ? initialCaseAndScramble.scramble : "")
+    );
 
     const [solves, setSolves] = useState<Solve[]>([]);
 
     const sets = Array.from(new Set(cases.map(c => c.set)));
 
     const nextCase = () => {
-        if (enabledCases.length === 0) return;
+        if (enabledCases.length === 0 || currentCase === null) return;
 
         const solve = createSolve(currentCase, currentScramble);
         setSolves((solves) => appendSolve(solves, solve));
@@ -96,7 +102,7 @@ function TimerPage({ cases, subsets }: Props) {
                 ))}
             </div>
 
-            <div>{currentCase.label}</div>
+            <div>{currentCase ? currentCase.label : ""}</div>
             <div>{currentScramble}</div>
             <button onClick={nextCase}>Next</button>
 
