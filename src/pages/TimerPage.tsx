@@ -37,15 +37,15 @@ function TimerPage({ cases, subsets }: Props) {
     const sets = Array.from(new Set(cases.map(c => c.set)));
 
     const updateCaseAndScramble = (cases: Case[]) => {
-        if (cases.length === 0) {
+        const caseAndScramble = getRandomCaseAndScramble(cases);
+        if (!caseAndScramble) {
             setCurrentCase(null);
             setCurrentScramble("");
             return;
         }
         
-        const {caseItem: c, scramble} = getRandomCaseAndScramble(cases);
-        setCurrentCase(c);
-        setCurrentScramble(scramble);
+        setCurrentCase(caseAndScramble.caseItem);
+        setCurrentScramble(caseAndScramble.scramble);
     }
 
     const nextCase = () => {

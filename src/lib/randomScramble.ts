@@ -51,7 +51,8 @@ export function addRandomAUF(scramble: string): string {
   return merged.join(" ");
 }
 
-export function getRandomCase(cases: Case[]): Case {
+export function getRandomCase(cases: Case[]): Case | null {
+    if (cases.length === 0) return null;
     return cases[randomIndex(cases.length)];
 }
 
@@ -61,8 +62,9 @@ export function getRandomScrambleFromCase(c: Case): string {
     return addRandomAUF(chosen);
 }
 
-export function getRandomCaseAndScramble(cases: Case[]): { caseItem: Case, scramble: string } {
+export function getRandomCaseAndScramble(cases: Case[]): { caseItem: Case, scramble: string } | null {
     const c = getRandomCase(cases);
+    if (!c) return null;
     const scramble = getRandomScrambleFromCase(c);
     return { caseItem: c, scramble };
 }
