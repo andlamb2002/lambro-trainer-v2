@@ -13,7 +13,9 @@ import {
 } from '../lib/caseToggles'
 import { getRandomCaseAndScramble } from '../lib/randomScramble'
 import { createSolve, appendSolve } from '../lib/solves'
+
 import Scramble from './components/Scramble'
+import Solves from './components/Solves'
 
 type Props = {
     cases: Case[]
@@ -144,11 +146,13 @@ function TimerPage({ cases, subsets }: Props) {
             <div>{currentScramble}</div>
             <button onClick={nextCase}>Next</button> */}
 
-            <ul>
+            <Solves solves={solves} />
+
+            {/* <ul>
                 {solves.map(solve => (
                     <li key={solve.id}> {solve.label} </li>
                 ))}
-            </ul>
+            </ul> */}
         </>
     )
 }

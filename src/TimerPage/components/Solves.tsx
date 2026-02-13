@@ -1,8 +1,19 @@
+import type { Solve } from '../../types/types';
 
-function Solves() {
-  return (
-    <div>Solves</div>
-  )
+type Props = {
+    solves: Solve[];
+}
+
+function Solves({ solves }: Props) {
+    return (
+        <>
+            <ul>
+                {solves.map(solve => (
+                    <li key={solve.id}> {solve.label} </li>
+                ))}
+            </ul>
+        </>
+    )
 }
 
 export default Solves
