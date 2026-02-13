@@ -11,9 +11,10 @@ export type Case = {
     scrambles: string[];
     originalAlg: string; 
     img: string;
-    enabled: boolean;
     subset?: number;
 }
+
+export type CaseToggles = Record<string, boolean>;
 
 export type Solve = {
     id: string;

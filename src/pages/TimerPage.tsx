@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
-import type { Case, Solve } from '../types/types'
+import type { Case, CaseToggles, Solve } from '../types/types'
 
+import { setInitialToggles, setAllCases, getEnabledCases } from '../lib/caseToggles'
 import { getRandomCaseAndScramble } from '../lib/randomScramble'
 import { createSolve, appendSolve } from '../lib/solves'
 
@@ -10,6 +11,9 @@ type Props = {
 }
 
 function TimerPage({ cases }: Props) {
+    const [toggles, setToggles] = useState<CaseToggles>(() => setInitialToggles(cases));
+
+    const enabledCases = getEnabledCases(cases, toggles);
 
     const [{ caseItem: initialCase, scramble: initialScramble }] = useState(() =>
         getRandomCaseAndScramble(cases)
@@ -20,6 +24,8 @@ function TimerPage({ cases }: Props) {
     const [solves, setSolves] = useState<Solve[]>([]);
 
     const nextCase = () => {
+        if (enabledCases.length === 0) return;
+
         const solve = createSolve(currentCase, currentScramble);
         setSolves((solves) => appendSolve(solves, solve));
 
@@ -28,8 +34,17 @@ function TimerPage({ cases }: Props) {
         setCurrentScramble(scramble);
     }
 
+    const toggleAll = (enabled: boolean) => {
+        setToggles(prev => setAllCases(prev, enabled));
+    };
+
     return (
         <>
+            <div style={{ display: "flex", gap: 8 }}>
+                <button onClick={() => toggleAll(true)}>All On</button>
+                <button onClick={() => toggleAll(false)}>All Off</button>
+                <div>Enabled cases: {enabledCases.length}</div>
+            </div>
             <div>{currentCase.label}</div>
             <div>{currentScramble}</div>
             <button onClick={nextCase}>Next</button>
