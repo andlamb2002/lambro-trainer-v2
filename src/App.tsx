@@ -4,13 +4,14 @@ import TimerPage from './pages/TimerPage'
 import CaseSelectPage from './pages/CaseSelectPage'
 
 import zbllCases from './data/zbll_cases.json'
+import zbllSubsets from './data/zbll_subsets.json'
 
 function App() {
 
     return (
         <>
             <Routes>
-                <Route path="/" element={<TimerPage cases={zbllCases}/>} />
+                <Route path="/" element={<TimerPage cases={zbllCases} subsets={zbllSubsets} />} />
                 <Route path="/cases" element={<CaseSelectPage />} />
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>

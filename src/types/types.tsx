@@ -4,6 +4,12 @@ export type Session = {
     cases: Case[];
 }
 
+export type Subset = {
+    id: string;
+    set: string;
+    img: string;
+}
+
 export type Case = {
     id: string;
     set: string;
@@ -11,7 +17,8 @@ export type Case = {
     scrambles: string[];
     originalAlg: string; 
     img: string;
-    subset?: number;
+    subset?: string;
+    variant?: number;
 }
 
 export type CaseToggles = Record<string, boolean>;
@@ -23,6 +30,7 @@ export type Solve = {
     scramble: string;
     img: string;
     time: number;
-    subset?: number;
+    subset?: string;
+    variant?: number;
 }
 

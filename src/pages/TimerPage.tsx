@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import type { Case, CaseToggles, Solve } from '../types/types'
+import type { Case, CaseToggles, Subset, Solve } from '../types/types'
 
 import { 
     setInitialToggles, 
@@ -13,9 +13,10 @@ import { createSolve, appendSolve } from '../lib/solves'
 
 type Props = {
     cases: Case[]
+    subsets: Subset[]
 }
 
-function TimerPage({ cases }: Props) {
+function TimerPage({ cases, subsets }: Props) {
     const [toggles, setToggles] = useState<CaseToggles>(() => setInitialToggles(cases));
 
     const enabledCases = getEnabledCases(cases, toggles);

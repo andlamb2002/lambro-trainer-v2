@@ -16,6 +16,14 @@ export function toggleAll(toggles: CaseToggles, enabled: boolean): CaseToggles {
     return next;
 }
 
+export function toggleSet() {
+
+}
+
+export function toggleSubset() {
+
+}
+
 export function toggle(toggles: CaseToggles, caseId: string): CaseToggles {
     return {
         ...toggles,

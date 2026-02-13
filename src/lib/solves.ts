@@ -9,6 +9,7 @@ export function createSolve(currentCase: Case, scramble: string, time?: number):
         img: currentCase.img,
         time: time ?? 0,
         subset: currentCase.subset ?? undefined,
+        variant: currentCase.variant ?? undefined,
     };
     return solve;
 }
