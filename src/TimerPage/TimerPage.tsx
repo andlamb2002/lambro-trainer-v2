@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import type { Case, CaseToggles, Subset, Solve } from '../../types/types'
+import type { Case, CaseToggles, Subset, Solve } from '../types/types'
 
 import { 
     setInitialToggles, 
@@ -9,9 +9,10 @@ import {
     toggleSubset,
     toggle,
     getEnabledCases 
-} from '../../lib/caseToggles'
-import { getRandomCaseAndScramble } from '../../lib/randomScramble'
-import { createSolve, appendSolve } from '../../lib/solves'
+} from '../lib/caseToggles'
+import { getRandomCaseAndScramble } from '../lib/randomScramble'
+import { createSolve, appendSolve } from '../lib/solves'
+import Scramble from './components/Scramble'
 
 type Props = {
     cases: Case[]
@@ -19,8 +20,6 @@ type Props = {
 }
 
 function TimerPage({ cases, subsets }: Props) {
-    console.count("TimerPage rendered") 
-
     const [toggles, setToggles] = useState<CaseToggles>(() => setInitialToggles(cases));
     const enabledCases = getEnabledCases(cases, toggles);
 
@@ -128,10 +127,12 @@ function TimerPage({ cases, subsets }: Props) {
                     </button>
                 ))}
             </div>
+                
+            <Scramble currentCase={currentCase} currentScramble={currentScramble} nextCase={nextCase} />
 
-            <div>{currentCase ? currentCase.label : ""}</div>
+            {/* <div>{currentCase ? currentCase.label : ""}</div>
             <div>{currentScramble}</div>
-            <button onClick={nextCase}>Next</button>
+            <button onClick={nextCase}>Next</button> */}
 
             <ul>
                 {solves.map(solve => (

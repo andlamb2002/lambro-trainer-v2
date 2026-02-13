@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 
-import TimerPage from './pages/TimerPage/TimerPage'
-import CaseSelectPage from './pages/CaseSelectPage'
+import TimerPage from './TimerPage/TimerPage'
+import CaseSelectPage from './CaseSelectPage/CaseSelectPage'
 
 import zbllCases from './data/zbll_cases.json'
 import zbllSubsets from './data/zbll_subsets.json'
