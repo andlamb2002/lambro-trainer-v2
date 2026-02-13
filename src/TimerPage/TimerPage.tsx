@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import type { Case, CaseToggles, Subset, Solve } from '../types/types'
+// import { useCaseStore } from './Stores/useCaseStore'
 
 import { 
     setInitialToggles, 
@@ -31,6 +32,10 @@ function TimerPage({ cases, subsets }: Props) {
         () => (initialCaseAndScramble ? initialCaseAndScramble.scramble : "")
     );
 
+    // const currentCase = useCaseStore((s) => s.currentCase);
+    // const currentScramble = useCaseStore((s) => s.currentScramble);
+    // const setCaseAndScramble = useCaseStore((s) => s.setCaseAndScramble);
+
     const [solves, setSolves] = useState<Solve[]>([]);
 
     const sets = Array.from(new Set(cases.map(c => c.set)));
@@ -45,6 +50,11 @@ function TimerPage({ cases, subsets }: Props) {
         
         setCurrentCase(caseAndScramble.caseItem);
         setCurrentScramble(caseAndScramble.scramble);
+        // const caseAndScramble = getRandomCaseAndScramble(cases); 
+        // setCaseAndScramble({
+        //     currentCase: caseAndScramble ? caseAndScramble.caseItem : null,
+        //     currentScramble: caseAndScramble ? caseAndScramble.scramble : ""
+        // });
     }
 
     const nextCase = () => {
