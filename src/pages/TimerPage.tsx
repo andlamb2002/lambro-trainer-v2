@@ -19,15 +19,12 @@ type Props = {
 }
 
 function TimerPage({ cases, subsets }: Props) {
-    const [toggles, setToggles] = useState<CaseToggles>(() => setInitialToggles(cases));
+    console.count("TimerPage rendered") 
 
+    const [toggles, setToggles] = useState<CaseToggles>(() => setInitialToggles(cases));
     const enabledCases = getEnabledCases(cases, toggles);
 
-    // const [{ caseItem: initialCase, scramble: initialScramble }] = useState(() =>
-    //     getRandomCaseAndScramble(enabledCases)
-    // );
     const initialCaseAndScramble = enabledCases.length > 0 ? getRandomCaseAndScramble(enabledCases) : null;
-
     const [currentCase, setCurrentCase] = useState<Case | null>(
         () => (initialCaseAndScramble ? initialCaseAndScramble.caseItem : null)
     );
@@ -39,31 +36,61 @@ function TimerPage({ cases, subsets }: Props) {
 
     const sets = Array.from(new Set(cases.map(c => c.set)));
 
-    const nextCase = () => {
-        if (enabledCases.length === 0 || currentCase === null) return;
-
-        const solve = createSolve(currentCase, currentScramble);
-        setSolves((solves) => appendSolve(solves, solve));
-
-        const {caseItem: c, scramble} = getRandomCaseAndScramble(enabledCases);
+    const updateCaseAndScramble = (cases: Case[]) => {
+        if (cases.length === 0) {
+            setCurrentCase(null);
+            setCurrentScramble("");
+            return;
+        }
+        
+        const {caseItem: c, scramble} = getRandomCaseAndScramble(cases);
         setCurrentCase(c);
         setCurrentScramble(scramble);
     }
 
+    const nextCase = () => {
+        if (currentCase === null) return;
+
+        const solve = createSolve(currentCase, currentScramble);
+        setSolves((solves) => appendSolve(solves, solve));
+
+        updateCaseAndScramble(enabledCases);
+    }
+
     const toggleAllCases = (enabled: boolean) => {
-        setToggles(prev => toggleAll(prev, enabled));
+        setToggles(prev => {
+            const next = toggleAll(prev, enabled);
+            const nextEnabledCases = getEnabledCases(cases, next);
+            updateCaseAndScramble(nextEnabledCases);
+            return next;
+        });
     };
 
     const toggleSetCases = (set: string, enabled: boolean) => {
-        setToggles(prev => toggleSet(prev, cases, set, enabled));
+        setToggles(prev => {
+            const next = toggleSet(prev, cases, set, enabled);
+            const nextEnabledCases = getEnabledCases(cases, next);
+            updateCaseAndScramble(nextEnabledCases);
+            return next;
+        });
     };
 
     const toggleSubsetCases = (subset: string, enabled: boolean) => {
-        setToggles(prev => toggleSubset(prev, cases, subset, enabled));
+        setToggles(prev => {
+            const next = toggleSubset(prev, cases, subset, enabled);
+            const nextEnabledCases = getEnabledCases(cases, next);
+            updateCaseAndScramble(nextEnabledCases);
+            return next;
+        });
     };
 
     const toggleCase = (caseId: string) => {
-        setToggles(prev => toggle(prev, caseId));
+        setToggles(prev => {
+            const next = toggle(prev, caseId);
+            const nextEnabledCases = getEnabledCases(cases, next);
+            updateCaseAndScramble(nextEnabledCases);
+            return next;
+        });
     };
 
     return (
