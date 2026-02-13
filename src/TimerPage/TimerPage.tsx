@@ -12,10 +12,11 @@ import {
     getEnabledCases 
 } from '../lib/caseToggles'
 import { getRandomCaseAndScramble } from '../lib/randomScramble'
-import { createSolve, appendSolve } from '../lib/solves'
+import { createSolve, appendSolve, deleteSolve, deleteAllSolves } from '../lib/solves'
 
 import Scramble from './components/Scramble'
 import Solves from './components/Solves'
+import SelectedSolve from './components/SelectedSolve'
 
 type Props = {
     cases: Case[]
@@ -39,6 +40,8 @@ function TimerPage({ cases, subsets }: Props) {
     // const setCaseAndScramble = useCaseStore((s) => s.setCaseAndScramble);
 
     const [solves, setSolves] = useState<Solve[]>([]);
+    const [selectedSolveId, setSelectedSolveId] = useState<string | null>(null);
+    const selectedSolve = solves.find(solve => solve.id === selectedSolveId) ?? null;
 
     const sets = Array.from(new Set(cases.map(c => c.set)));
 
@@ -67,6 +70,20 @@ function TimerPage({ cases, subsets }: Props) {
 
         updateCaseAndScramble(enabledCases);
     }
+
+    const handleSelectSolve = (id: string) => {
+        setSelectedSolveId(id);
+    };
+
+    const handleDeleteSolve = (id: string) => {
+        setSolves((prev) => deleteSolve(prev, id));
+        setSelectedSolveId((prevSelected) => (prevSelected === id ? null : prevSelected));
+    };
+
+    const handleDeleteAllSolves = () => {
+        setSolves(deleteAllSolves());
+        setSelectedSolveId(null);
+    };
 
     const toggleAllCases = (enabled: boolean) => {
         setToggles(prev => {
@@ -146,13 +163,22 @@ function TimerPage({ cases, subsets }: Props) {
             <div>{currentScramble}</div>
             <button onClick={nextCase}>Next</button> */}
 
-            <Solves solves={solves} />
+            <div style={{ display: "flex", gap: 8, alignItems: "center", marginTop: 12 }}>
+                <strong>Solves</strong>
+                <button onClick={handleDeleteAllSolves} disabled={solves.length === 0}>
+                    Delete All
+                </button>
+            </div>
+
+            <Solves solves={solves} selectedSolveId={selectedSolveId} onSelectSolve={handleSelectSolve}  />
 
             {/* <ul>
                 {solves.map(solve => (
                     <li key={solve.id}> {solve.label} </li>
                 ))}
             </ul> */}
+
+            <SelectedSolve solve={selectedSolve} onDelete={() => selectedSolve && handleDeleteSolve(selectedSolve.id)} />
         </>
     )
 }

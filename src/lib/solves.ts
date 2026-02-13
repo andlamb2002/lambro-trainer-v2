@@ -17,3 +17,11 @@ export function createSolve(currentCase: Case, scramble: string, time?: number):
 export function appendSolve(solves: Solve[], solve: Solve): Solve[] {
     return [...solves, solve];
 }
+
+export function deleteSolve(solves: Solve[], solveId: string): Solve[] {
+    return solves.filter(solve => solve.id !== solveId);
+}
+
+export function deleteAllSolves(): Solve[] {
+    return [];
+}
