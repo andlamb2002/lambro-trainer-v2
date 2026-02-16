@@ -1,8 +1,16 @@
 export type Session = {
-    name: string;
-    setId: string;
+    id: string;
+    label: string;
+    setId?: string;
     toggles: CaseToggles;
     solves: Solve[];
+}
+
+export type AlgSet = {
+    id: string;
+    label: string;
+    cases: Case[];
+    subsets?: Subset[]; 
 }
 
 export type Subset = {
