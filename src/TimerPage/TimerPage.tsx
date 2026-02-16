@@ -67,6 +67,7 @@ function TimerPage({ cases, subsets }: Props) {
 
         const solve = createSolve(currentCase, currentScramble);
         setSolves((solves) => appendSolve(solves, solve));
+        handleSelectSolve(solve.id);
 
         updateCaseAndScramble(enabledCases);
     }
