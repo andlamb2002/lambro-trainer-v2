@@ -1,8 +1,8 @@
 
 function CaseSelect() {
-  return (
-    <div>CaseSelect</div>
-  )
+    return (
+      <div>CaseSelect</div>
+    )
 }
 
 export default CaseSelect

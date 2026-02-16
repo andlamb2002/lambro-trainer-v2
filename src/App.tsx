@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, Link } from 'react-router-dom'
 
 import TimerPage from './TimerPage/TimerPage'
 import CaseSelectPage from './CaseSelectPage/CaseSelectPage'
@@ -10,6 +10,10 @@ function App() {
 
     return (
         <>
+            <nav style={{ display: "flex", gap: 8 }}>
+                <Link to="/">Timer</Link>
+                <Link to="/cases">Cases</Link>
+            </nav>
             <Routes>
                 <Route path="/" element={<TimerPage cases={zbllCases} subsets={zbllSubsets} />} />
                 <Route path="/cases" element={<CaseSelectPage />} />
