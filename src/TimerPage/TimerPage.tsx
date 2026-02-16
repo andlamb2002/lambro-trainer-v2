@@ -35,10 +35,6 @@ function TimerPage({ cases, subsets }: Props) {
         () => (initialCaseAndScramble ? initialCaseAndScramble.scramble : "")
     );
 
-    // const currentCase = useCaseStore((s) => s.currentCase);
-    // const currentScramble = useCaseStore((s) => s.currentScramble);
-    // const setCaseAndScramble = useCaseStore((s) => s.setCaseAndScramble);
-
     const [solves, setSolves] = useState<Solve[]>([]);
     const [selectedSolveId, setSelectedSolveId] = useState<string | null>(null);
     const selectedSolve = solves.find(solve => solve.id === selectedSolveId) ?? null;
@@ -55,11 +51,6 @@ function TimerPage({ cases, subsets }: Props) {
         
         setCurrentCase(caseAndScramble.caseItem);
         setCurrentScramble(caseAndScramble.scramble);
-        // const caseAndScramble = getRandomCaseAndScramble(cases); 
-        // setCaseAndScramble({
-        //     currentCase: caseAndScramble ? caseAndScramble.caseItem : null,
-        //     currentScramble: caseAndScramble ? caseAndScramble.scramble : ""
-        // });
     }
 
     const nextCase = () => {
@@ -67,18 +58,23 @@ function TimerPage({ cases, subsets }: Props) {
 
         const solve = createSolve(currentCase, currentScramble);
         setSolves((solves) => appendSolve(solves, solve));
-        handleSelectSolve(solve.id);
+        setSelectedSolveId(solve.id);
 
         updateCaseAndScramble(enabledCases);
     }
 
-    const handleSelectSolve = (id: string) => {
-        setSelectedSolveId(id);
-    };
-
     const handleDeleteSolve = (id: string) => {
-        setSolves((prev) => deleteSolve(prev, id));
-        setSelectedSolveId((prevSelected) => (prevSelected === id ? null : prevSelected));
+        const next = deleteSolve(solves, id);
+
+        if (selectedSolveId === id) {
+            const nextSelected = 
+                next.length > 0 
+                ? next[next.length - 1].id
+                : null;
+            setSelectedSolveId(nextSelected);
+        }
+
+        setSolves(next);
     };
 
     const handleDeleteAllSolves = () => {
@@ -160,7 +156,7 @@ function TimerPage({ cases, subsets }: Props) {
                 
             <Scramble currentCase={currentCase} currentScramble={currentScramble} nextCase={nextCase} />
 
-            <Solves solves={solves} selectedSolveId={selectedSolveId} onSelectSolve={handleSelectSolve} onDeleteAllSolves={handleDeleteAllSolves} />
+            <Solves solves={solves} selectedSolveId={selectedSolveId} onSelectSolve={setSelectedSolveId} onDeleteAllSolves={handleDeleteAllSolves} />
 
             <SelectedSolve solve={selectedSolve} onDelete={() => selectedSolve && handleDeleteSolve(selectedSolve.id)} />
         </>
