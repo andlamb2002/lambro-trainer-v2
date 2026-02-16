@@ -10,6 +10,7 @@ import zbllSubsets from './data/zbll_subsets.json'
 import type { CaseToggles } from './types/types'
 
 import { setInitialToggles } from './lib/caseToggles'
+import { getAlgSet } from './data/algSets'
 
 function App() {
 

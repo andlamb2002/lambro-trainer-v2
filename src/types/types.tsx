@@ -1,7 +1,7 @@
 export type Session = {
     id: string;
     label: string;
-    setId?: string;
+    setId: string;
     toggles: CaseToggles;
     solves: Solve[];
 }

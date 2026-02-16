@@ -6,20 +6,24 @@ import pllCases from './pll_cases.json'
 
 export const ALG_SETS: Record<string, AlgSet> = {
     zbll: {
-        id: "ZBLL",
-        label: "ZBLL",
+        id: "zbll",
+        label: "zbll",
         cases: zbllCases as Case[],
         subsets: zbllSubsets as Subset[],
     },
     pll: {
-        id: "PLL",
-        label: "PLL",
+        id: "pll",
+        label: "pll",
         cases: pllCases as Case[],
     }
 }
 
 export function getAlgSet(id: string): AlgSet {
-    return ALG_SETS[id];
+    const set = ALG_SETS[id];
+    if (!set) {
+        throw new Error(`Alg set with id "${id}" not found.`);
+    }
+    return set;
 }
 
 export function getAllAlgSets(): AlgSet[] {
