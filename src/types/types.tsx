@@ -1,7 +1,8 @@
 export type Session = {
     name: string;
-    set: string;
-    cases: Case[];
+    setId: string;
+    toggles: CaseToggles;
+    solves: Solve[];
 }
 
 export type Subset = {
