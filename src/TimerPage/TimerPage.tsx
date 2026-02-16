@@ -159,24 +159,7 @@ function TimerPage({ cases, subsets }: Props) {
                 
             <Scramble currentCase={currentCase} currentScramble={currentScramble} nextCase={nextCase} />
 
-            {/* <div>{currentCase ? currentCase.label : ""}</div>
-            <div>{currentScramble}</div>
-            <button onClick={nextCase}>Next</button> */}
-
-            <div style={{ display: "flex", gap: 8, alignItems: "center", marginTop: 12 }}>
-                <strong>Solves</strong>
-                <button onClick={handleDeleteAllSolves} disabled={solves.length === 0}>
-                    Delete All
-                </button>
-            </div>
-
-            <Solves solves={solves} selectedSolveId={selectedSolveId} onSelectSolve={handleSelectSolve}  />
-
-            {/* <ul>
-                {solves.map(solve => (
-                    <li key={solve.id}> {solve.label} </li>
-                ))}
-            </ul> */}
+            <Solves solves={solves} selectedSolveId={selectedSolveId} onSelectSolve={handleSelectSolve} onDeleteAllSolves={handleDeleteAllSolves} />
 
             <SelectedSolve solve={selectedSolve} onDelete={() => selectedSolve && handleDeleteSolve(selectedSolve.id)} />
         </>
