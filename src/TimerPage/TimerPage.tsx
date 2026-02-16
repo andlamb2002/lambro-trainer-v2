@@ -154,11 +154,23 @@ function TimerPage({ cases, subsets }: Props) {
                 ))}
             </div>
                 
-            <Scramble currentCase={currentCase} currentScramble={currentScramble} nextCase={nextCase} />
+            <Scramble 
+                currentCase={currentCase} 
+                currentScramble={currentScramble} 
+                nextCase={nextCase}
+            />
 
-            <Solves solves={solves} selectedSolveId={selectedSolveId} onSelectSolve={setSelectedSolveId} onDeleteAllSolves={handleDeleteAllSolves} />
+            <Solves 
+                solves={solves} 
+                selectedSolveId={selectedSolveId} 
+                onSelectSolve={setSelectedSolveId} 
+                onDeleteAllSolves={handleDeleteAllSolves} 
+            />
 
-            <SelectedSolve solve={selectedSolve} onDelete={() => selectedSolve && handleDeleteSolve(selectedSolve.id)} />
+            <SelectedSolve 
+                solve={selectedSolve} 
+                onDelete={(id) => handleDeleteSolve(id)} 
+            />
         </>
     )
 }

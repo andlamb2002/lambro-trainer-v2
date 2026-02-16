@@ -2,7 +2,7 @@ import type { Solve } from '../../types/types';
 
 type Props = {
     solve: Solve | null;
-    onDelete: () => void;
+    onDelete: (id: string) => void;
 }
 
 function SelectedSolve({ solve, onDelete }: Props) {
@@ -18,7 +18,7 @@ function SelectedSolve({ solve, onDelete }: Props) {
             <div>Variant: {solve.variant ?? "-"}</div>
             <div>Scramble: {solve.scramble}</div>
 
-            <button onClick={onDelete} style={{ marginTop: 8 }}>
+            <button onClick={() => onDelete(solve.id)} style={{ marginTop: 8 }}>
                 Delete This Solve
             </button>
         </div>
