@@ -24,7 +24,6 @@ export function updateSessionSet(sessions: Session[], id: string, newSetKey: str
                 ...session,
                 setId: newSetKey,
                 toggles: newToggles,
-                solves: []
             }
         }
         return session;
