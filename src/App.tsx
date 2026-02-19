@@ -15,6 +15,7 @@ type SessionState = {
 }
 
 function App() {
+    const allSets = getAllAlgSets();
 
     const [ sessionState, setSessionState] = useState<SessionState>(() => {
         const first = createSession("Session 1", "zbll");
@@ -30,8 +31,6 @@ function App() {
     const cases = activeAlgSet.cases;
     const subsets = activeAlgSet.subsets;
     const solves = activeSession.solves;
-
-    const allSets = getAllAlgSets();
 
     const setActiveSessionId = (id: string) => {
         setSessionState(prev => ({ ...prev, activeSessionId: id }));
@@ -117,7 +116,7 @@ function App() {
 
                 <select value={activeSetKey} onChange={(e) => handleChangeSet(e.target.value)}>
                     {allSets.map(s => (
-                        <option key={s.id} value={s.id.toLowerCase() === "zbll" ? "zbll" : "pll"}>
+                        <option key={s.id} value={s.id}>
                             {s.label}
                         </option>
                     ))}
