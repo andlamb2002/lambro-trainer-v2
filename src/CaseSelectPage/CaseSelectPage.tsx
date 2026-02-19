@@ -12,7 +12,7 @@ type Props = {
     cases: Case[]
     subsets: Subset[] | undefined;
     toggles: CaseToggles;
-    setToggles: (toggles: CaseToggles) => void;
+    setToggles: React.Dispatch<React.SetStateAction<CaseToggles>>;
 }
 
 function CaseSelectPage( { cases, subsets, toggles, setToggles }: Props) {
@@ -57,19 +57,19 @@ function CaseSelectPage( { cases, subsets, toggles, setToggles }: Props) {
     }, [cases]);
 
     const toggleAllCases = (enabled: boolean) => {
-        setToggles(toggleAll(toggles, enabled));
+        setToggles(prev => toggleAll(prev, enabled));
     };
 
     const toggleSetCases = (set: string, enabled: boolean) => {
-        setToggles(toggleSet(toggles, cases, set, enabled));
+        setToggles(prev => toggleSet(prev, cases, set, enabled));
     };
 
     const toggleSubsetCases = (subset: string, enabled: boolean) => {
-        setToggles(toggleSubset(toggles, cases, subset, enabled));
+        setToggles(prev => toggleSubset(prev, cases, subset, enabled));
     };
 
     const toggleCase = (caseId: string) => {
-        setToggles(toggle(toggles, caseId));
+        setToggles(prev => toggle(prev, caseId));
     };
 
     return (
