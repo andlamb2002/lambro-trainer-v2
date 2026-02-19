@@ -4,12 +4,8 @@ import { Routes, Route, Navigate, Link } from 'react-router-dom'
 import TimerPage from './TimerPage/TimerPage'
 import CaseSelectPage from './CaseSelectPage/CaseSelectPage'
 
-// import zbllCases from './data/zbll_cases.json'
-// import zbllSubsets from './data/zbll_subsets.json'
-
 import type { CaseToggles, Session } from './types/types'
 
-// import { setInitialToggles } from './lib/caseToggles'
 import { createSession, updateSessionSet, updateSessionToggles } from './lib/sessions'
 import { getAlgSet, getAllAlgSets } from './data/algSets'
 
@@ -34,8 +30,6 @@ function App() {
     const activeAlgSet = getAlgSet(activeSetKey);
     const cases = activeAlgSet.cases;
     const subsets = activeAlgSet.subsets;
-
-    // const [toggles, setToggles] = useState<CaseToggles>(() => setInitialToggles(zbllCases));
 
     const setActiveSessionId = (id: string) => {
         setSessionState(prev => ({ ...prev, activeSessionId: id }));
@@ -88,8 +82,8 @@ function App() {
     return (
         <>
             <nav style={{ display: "flex", gap: 8 }}>
-                <Link to="/">Timer</Link>
                 <Link to="/cases">Cases</Link>
+                <Link to="/">Timer</Link>
             </nav>
 
             <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
