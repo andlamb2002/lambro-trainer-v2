@@ -1,4 +1,4 @@
-import type { Session, CaseToggles } from '../types/types'
+import type { Session, CaseToggles, Solve } from '../types/types'
 import { getAlgSet } from '../data/algSets'
 import { setInitialToggles } from './caseToggles'
 
@@ -36,6 +36,18 @@ export function updateSessionToggles(sessions: Session[], id: string, newToggles
             return {
                 ...session,
                 toggles: newToggles
+            }
+        }
+        return session;
+    })
+}
+
+export function updateSessionSolves(sessions: Session[], id: string, newSolves: Solve[]): Session[] {
+    return sessions.map(session => {
+        if (session.id === id) {
+            return {
+                ...session,
+                solves: newSolves
             }
         }
         return session;

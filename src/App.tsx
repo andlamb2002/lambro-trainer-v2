@@ -6,7 +6,7 @@ import CaseSelectPage from './CaseSelectPage/CaseSelectPage'
 
 import type { CaseToggles, Session } from './types/types'
 
-import { createSession, updateSessionSet, updateSessionToggles } from './lib/sessions'
+import { createSession, updateSessionSet, updateSessionToggles, updateSessionSolves } from './lib/sessions'
 import { getAlgSet, getAllAlgSets } from './data/algSets'
 
 type SessionState = {
@@ -26,10 +26,12 @@ function App() {
 
     const activeSession = sessions.find(s => s.id === activeSessionId) ?? sessions[0];
     const activeSetKey = activeSession?.setId ?? "zbll";
-
     const activeAlgSet = getAlgSet(activeSetKey);
     const cases = activeAlgSet.cases;
     const subsets = activeAlgSet.subsets;
+    const solves = activeSession.solves;
+
+    const allSets = getAllAlgSets();
 
     const setActiveSessionId = (id: string) => {
         setSessionState(prev => ({ ...prev, activeSessionId: id }));
@@ -39,6 +41,13 @@ function App() {
         setSessionState(prev => ({
             ...prev,
             sessions: updateSessionToggles(prev.sessions, prev.activeSessionId, toggles)
+        }));
+    }
+
+    const setSolves = (solves: Session['solves']) => {
+        setSessionState(prev => ({
+            ...prev,
+            sessions: updateSessionSolves(prev.sessions, prev.activeSessionId, solves)
         }));
     }
 
@@ -76,8 +85,6 @@ function App() {
             };
         });
     };
-
-    const allSets = getAllAlgSets();
 
     return (
         <>
@@ -118,7 +125,7 @@ function App() {
             </div>
 
             <Routes>
-                <Route path="/" element={<TimerPage cases={cases} toggles={activeSession.toggles} />} />
+                <Route path="/" element={<TimerPage cases={cases} toggles={activeSession.toggles} solves={solves} setSolves={setSolves} />} />
                 <Route path="/cases" element={<CaseSelectPage cases={cases} subsets={subsets} toggles={activeSession.toggles} setToggles={setToggles} />} />
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
