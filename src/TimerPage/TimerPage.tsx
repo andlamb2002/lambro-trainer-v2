@@ -19,7 +19,6 @@ type Props = {
 }
 
 function TimerPage({ cases, toggles, solves, setSolves }: Props) {
-    // const [currentToggles, setCurrentToggles] = useState<CaseToggles>(toggles);
     const enabledCases = getEnabledCases(cases, toggles);
 
     const initialCaseAndScramble = enabledCases.length > 0 ? getRandomCaseAndScramble(enabledCases) : null;
@@ -30,7 +29,6 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
         () => (initialCaseAndScramble ? initialCaseAndScramble.scramble : "")
     );
 
-    // const [solves, setSolves] = useState<Solve[]>([]);
     const [selectedSolveId, setSelectedSolveId] = useState<string | null>(null);
     const selectedSolve = solves.find(solve => solve.id === selectedSolveId) ?? null;
 
@@ -50,7 +48,6 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
         if (currentCase === null) return;
 
         const solve = createSolve(currentCase, currentScramble);
-        // setSolves((solves) => appendSolve(solves, solve));
         setSolves(appendSolve(solves, solve));
         setSelectedSolveId(solve.id);
 
