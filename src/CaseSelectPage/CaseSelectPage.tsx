@@ -17,7 +17,11 @@ type Props = {
 
 function CaseSelectPage( { cases, subsets, toggles, setToggles }: Props) {
 
-    const sets = Array.from(new Set(cases.map(c => c.set)));
+    const sets = useMemo(() => {
+        const s = new Set<string>();
+        cases.forEach(c => s.add(c.set));
+        return Array.from(s);
+    }, [cases]);
 
     const casesBySet = useMemo(() => {
         const map = new Map<string, Case[]>();
