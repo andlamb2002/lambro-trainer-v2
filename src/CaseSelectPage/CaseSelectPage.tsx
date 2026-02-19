@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import type { Case, Subset, CaseToggles } from '../types/types';
 
 import { 
@@ -17,6 +18,39 @@ type Props = {
 function CaseSelectPage( { cases, subsets, toggles, setToggles }: Props) {
 
     const sets = Array.from(new Set(cases.map(c => c.set)));
+
+    const casesBySet = useMemo(() => {
+        const map = new Map<string, Case[]>();
+        cases.forEach(c => {
+            const arr = map.get(c.set) ?? [];
+            arr.push(c);
+            map.set(c.set, arr);
+        });
+        return map;
+    }, [cases]);
+
+    const subsetsBySet = useMemo(() => {
+        if (!subsets) return new Map<string, Subset[]>();
+        const map = new Map<string, Subset[]>();
+        subsets.forEach(s => {
+            const arr = map.get(s.set) ?? [];
+            arr.push(s);
+            map.set(s.set, arr);
+        });
+        return map;
+    }, [subsets]);
+
+    const casesBySubset = useMemo(() => {
+        const map = new Map<string, Case[]>();
+        cases.forEach(c => {
+            if (c.subset) {
+                const arr = map.get(c.subset) ?? [];
+                arr.push(c);
+                map.set(c.subset, arr);
+            }
+        });
+        return map;
+    }, [cases]);
 
     const toggleAllCases = (enabled: boolean) => {
         setToggles(toggleAll(toggles, enabled));
@@ -42,32 +76,56 @@ function CaseSelectPage( { cases, subsets, toggles, setToggles }: Props) {
                 {/* <div>Enabled cases: {enabledCases.length}</div> */}
             </div>
 
-            <div style={{ display: "flex", gap: 8, marginTop: 8, flexWrap: "wrap" }}>
-                {sets.map(setName => (
-                    <div key={setName} style={{ display: "flex", gap: 6, alignItems: "center" }}>
-                        <strong>{setName}</strong>
-                        <button onClick={() => toggleSetCases(setName, true)}>Set All</button>
-                        <button onClick={() => toggleSetCases(setName, false)}>Set None</button>
-                    </div>
-                ))}
-            </div>
+            <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 12 }}>
+                {sets.map((setName) => {
+                    const setCases = casesBySet.get(setName) ?? [];
+                    const setSubsets = subsetsBySet.get(setName) ?? [];
+                    const hasSubsets = setSubsets.length > 0;
 
-            <div style={{ display: "flex", gap: 8, marginTop: 8, flexWrap: "wrap" }}>
-                {subsets?.map(s => (
-                    <div key={s.id} style={{ display: "flex", gap: 6, alignItems: "center" }}>
-                        <span>{s.id}</span>
-                        <button onClick={() => toggleSubsetCases(s.id, true)}>Subset All</button>
-                        <button onClick={() => toggleSubsetCases(s.id, false)}>Subset None</button>
-                    </div>
-                ))}
-            </div>
+                    return (
+                        <div key={setName} style={{ border: "1px solid #ddd", padding: 12 }}>
+                            <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+                                <strong style={{ fontSize: 16 }}>{setName}</strong>
+                                <button onClick={() => toggleSetCases(setName, true)}>Set All</button>
+                                <button onClick={() => toggleSetCases(setName, false)}>Set None</button>
+                            </div>
 
-            <div style={{ display: "flex", gap: 8, marginTop: 8, flexWrap: "wrap" }}>
-                {cases.map((c) => (
-                    <button key={c.id} onClick={() => toggleCase(c.id)}>
-                        {toggles[c.id] ? "ON" : "OFF"} {c.label}
-                    </button>
-                ))}
+                            {hasSubsets ? (
+                                <div style={{ marginTop: 10, display: "flex", flexDirection: "column", gap: 10 }}>
+                                    {setSubsets.map((subset) => {
+                                        const subsetCases = casesBySubset.get(subset.id) ?? [];
+
+                                        return (
+                                            <div key={subset.id} style={{ paddingLeft: 12 }}>
+                                                <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+                                                    <span style={{ fontWeight: 600 }}>{subset.id}</span>
+                                                    <button onClick={() => toggleSubsetCases(subset.id, true)}>Subset All</button>
+                                                    <button onClick={() => toggleSubsetCases(subset.id, false)}>Subset None</button>
+                                                </div>
+
+                                                <div style={{ marginTop: 6, display: "flex", gap: 8, flexWrap: "wrap" }}>
+                                                    {subsetCases.map((c) => (
+                                                        <button key={c.id} onClick={() => toggleCase(c.id)}>
+                                                            {toggles[c.id] ? "ON" : "OFF"} {c.label}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            ) : (
+                                <div style={{ marginTop: 10, display: "flex", gap: 8, flexWrap: "wrap" }}>
+                                    {setCases.map((c) => (
+                                        <button key={c.id} onClick={() => toggleCase(c.id)}>
+                                            {toggles[c.id] ? "ON" : "OFF"} {c.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    );
+                })}
             </div>
         </>
     )
