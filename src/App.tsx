@@ -4,15 +4,10 @@ import { Routes, Route, Navigate, Link } from 'react-router-dom'
 import TimerPage from './TimerPage/TimerPage'
 import CaseSelectPage from './CaseSelectPage/CaseSelectPage'
 
-import type { CaseToggles, Session } from './types/types'
+import type { SessionState, Session, CaseToggles } from './types/types'
 
 import { createSession, updateSessionSet, updateSessionToggles, updateSessionSolves } from './lib/sessions'
 import { getAlgSet, getAllAlgSets } from './data/algSets'
-
-type SessionState = {
-    sessions: Session[];
-    activeSessionId: string;
-}
 
 function App() {
     const allSets = getAllAlgSets();

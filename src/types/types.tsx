@@ -1,3 +1,8 @@
+export type SessionState = {
+    sessions: Session[];
+    activeSessionId: string;
+}
+
 export type Session = {
     id: string;
     label: string;
