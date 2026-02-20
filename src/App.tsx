@@ -12,7 +12,7 @@ import { getAlgSet, getAllAlgSets } from './data/algSets'
 function App() {
     const allSets = getAllAlgSets();
 
-    const [ sessionState, setSessionState] = useState<SessionState>(() => {
+    const [sessionState, setSessionState] = useState<SessionState>(() => {
         const first = createSession("Session 1", "zbll");
         return { sessions: [first], activeSessionId: first.id };
     });
