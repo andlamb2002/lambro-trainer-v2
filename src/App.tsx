@@ -11,12 +11,9 @@ import { saveSessionState, loadSessionState } from './lib/storage'
 import { getAlgSet, getAllAlgSets } from './data/algSets'
 
 function App() {
-    const allSets = getAllAlgSets();
+    console.count("Render:");
 
-    // const [sessionState, setSessionState] = useState<SessionState>(() => {
-    //     const first = createSession("Session 1", "zbll");
-    //     return { sessions: [first], activeSessionId: first.id };
-    // });
+    const allSets = getAllAlgSets();
 
     const [sessionState, setSessionState] = useState<SessionState>(() => loadSessionState());
 
@@ -126,7 +123,7 @@ function App() {
             </div>
 
             <Routes>
-                <Route path="/" element={<TimerPage cases={cases} toggles={activeSession.toggles} solves={solves} setSolves={setSolves} />} />
+                <Route path="/" element={<TimerPage key={activeSessionId} cases={cases} toggles={activeSession.toggles} solves={solves} setSolves={setSolves} />} />
                 <Route path="/cases" element={<CaseSelectPage cases={cases} subsets={subsets} toggles={activeSession.toggles} setToggles={setToggles} />} />
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
