@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, Navigate, Link } from 'react-router-dom'
 
 import TimerPage from './TimerPage/TimerPage'
@@ -7,15 +7,18 @@ import CaseSelectPage from './CaseSelectPage/CaseSelectPage'
 import type { SessionState, Session, CaseToggles } from './types/types'
 
 import { createSession, updateSessionSet, updateSessionToggles, updateSessionSolves } from './lib/sessions'
+import { saveSessionState, loadSessionState } from './lib/storage'
 import { getAlgSet, getAllAlgSets } from './data/algSets'
 
 function App() {
     const allSets = getAllAlgSets();
 
-    const [sessionState, setSessionState] = useState<SessionState>(() => {
-        const first = createSession("Session 1", "zbll");
-        return { sessions: [first], activeSessionId: first.id };
-    });
+    // const [sessionState, setSessionState] = useState<SessionState>(() => {
+    //     const first = createSession("Session 1", "zbll");
+    //     return { sessions: [first], activeSessionId: first.id };
+    // });
+
+    const [sessionState, setSessionState] = useState<SessionState>(() => loadSessionState());
 
     const sessions =  sessionState.sessions;
     const activeSessionId =  sessionState.activeSessionId;
@@ -79,6 +82,10 @@ function App() {
             };
         });
     };
+
+    useEffect(() => {
+        saveSessionState(sessionState);
+    }, [sessionState]);
 
     return (
         <>
