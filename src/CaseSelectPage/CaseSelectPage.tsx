@@ -83,18 +83,17 @@ function CaseSelectPage( { cases, subsets, toggles, setToggles, activeSetKey, ha
 
     return (
         <>
-            <select value={activeSetKey} onChange={(e) => handleChangeSet(e.target.value)}>
-                {allSets.map(s => (
-                    <option key={s.id} value={s.id}>
-                        {s.label}
-                    </option>
-                ))}
-            </select>
-
             <div style={{ display: "flex", gap: 8 }}>
-                <button onClick={() => toggleAllCases(true)}>All On</button>
-                <button onClick={() => toggleAllCases(false)}>All Off</button>
-                <div>Enabled cases: {enabledCases.length}</div>
+                <select value={activeSetKey} onChange={(e) => handleChangeSet(e.target.value)}>
+                    {allSets.map(s => (
+                        <option key={s.id} value={s.id}>
+                            {s.label}
+                        </option>
+                    ))}
+                </select>
+                <button onClick={() => toggleAllCases(true)}>All</button>
+                <button onClick={() => toggleAllCases(false)}>None</button>
+                <div>Selected: {enabledCases.length}</div>
             </div>
 
             <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 12 }}>
@@ -107,8 +106,8 @@ function CaseSelectPage( { cases, subsets, toggles, setToggles, activeSetKey, ha
                         <div key={setName}>
                             <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
                                 <strong style={{ fontSize: 16 }}>{setName}</strong>
-                                <button onClick={() => toggleSetCases(setName, true)}>Set All</button>
-                                <button onClick={() => toggleSetCases(setName, false)}>Set None</button>
+                                <button onClick={() => toggleSetCases(setName, true)}>All</button>
+                                <button onClick={() => toggleSetCases(setName, false)}>None</button>
                             </div>
 
                             {hasSubsets ? (
@@ -120,8 +119,8 @@ function CaseSelectPage( { cases, subsets, toggles, setToggles, activeSetKey, ha
                                             <div key={subset.id} style={{ paddingLeft: 12 }}>
                                                 <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
                                                     <span style={{ fontWeight: 600 }}>{subset.id}</span>
-                                                    <button onClick={() => toggleSubsetCases(subset.id, true)}>Subset All</button>
-                                                    <button onClick={() => toggleSubsetCases(subset.id, false)}>Subset None</button>
+                                                    <button onClick={() => toggleSubsetCases(subset.id, true)}>All</button>
+                                                    <button onClick={() => toggleSubsetCases(subset.id, false)}>None</button>
                                                 </div>
 
                                                 <div style={{ marginTop: 6, display: "flex", gap: 8, flexWrap: "wrap" }}>
