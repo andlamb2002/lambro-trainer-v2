@@ -61,6 +61,10 @@ function CaseSelectPage( { cases, subsets, toggles, setToggles, activeSetKey, ha
         return map;
     }, [cases]);
 
+    const enabledCases = useMemo(() => {
+        return cases.filter(c => toggles[c.id] === true);
+    }, [cases, toggles]);
+
     const toggleAllCases = (enabled: boolean) => {
         setToggles(toggleAll(toggles, enabled));
     };
@@ -90,7 +94,7 @@ function CaseSelectPage( { cases, subsets, toggles, setToggles, activeSetKey, ha
             <div style={{ display: "flex", gap: 8 }}>
                 <button onClick={() => toggleAllCases(true)}>All On</button>
                 <button onClick={() => toggleAllCases(false)}>All Off</button>
-                {/* <div>Enabled cases: {enabledCases.length}</div> */}
+                <div>Enabled cases: {enabledCases.length}</div>
             </div>
 
             <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 12 }}>
