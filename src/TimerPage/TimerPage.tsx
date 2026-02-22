@@ -29,7 +29,9 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
         () => (initialCaseAndScramble ? initialCaseAndScramble.scramble : "")
     );
 
-    const [selectedSolveId, setSelectedSolveId] = useState<string | null>(null);
+    const [selectedSolveId, setSelectedSolveId] = useState<string | null>(
+        () => (solves.length > 0 ? solves[solves.length - 1].id : null)
+    );
     const selectedSolve = solves.find(solve => solve.id === selectedSolveId) ?? null;
 
     const updateCaseAndScramble = (cases: Case[]) => {
@@ -70,7 +72,6 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
 
     const handleDeleteAllSolves = () => {
         setSolves(deleteAllSolves());
-        setSelectedSolveId(null);
     };
 
     return (
