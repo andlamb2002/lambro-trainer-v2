@@ -7,15 +7,20 @@ import {
     toggleSubset,
     toggle,
 } from '../lib/caseToggles'
+import { getAllAlgSets } from '../data/algSets';
 
 type Props = {
     cases: Case[]
     subsets: Subset[] | undefined;
     toggles: CaseToggles;
     setToggles: (toggles: CaseToggles) => void;
+    activeSetKey: string;
+    handleChangeSet: (nextSetKey: string) => void;
 }
 
-function CaseSelectPage( { cases, subsets, toggles, setToggles }: Props) {
+function CaseSelectPage( { cases, subsets, toggles, setToggles, activeSetKey, handleChangeSet }: Props) {
+
+    const allSets = getAllAlgSets();
 
     const sets = useMemo(() => {
         const s = new Set<string>();
@@ -74,6 +79,14 @@ function CaseSelectPage( { cases, subsets, toggles, setToggles }: Props) {
 
     return (
         <>
+            <select value={activeSetKey} onChange={(e) => handleChangeSet(e.target.value)}>
+                {allSets.map(s => (
+                    <option key={s.id} value={s.id}>
+                        {s.label}
+                    </option>
+                ))}
+            </select>
+
             <div style={{ display: "flex", gap: 8 }}>
                 <button onClick={() => toggleAllCases(true)}>All On</button>
                 <button onClick={() => toggleAllCases(false)}>All Off</button>
@@ -87,7 +100,7 @@ function CaseSelectPage( { cases, subsets, toggles, setToggles }: Props) {
                     const hasSubsets = setSubsets.length > 0;
 
                     return (
-                        <div key={setName} style={{ border: "1px solid #ddd", padding: 12 }}>
+                        <div key={setName}>
                             <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
                                 <strong style={{ fontSize: 16 }}>{setName}</strong>
                                 <button onClick={() => toggleSetCases(setName, true)}>Set All</button>

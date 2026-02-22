@@ -8,13 +8,10 @@ import type { SessionState, Session, CaseToggles } from './types/types'
 
 import { createSession, updateSessionSet, updateSessionToggles, updateSessionSolves } from './lib/sessions'
 import { saveSessionState, loadSessionState } from './lib/storage'
-import { getAlgSet, getAllAlgSets } from './data/algSets'
+import { getAlgSet } from './data/algSets'
 
 function App() {
-    console.count("Render:");
-
-    const allSets = getAllAlgSets();
-
+    
     const [sessionState, setSessionState] = useState<SessionState>(() => loadSessionState());
 
     const sessions =  sessionState.sessions;
@@ -103,28 +100,39 @@ function App() {
                     ))}
                 </select>
 
-                <button
-                    onClick={handleNewSession}
-                >
+                <button onClick={handleNewSession}>
                     New Session
                 </button>
 
                 <button disabled={sessions.length <= 1} onClick={handleDeleteSession}>
                     Delete Session
                 </button>
-
-                <select value={activeSetKey} onChange={(e) => handleChangeSet(e.target.value)}>
-                    {allSets.map(s => (
-                        <option key={s.id} value={s.id}>
-                            {s.label}
-                        </option>
-                    ))}
-                </select>
             </div>
 
             <Routes>
-                <Route path="/" element={<TimerPage key={activeSessionId} cases={cases} toggles={activeSession.toggles} solves={solves} setSolves={setSolves} />} />
-                <Route path="/cases" element={<CaseSelectPage cases={cases} subsets={subsets} toggles={activeSession.toggles} setToggles={setToggles} />} />
+                <Route path="/" 
+                    element={
+                        <TimerPage 
+                            key={activeSessionId} 
+                            cases={cases} 
+                            toggles={activeSession.toggles} 
+                            solves={solves} 
+                            setSolves={setSolves} 
+                        />
+                    } 
+                />
+                <Route path="/cases" 
+                    element={
+                        <CaseSelectPage 
+                            cases={cases} 
+                            subsets={subsets} 
+                            toggles={activeSession.toggles} 
+                            setToggles={setToggles} 
+                            activeSetKey={activeSetKey}
+                            handleChangeSet={handleChangeSet}
+                        />
+                    } 
+                />
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
         </>
