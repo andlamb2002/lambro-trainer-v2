@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { Routes, Route, Navigate, Link } from 'react-router-dom'
 
 import TimerPage from './TimerPage/TimerPage'
@@ -11,7 +11,7 @@ import { saveSessionState, loadSessionState } from './lib/storage'
 import { getAlgSet } from './data/algSets'
 
 function App() {
-    
+
     const [sessionState, setSessionState] = useState<SessionState>(() => loadSessionState());
 
     const sessions =  sessionState.sessions;
@@ -23,6 +23,10 @@ function App() {
     const cases = activeAlgSet.cases;
     const subsets = activeAlgSet.subsets;
     const solves = activeSession.solves;
+
+    const enabledCases = useMemo(() => {
+        return cases.filter(c => activeSession.toggles[c.id] === true);
+    }, [cases, activeSession.toggles]);
 
     const setActiveSessionId = (id: string) => {
         setSessionState(prev => ({ ...prev, activeSessionId: id }));
@@ -107,6 +111,8 @@ function App() {
                 <button disabled={sessions.length <= 1} onClick={handleDeleteSession}>
                     Delete Session
                 </button>
+
+                <div>Selected: {enabledCases.length}</div>
             </div>
 
             <Routes>
