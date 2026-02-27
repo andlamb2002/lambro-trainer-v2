@@ -17,7 +17,6 @@ function TempPage() {
 
     const START_COOLDOWN_MS = 500;
     const cooldownIdRef = useRef<number | null>(null);
-    const startCooldownRef = useRef<number>(0);
 
     const setPhaseRef = useCallback((p: Phase) => {
         phaseRef.current = p;
@@ -37,7 +36,6 @@ function TempPage() {
                 intervalIdRef.current = null;
             }
         };
-
     }, [isRunning]);
 
     const start = useCallback(() => {
@@ -82,7 +80,6 @@ function TempPage() {
 
         if (p === 'holdStop') {
             setPhaseRef('cooldown');
-            startCooldownRef.current = performance.now() + START_COOLDOWN_MS;
 
             if(cooldownIdRef.current !== null) {
                 clearTimeout(cooldownIdRef.current);
