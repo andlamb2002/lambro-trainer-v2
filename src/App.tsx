@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, Link } from 'react-router-dom'
 
 import TimerPage from './TimerPage/TimerPage'
 import CaseSelectPage from './CaseSelectPage/CaseSelectPage'
+import TempPage from './TempPage'
 
 import type { SessionState, Session, CaseToggles } from './types/types'
 
@@ -139,6 +140,7 @@ function App() {
                         />
                     } 
                 />
+                <Route path="/temp" element={<TempPage />} />
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
         </>
