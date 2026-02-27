@@ -6,18 +6,23 @@ function TempPage() {
 
     const [solves, setSolves] = useState<number[]>([]);
 
-    const [isRunning, setIsRunning] = useState<boolean>(false);
-    const [time, setTime] = useState<number>(0);
-
     const [phase, setPhase] = useState<Phase>('idle');
     const phaseRef = useRef<Phase>(phase);
+
+    const [time, setTime] = useState<number>(0);
+    const isRunning = phase === 'running';
 
     const intervalIdRef = useRef<number | null>(null);
     const startTimeRef = useRef<number>(0);
 
+    const setPhaseRef = useCallback((p: Phase) => {
+        phaseRef.current = p;
+        setPhase(p);
+    }, []);
+
     useEffect(() => {
         if (isRunning) {
-            intervalIdRef.current = setInterval(() => {
+            intervalIdRef.current = window.setInterval(() => {
                 setTime(performance.now() - startTimeRef.current);
             }, 10);
         }
@@ -31,18 +36,18 @@ function TempPage() {
 
     }, [isRunning]);
 
-    function start(): void {
-        setTime(0);
-        setIsRunning(true);
+    const start = useCallback(() => {
         startTimeRef.current = performance.now();
-    }
+        setTime(0);
+        setPhaseRef('running');
+    }, [setPhaseRef]);
 
-    function stop(): void {
+    const stop = useCallback(() => {
         const finalTime = performance.now() - startTimeRef.current;
         setTime(finalTime);
-        setIsRunning(false);
+        setPhaseRef('holdStop');
         setSolves(prev => [...prev, finalTime]);
-    }
+    }, [setPhaseRef]);
 
     function formatTime(ms: number): string {
         return (ms / 1000).toFixed(2);
@@ -52,32 +57,31 @@ function TempPage() {
         return Math.floor(ms / 1000).toString();
     }
 
-    useEffect(() => {
-        phaseRef.current = phase;
-    }, [phase]);
-
     const handleKeyDown = useCallback((e: KeyboardEvent) => {
-        if (phaseRef.current === 'running') {
-            setPhase('holdStop');
+        if (e.code === 'Space') e.preventDefault();
+        if (e.repeat) return;
+
+        const p = phaseRef.current;
+
+        if (p === 'running') {
             stop();
         }
-        else if (e.code === "Space") {
-            if (phase === 'idle') {
-                setPhase('holdStart');
-            } 
+        else if (e.code === "Space" && p === 'idle') {
+            setPhaseRef('holdStart');
         }
-    }, [phase]);
+    }, [stop, setPhaseRef]);
 
     const handleKeyUp = useCallback((e: KeyboardEvent) => {
-        if (e.code === "Space") {
-            if (phase === 'holdStart') {
-                setPhase('running');
-                start();
-            } else if (phase === 'holdStop') {
-                setPhase('idle');
-            }
+        if (e.code === 'Space') e.preventDefault();
+
+        const p = phaseRef.current;
+
+        if (p === 'holdStop') {
+            setPhaseRef('idle');
+        } else if (e.code === "Space" && p === 'holdStart') {
+            start();
         }
-    }, [phase]);
+    }, [start, setPhaseRef]);
 
     useEffect(() => {
         document.addEventListener("keydown", handleKeyDown);
@@ -92,15 +96,12 @@ function TempPage() {
     return (
         <>
             <div>
-                <button onClick={() => isRunning ? stop() : start()}>
-                    {isRunning ? "Stop" : "Start"}
-                </button>
+                {phase}
                 {isRunning ? 
                      <>{formatRunningTime(time)}</>
                     :
                     <>{formatTime(time)}</>
                 }
-                {phase}
             </div>
             <ul>
                 {solves.map((s, i) => (
