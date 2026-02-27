@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-type Phase = 'idle' | 'holdStart' | 'running' | 'holdStop';
+type Phase = 'idle' | 'holdStart' | 'running' | 'holdStop' | 'cooldown';
 
 function TempPage() {
 
@@ -14,6 +14,10 @@ function TempPage() {
 
     const intervalIdRef = useRef<number | null>(null);
     const startTimeRef = useRef<number>(0);
+
+    const START_COOLDOWN_MS = 500;
+    const cooldownIdRef = useRef<number | null>(null);
+    const startCooldownRef = useRef<number>(0);
 
     const setPhaseRef = useCallback((p: Phase) => {
         phaseRef.current = p;
@@ -45,8 +49,8 @@ function TempPage() {
     const stop = useCallback(() => {
         const finalTime = performance.now() - startTimeRef.current;
         setTime(finalTime);
-        setPhaseRef('holdStop');
         setSolves(prev => [...prev, finalTime]);
+        setPhaseRef('holdStop');
     }, [setPhaseRef]);
 
     function formatTime(ms: number): string {
@@ -77,7 +81,18 @@ function TempPage() {
         const p = phaseRef.current;
 
         if (p === 'holdStop') {
-            setPhaseRef('idle');
+            setPhaseRef('cooldown');
+            startCooldownRef.current = performance.now() + START_COOLDOWN_MS;
+
+            if(cooldownIdRef.current !== null) {
+                clearTimeout(cooldownIdRef.current);
+            }
+
+            cooldownIdRef.current = window.setTimeout(() => {
+                setPhaseRef('idle');
+                cooldownIdRef.current = null;
+            }, START_COOLDOWN_MS);
+
         } else if (e.code === "Space" && p === 'holdStart') {
             start();
         }
