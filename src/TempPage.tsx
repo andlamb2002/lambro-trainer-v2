@@ -43,13 +43,21 @@ function TempPage() {
         return (ms / 1000).toFixed(2);
     }
 
+    function formatRunningTime(ms: number): string {
+        return Math.floor(ms / 1000).toString();
+    }
+
     return (
         <>
             <div>
                 <button onClick={() => isRunning ? stop() : start()}>
                     {isRunning ? "Stop" : "Start"}
                 </button>
-                <>{formatTime(time)}</>
+                {isRunning ? 
+                     <>{formatRunningTime(time)}</>
+                    :
+                    <>{formatTime(time)}</>
+                }
             </div>
             <ul>
                 {solves.map((s, i) => (
