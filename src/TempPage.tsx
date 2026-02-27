@@ -13,7 +13,7 @@ function TempPage() {
     useEffect(() => {
         if (isRunning) {
             intervalIdRef.current = setInterval(() => {
-                setTime(Date.now() - startTimeRef.current);
+                setTime(performance.now() - startTimeRef.current);
             }, 10);
         }
 
@@ -29,11 +29,11 @@ function TempPage() {
     function start(): void {
         setTime(0);
         setIsRunning(true);
-        startTimeRef.current = Date.now();
+        startTimeRef.current = performance.now();
     }
 
     function stop(): void {
-        const finalTime = Date.now() - startTimeRef.current;
+        const finalTime = performance.now() - startTimeRef.current;
         setTime(finalTime);
         setIsRunning(false);
         setSolves(prev => [...prev, finalTime]);
