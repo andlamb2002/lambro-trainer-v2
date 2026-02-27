@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+type Phase = 'idle' | 'holdStart' | 'running' | 'holdStop';
 
 function TempPage() {
 
@@ -6,6 +8,9 @@ function TempPage() {
 
     const [isRunning, setIsRunning] = useState<boolean>(false);
     const [time, setTime] = useState<number>(0);
+
+    const [phase, setPhase] = useState<Phase>('idle');
+    const phaseRef = useRef<Phase>(phase);
 
     const intervalIdRef = useRef<number | null>(null);
     const startTimeRef = useRef<number>(0);
@@ -47,6 +52,43 @@ function TempPage() {
         return Math.floor(ms / 1000).toString();
     }
 
+    useEffect(() => {
+        phaseRef.current = phase;
+    }, [phase]);
+
+    const handleKeyDown = useCallback((e: KeyboardEvent) => {
+        if (phaseRef.current === 'running') {
+            setPhase('holdStop');
+            stop();
+        }
+        else if (e.code === "Space") {
+            if (phase === 'idle') {
+                setPhase('holdStart');
+            } 
+        }
+    }, [phase]);
+
+    const handleKeyUp = useCallback((e: KeyboardEvent) => {
+        if (e.code === "Space") {
+            if (phase === 'holdStart') {
+                setPhase('running');
+                start();
+            } else if (phase === 'holdStop') {
+                setPhase('idle');
+            }
+        }
+    }, [phase]);
+
+    useEffect(() => {
+        document.addEventListener("keydown", handleKeyDown);
+        document.addEventListener("keyup", handleKeyUp);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+            document.removeEventListener("keyup", handleKeyUp);
+        };
+    }, [handleKeyDown, handleKeyUp]);
+
     return (
         <>
             <div>
@@ -58,6 +100,7 @@ function TempPage() {
                     :
                     <>{formatTime(time)}</>
                 }
+                {phase}
             </div>
             <ul>
                 {solves.map((s, i) => (
