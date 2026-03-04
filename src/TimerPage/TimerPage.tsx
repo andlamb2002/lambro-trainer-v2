@@ -22,20 +22,13 @@ type Props = {
     cases: Case[]
     toggles: CaseToggles;
     solves: Solve[];
-    setSolves: (solves: Solve[]) => void;
+    setSolves: React.Dispatch<React.SetStateAction<Solve[]>>;
 }
 
 function TimerPage({ cases, toggles, solves, setSolves }: Props) {
     const enabledCases = getEnabledCases(cases, toggles);
 
     const initialCaseAndScramble = enabledCases.length > 0 ? getRandomCaseAndScramble(enabledCases) : null;
-    // const [currentCase, setCurrentCase] = useState<Case | null>(
-    //     () => (initialCaseAndScramble ? initialCaseAndScramble.caseItem : null)
-    // );
-    // const [currentScramble, setCurrentScramble] = useState(
-    //     () => (initialCaseAndScramble ? initialCaseAndScramble.scramble : "")
-    // );
-
     const [current, setCurrent] = useState<CaseAndScramble>(() => ({
         caseItem: initialCaseAndScramble?.caseItem ?? null,
         scramble: initialCaseAndScramble?.scramble ?? "",
@@ -61,20 +54,15 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
         if (currentCase === null) return;
 
         const solve = createSolve(currentCase, currentScramble, finalTime);
-        setSolves(appendSolve(solves, solve));
+        setSolves(prev => appendSolve(prev, solve));
         setSelectedSolveId(solve.id);
         updateCaseAndScramble(enabledCases);
-    }, [currentCase, currentScramble, solves, setSolves, enabledCases]);
+    }, [currentCase, currentScramble, setSolves, enabledCases]);
 
     const { time, phase } = useTimer(handleStop);
 
     const nextCase = () => {
         if (currentCase === null) return;
-
-        // const solve = createSolve(currentCase, currentScramble);
-        // setSolves(appendSolve(solves, solve));
-        // setSelectedSolveId(solve.id);
-
         updateCaseAndScramble(enabledCases);
     }
 
@@ -89,11 +77,11 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
             setSelectedSolveId(nextSelected);
         }
 
-        setSolves(next);
+        setSolves(() => next);
     };
 
     const handleDeleteAllSolves = () => {
-        setSolves(deleteAllSolves());
+        setSolves(() => deleteAllSolves());
     };
 
     return (

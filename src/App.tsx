@@ -5,7 +5,7 @@ import TimerPage from './TimerPage/TimerPage'
 import CaseSelectPage from './CaseSelectPage/CaseSelectPage'
 import TempPage from './TempPage'
 
-import type { SessionState, Session, CaseToggles } from './types/types'
+import type { SessionState, CaseToggles, Solve } from './types/types'
 
 import { createSession, updateSessionSet, updateSessionToggles, updateSessionSolves } from './lib/sessions'
 import { saveSessionState, loadSessionState } from './lib/storage'
@@ -40,11 +40,21 @@ function App() {
         }));
     }
 
-    const setSolves = (solves: Session['solves']) => {
-        setSessionState(prev => ({
-            ...prev,
-            sessions: updateSessionSolves(prev.sessions, prev.activeSessionId, solves)
-        }));
+    const setSolves: React.Dispatch<React.SetStateAction<Solve[]>> = (next) => {
+        setSessionState(prev => {
+            const activeId = prev.activeSessionId;
+
+            const prevSolves =
+            prev.sessions.find(s => s.id === activeId)?.solves ?? [];
+
+            const nextSolves =
+            typeof next === "function" ? next(prevSolves) : next;
+
+            return {
+                ...prev,
+                sessions: updateSessionSolves(prev.sessions, activeId, nextSolves),
+            };
+        });
     }
 
     const handleNewSession = () => {
