@@ -35,6 +35,14 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
     );
     const selectedSolve = solves.find(solve => solve.id === selectedSolveId) ?? null;
 
+    function formatTime(ms: number): string {
+        return (ms / 1000).toFixed(2);
+    }
+
+    function formatRunningTime(ms: number): string {
+        return Math.floor(ms / 1000).toString();
+    }
+
     const updateCaseAndScramble = (cases: Case[]) => {
         const caseAndScramble = getRandomCaseAndScramble(cases);
         if (!caseAndScramble) {
@@ -50,7 +58,7 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
     const handleStop = useCallback((finalTime: number) => {
         if (currentCase === null) return;
 
-        const solve = createSolve(currentCase, currentScramble, finalTime);
+        const solve = createSolve(currentCase, currentScramble, parseFloat(formatTime(finalTime)));
         setSolves(appendSolve(solves, solve));
         setSelectedSolveId(solve.id);
         updateCaseAndScramble(enabledCases);
@@ -85,14 +93,6 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
     const handleDeleteAllSolves = () => {
         setSolves(deleteAllSolves());
     };
-
-    function formatTime(ms: number): string {
-        return (ms / 1000).toFixed(2);
-    }
-
-    function formatRunningTime(ms: number): string {
-        return Math.floor(ms / 1000).toString();
-    }
 
     return (
         <> 
