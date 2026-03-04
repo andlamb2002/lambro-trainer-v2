@@ -13,6 +13,11 @@ import Scramble from './components/Scramble'
 import Solves from './components/Solves'
 import SelectedSolve from './components/SelectedSolve'
 
+type CaseAndScramble = {
+    caseItem: Case | null;
+    scramble: string;
+}
+
 type Props = {
     cases: Case[]
     toggles: CaseToggles;
@@ -24,12 +29,19 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
     const enabledCases = getEnabledCases(cases, toggles);
 
     const initialCaseAndScramble = enabledCases.length > 0 ? getRandomCaseAndScramble(enabledCases) : null;
-    const [currentCase, setCurrentCase] = useState<Case | null>(
-        () => (initialCaseAndScramble ? initialCaseAndScramble.caseItem : null)
-    );
-    const [currentScramble, setCurrentScramble] = useState(
-        () => (initialCaseAndScramble ? initialCaseAndScramble.scramble : "")
-    );
+    // const [currentCase, setCurrentCase] = useState<Case | null>(
+    //     () => (initialCaseAndScramble ? initialCaseAndScramble.caseItem : null)
+    // );
+    // const [currentScramble, setCurrentScramble] = useState(
+    //     () => (initialCaseAndScramble ? initialCaseAndScramble.scramble : "")
+    // );
+
+    const [current, setCurrent] = useState<CaseAndScramble>(() => ({
+        caseItem: initialCaseAndScramble?.caseItem ?? null,
+        scramble: initialCaseAndScramble?.scramble ?? "",
+    }));
+    const currentCase = current.caseItem;
+    const currentScramble = current.scramble;
 
     const [selectedSolveId, setSelectedSolveId] = useState<string | null>(
         () => (solves.length > 0 ? solves[solves.length - 1].id : null)
@@ -39,13 +51,10 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
     const updateCaseAndScramble = (cases: Case[]) => {
         const caseAndScramble = getRandomCaseAndScramble(cases);
         if (!caseAndScramble) {
-            setCurrentCase(null);
-            setCurrentScramble("");
+            setCurrent({ caseItem: null, scramble: "" });
             return;
         }
-        
-        setCurrentCase(caseAndScramble.caseItem);
-        setCurrentScramble(caseAndScramble.scramble);
+        setCurrent({ caseItem: caseAndScramble.caseItem, scramble: caseAndScramble.scramble });
     }
 
     const handleStop = useCallback((finalTime: number) => {
