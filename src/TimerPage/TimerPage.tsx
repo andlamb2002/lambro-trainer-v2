@@ -41,14 +41,14 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
     );
     const selectedSolve = solves.find(solve => solve.id === selectedSolveId) ?? null;
 
-    const updateCaseAndScramble = (cases: Case[]) => {
+    const updateCaseAndScramble = useCallback((cases: Case[]) => {
         const caseAndScramble = getRandomCaseAndScramble(cases);
         if (!caseAndScramble) {
             setCurrent({ caseItem: null, scramble: "" });
             return;
         }
         setCurrent({ caseItem: caseAndScramble.caseItem, scramble: caseAndScramble.scramble });
-    }
+    }, []);
 
     const handleStop = useCallback((finalTime: number) => {
         if (currentCase === null) return;
@@ -57,7 +57,7 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
         setSolves(prev => appendSolve(prev, solve));
         setSelectedSolveId(solve.id);
         updateCaseAndScramble(enabledCases);
-    }, [currentCase, currentScramble, setSolves, enabledCases]);
+    }, [currentCase, currentScramble, setSolves, updateCaseAndScramble, enabledCases]);
 
     const { time, phase } = useTimer(handleStop);
 
@@ -67,17 +67,17 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
     }
 
     const handleDeleteSolve = (id: string) => {
-        const next = deleteSolve(solves, id);
-
-        if (selectedSolveId === id) {
-            const nextSelected = 
-                next.length > 0 
-                ? next[next.length - 1].id
-                : null;
-            setSelectedSolveId(nextSelected);
-        }
-
-        setSolves(() => next);
+        setSolves(prev => {
+            const next = deleteSolve(prev, id);
+            if (selectedSolveId === id) {
+                const nextSelected = 
+                    next.length > 0 
+                    ? next[next.length - 1].id
+                    : null;
+                setSelectedSolveId(nextSelected);
+            }
+            return next;
+        });
     };
 
     const handleDeleteAllSolves = () => {
