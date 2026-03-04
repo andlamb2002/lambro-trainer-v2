@@ -86,8 +86,8 @@ export function useTimer(onStop: (time: number) => void) {
         }, [start, setPhaseRef]);
     
         useEffect(() => {
-            document.addEventListener("keydown", handleKeyDown);
-            document.addEventListener("keyup", handleKeyUp);
+            document.addEventListener("keydown", handleKeyDown, { passive: false });
+            document.addEventListener("keyup", handleKeyUp, { passive: false });
     
             return () => {
                 document.removeEventListener("keydown", handleKeyDown);
