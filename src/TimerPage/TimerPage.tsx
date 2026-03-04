@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 import type { Case, CaseToggles, Solve } from '../types/types'
 // import { useCaseStore } from './Stores/useCaseStore'
+import { useTimer } from '../hooks/useTimer'
 
 import { getEnabledCases } from '../lib/caseToggles'
 import { getRandomCaseAndScramble } from '../lib/randomScramble'
@@ -46,6 +47,19 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
         setCurrentScramble(caseAndScramble.scramble);
     }
 
+    const { time, phase } = useTimer((finalTime) => {
+        if (currentCase === null) return;
+        const solve = createSolve(currentCase, currentScramble, finalTime);
+        setSolves(appendSolve(solves, solve));
+        setSelectedSolveId(solve.id);
+        const next = getRandomCaseAndScramble(enabledCases);
+        if (next) {
+            updateCaseAndScramble(enabledCases);
+        } else {
+            updateCaseAndScramble([]);
+        }
+    });
+
     const nextCase = () => {
         if (currentCase === null) return;
 
@@ -74,6 +88,14 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
         setSolves(deleteAllSolves());
     };
 
+    function formatTime(ms: number): string {
+        return (ms / 1000).toFixed(2);
+    }
+
+    function formatRunningTime(ms: number): string {
+        return Math.floor(ms / 1000).toString();
+    }
+
     return (
         <> 
             <Scramble 
@@ -81,6 +103,15 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
                 currentScramble={currentScramble} 
                 nextCase={nextCase}
             />
+
+            <div>
+                {phase}
+                {phase === 'running' ? 
+                     <>{formatRunningTime(time)}</>
+                    :
+                    <>{formatTime(time)}</>
+                }
+            </div>
 
             <Solves 
                 solves={solves} 
