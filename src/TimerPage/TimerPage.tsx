@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
 import type { Case, CaseToggles, Solve } from '../types/types'
 // import { useCaseStore } from './Stores/useCaseStore'
@@ -26,7 +26,7 @@ type Props = {
 }
 
 function TimerPage({ cases, toggles, solves, setSolves }: Props) {
-    const enabledCases = getEnabledCases(cases, toggles);
+    const enabledCases = useMemo(() => getEnabledCases(cases, toggles), [cases, toggles]);
 
     const initialCaseAndScramble = enabledCases.length > 0 ? getRandomCaseAndScramble(enabledCases) : null;
     const [current, setCurrent] = useState<CaseAndScramble>(() => ({
