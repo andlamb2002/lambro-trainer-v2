@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import type { Case, CaseToggles, Solve } from '../types/types'
 // import { useCaseStore } from './Stores/useCaseStore'
@@ -47,25 +47,23 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
         setCurrentScramble(caseAndScramble.scramble);
     }
 
-    const { time, phase } = useTimer((finalTime) => {
+    const handleStop = useCallback((finalTime: number) => {
         if (currentCase === null) return;
+
         const solve = createSolve(currentCase, currentScramble, finalTime);
         setSolves(appendSolve(solves, solve));
         setSelectedSolveId(solve.id);
-        const next = getRandomCaseAndScramble(enabledCases);
-        if (next) {
-            updateCaseAndScramble(enabledCases);
-        } else {
-            updateCaseAndScramble([]);
-        }
-    });
+        updateCaseAndScramble(enabledCases);
+    }, [currentCase, currentScramble, solves, setSolves, enabledCases]);
+
+    const { time, phase } = useTimer(handleStop);
 
     const nextCase = () => {
         if (currentCase === null) return;
 
-        const solve = createSolve(currentCase, currentScramble);
-        setSolves(appendSolve(solves, solve));
-        setSelectedSolveId(solve.id);
+        // const solve = createSolve(currentCase, currentScramble);
+        // setSolves(appendSolve(solves, solve));
+        // setSelectedSolveId(solve.id);
 
         updateCaseAndScramble(enabledCases);
     }
