@@ -24,7 +24,7 @@ function Solves({ solves, selectedSolveId, onSelectSolve, onDeleteAllSolves }: P
                             onClick={() => onSelectSolve(solve.id)}
                             style={{ fontWeight: solve.id === selectedSolveId ? "bold" : "normal" }}
                         >
-                            {solve.label}
+                            {solve.time}
                         </button>
                     </li>
                 ))}
