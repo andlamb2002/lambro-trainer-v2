@@ -1,5 +1,7 @@
 import type { Solve } from '../../types/types';
 
+import { formatTime } from '../../lib/timeFormat';
+
 type Props = {
     solves: Solve[];
     selectedSolveId: string | null;
@@ -24,7 +26,7 @@ function Solves({ solves, selectedSolveId, onSelectSolve, onDeleteAllSolves }: P
                             onClick={() => onSelectSolve(solve.id)}
                             style={{ fontWeight: solve.id === selectedSolveId ? "bold" : "normal" }}
                         >
-                            {solve.time}
+                            {formatTime(solve.time)}
                         </button>
                     </li>
                 ))}

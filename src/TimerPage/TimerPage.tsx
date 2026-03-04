@@ -7,6 +7,7 @@ import { useTimer } from '../hooks/useTimer'
 import { getEnabledCases } from '../lib/caseToggles'
 import { getRandomCaseAndScramble } from '../lib/randomScramble'
 import { createSolve, appendSolve, deleteSolve, deleteAllSolves } from '../lib/solves'
+import { formatTime, formatRunningTime } from '../lib/timeFormat'
 
 import Scramble from './components/Scramble'
 import Solves from './components/Solves'
@@ -35,14 +36,6 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
     );
     const selectedSolve = solves.find(solve => solve.id === selectedSolveId) ?? null;
 
-    function formatTime(ms: number): string {
-        return (ms / 1000).toFixed(2);
-    }
-
-    function formatRunningTime(ms: number): string {
-        return Math.floor(ms / 1000).toString();
-    }
-
     const updateCaseAndScramble = (cases: Case[]) => {
         const caseAndScramble = getRandomCaseAndScramble(cases);
         if (!caseAndScramble) {
@@ -58,7 +51,7 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
     const handleStop = useCallback((finalTime: number) => {
         if (currentCase === null) return;
 
-        const solve = createSolve(currentCase, currentScramble, parseFloat(formatTime(finalTime)));
+        const solve = createSolve(currentCase, currentScramble, finalTime);
         setSolves(appendSolve(solves, solve));
         setSelectedSolveId(solve.id);
         updateCaseAndScramble(enabledCases);

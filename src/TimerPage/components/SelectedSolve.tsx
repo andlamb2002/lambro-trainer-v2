@@ -1,5 +1,7 @@
 import type { Solve } from '../../types/types';
 
+import { formatTime } from '../../lib/timeFormat';
+
 type Props = {
     solve: Solve | null;
     onDelete: (id: string) => void;
@@ -13,7 +15,7 @@ function SelectedSolve({ solve, onDelete }: Props) {
             <h3>Selected Solve</h3>
 
             <div>Label: {solve.label}</div>
-            <div>Time: {solve.time.toFixed(2)}</div>
+            <div>Time: {formatTime(solve.time)}</div>
             <div>Subset: {solve.subset ?? "-"}</div>
             <div>Variant: {solve.variant ?? "-"}</div>
             <div>Scramble: {solve.scramble}</div>
