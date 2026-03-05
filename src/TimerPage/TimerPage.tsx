@@ -29,11 +29,18 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
     const enabledCases = useMemo(() => getEnabledCases(cases, toggles), [cases, toggles]);
     const isDisabled = enabledCases.length === 0;
 
-    const initialCaseAndScramble = !isDisabled ? getRandomCaseAndScramble(enabledCases) : null;
-    const [current, setCurrent] = useState<CaseAndScramble>(() => ({
-        caseItem: initialCaseAndScramble?.caseItem ?? null,
-        scramble: initialCaseAndScramble?.scramble ?? "",
-    }));
+    const [current, setCurrent] = useState<CaseAndScramble>(() => {
+        if (isDisabled) {
+            return { caseItem: null, scramble: "" };
+        }
+
+        const caseAndScramble = getRandomCaseAndScramble(enabledCases);
+
+        return {
+            caseItem: caseAndScramble?.caseItem ?? null,
+            scramble: caseAndScramble?.scramble ?? "",
+        };
+    });
     const currentCase = current.caseItem;
     const currentScramble = current.scramble;
 
