@@ -27,8 +27,9 @@ type Props = {
 
 function TimerPage({ cases, toggles, solves, setSolves }: Props) {
     const enabledCases = useMemo(() => getEnabledCases(cases, toggles), [cases, toggles]);
+    const isDisabled = enabledCases.length === 0;
 
-    const initialCaseAndScramble = enabledCases.length > 0 ? getRandomCaseAndScramble(enabledCases) : null;
+    const initialCaseAndScramble = !isDisabled ? getRandomCaseAndScramble(enabledCases) : null;
     const [current, setCurrent] = useState<CaseAndScramble>(() => ({
         caseItem: initialCaseAndScramble?.caseItem ?? null,
         scramble: initialCaseAndScramble?.scramble ?? "",
@@ -59,10 +60,10 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
         updateCaseAndScramble(enabledCases);
     }, [currentCase, currentScramble, setSolves, updateCaseAndScramble, enabledCases]);
 
-    const { time, phase } = useTimer(handleStop);
+    const { time, phase } = useTimer(handleStop, isDisabled);
 
     const nextCase = () => {
-        if (currentCase === null) return;
+        if (isDisabled) return;
         updateCaseAndScramble(enabledCases);
     }
 

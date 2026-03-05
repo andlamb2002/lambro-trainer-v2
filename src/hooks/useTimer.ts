@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 type Phase = 'idle' | 'holdStart' | 'running' | 'holdStop' | 'cooldown';
 
-export function useTimer(onStop: (time: number) => void) {
+export function useTimer(onStop: (time: number) => void, isDisabled: boolean) {
     
         const [phase, setPhase] = useState<Phase>('idle');
         const phaseRef = useRef<Phase>(phase);
@@ -50,6 +50,7 @@ export function useTimer(onStop: (time: number) => void) {
         }, [onStop, setPhaseRef]);
     
         const handleKeyDown = useCallback((e: KeyboardEvent) => {
+            if (isDisabled) return;
             if (e.code === 'Space') e.preventDefault();
             if (e.repeat) return;
     
@@ -61,9 +62,10 @@ export function useTimer(onStop: (time: number) => void) {
             else if (e.code === "Space" && p === 'idle') {
                 setPhaseRef('holdStart');
             }
-        }, [stop, setPhaseRef]);
+        }, [stop, setPhaseRef, isDisabled]);
     
         const handleKeyUp = useCallback((e: KeyboardEvent) => {
+            if (isDisabled) return;
             if (e.code === 'Space') e.preventDefault();
     
             const p = phaseRef.current;
@@ -83,7 +85,7 @@ export function useTimer(onStop: (time: number) => void) {
             } else if (e.code === "Space" && p === 'holdStart') {
                 start();
             }
-        }, [start, setPhaseRef]);
+        }, [start, setPhaseRef, isDisabled]);
     
         useEffect(() => {
             document.addEventListener("keydown", handleKeyDown, { passive: false });
