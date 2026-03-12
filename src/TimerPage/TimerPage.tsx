@@ -6,7 +6,7 @@ import { useTimer } from '../hooks/useTimer'
 
 import { getEnabledCases } from '../lib/caseToggles'
 import { getRandomCaseAndScramble } from '../lib/randomScramble'
-import { createSolve, appendSolve, deleteSolve, deleteAllSolves } from '../lib/solves'
+import { createSolve } from '../lib/solves'
 import { formatTime, formatRunningTime } from '../lib/timeFormat'
 
 import Scramble from './components/Scramble'
@@ -22,10 +22,12 @@ type Props = {
     cases: Case[]
     toggles: CaseToggles;
     solves: Solve[];
-    setSolves: React.Dispatch<React.SetStateAction<Solve[]>>;
+    addSolve: (solve: Solve) => void;
+    deleteSolve: (id: string) => void;
+    deleteAllSolves: () => void;
 }
 
-function TimerPage({ cases, toggles, solves, setSolves }: Props) {
+function TimerPage({ cases, toggles, solves, addSolve, deleteSolve, deleteAllSolves }: Props) {
     const enabledCases = useMemo(() => getEnabledCases(cases, toggles), [cases, toggles]);
     const isDisabled = enabledCases.length === 0;
 
@@ -62,10 +64,10 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
         if (currentCase === null) return;
 
         const solve = createSolve(currentCase, currentScramble, finalTime);
-        setSolves(prev => appendSolve(prev, solve));
+        addSolve(solve);
         setSelectedSolveId(solve.id);
         updateCaseAndScramble(enabledCases);
-    }, [currentCase, currentScramble, setSolves, updateCaseAndScramble, enabledCases]);
+    }, [currentCase, currentScramble, addSolve, updateCaseAndScramble, enabledCases]);
 
     const { time, phase } = useTimer(handleStop, isDisabled);
 
@@ -75,21 +77,15 @@ function TimerPage({ cases, toggles, solves, setSolves }: Props) {
     }
 
     const handleDeleteSolve = (id: string) => {
-        setSolves(prev => {
-            const next = deleteSolve(prev, id);
-            if (selectedSolveId === id) {
-                const nextSelected = 
-                    next.length > 0 
-                    ? next[next.length - 1].id
-                    : null;
-                setSelectedSolveId(nextSelected);
-            }
-            return next;
-        });
+        deleteSolve(id);
+        if (selectedSolveId === id) {
+            const nextSelected = solves.filter(s => s.id !== id);
+            setSelectedSolveId(nextSelected.length > 0 ? nextSelected[nextSelected.length - 1].id : null);
+        } 
     };
 
     const handleDeleteAllSolves = () => {
-        setSolves(() => deleteAllSolves());
+        deleteAllSolves();
     };
 
     return (

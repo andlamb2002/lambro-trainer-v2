@@ -18,7 +18,6 @@ export function useSessionState() {
     const cases = activeAlgSet.cases;
     const subsets = activeAlgSet.subsets;
     const solves = activeSession.solves;
-    // const toggles = activeSession.toggles;
 
     const enabledCases = useMemo(() => {
         return cases.filter(c => activeSession.toggles[c.id] === true);
@@ -35,22 +34,34 @@ export function useSessionState() {
         }));
     }
 
-    const setSolves: React.Dispatch<React.SetStateAction<Solve[]>> = (next) => {
+    const addSolve = (solve: Solve) => {
         setSessionState(prev => {
-            const activeId = prev.activeSessionId;
-
-            const prevSolves =
-            prev.sessions.find(s => s.id === activeId)?.solves ?? [];
-
-            const nextSolves =
-            typeof next === "function" ? next(prevSolves) : next;
-
+            const current = prev.sessions.find(s => s.id === prev.activeSessionId);
             return {
                 ...prev,
-                sessions: updateSessionSolves(prev.sessions, activeId, nextSolves),
-            };
+                sessions: updateSessionSolves(prev.sessions, prev.activeSessionId, [...current!.solves, solve])
+            }
         });
-    }
+    };
+
+    const deleteSolve = (id: string) => {
+        setSessionState(prev => {
+            const current = prev.sessions.find(s => s.id === prev.activeSessionId);
+            return {
+                ...prev,
+                sessions: updateSessionSolves(prev.sessions, prev.activeSessionId, current!.solves.filter(s => s.id !== id))
+            }
+        });
+    };
+
+    const deleteAllSolves = () => {
+        setSessionState(prev => {
+            return {
+                ...prev,
+                sessions: updateSessionSolves(prev.sessions, prev.activeSessionId, [])
+            }
+        });
+    };
 
     const handleNewSession = () => {
         setSessionState(prev => {
@@ -99,10 +110,11 @@ export function useSessionState() {
         cases,
         subsets,
         solves,
-        // toggles,
         enabledCases,
         setToggles,
-        setSolves,
+        addSolve,
+        deleteSolve,
+        deleteAllSolves,
         handleNewSession,
         handleDeleteSession,
         handleChangeSet,

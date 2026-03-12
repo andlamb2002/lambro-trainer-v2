@@ -16,10 +16,11 @@ function App() {
         cases,
         subsets,
         solves,
-        // toggles,
         enabledCases,
         setToggles,
-        setSolves,
+        addSolve,
+        deleteSolve,
+        deleteAllSolves,
         handleNewSession,
         handleDeleteSession,
         handleChangeSet,
@@ -64,7 +65,9 @@ function App() {
                             cases={cases} 
                             toggles={activeSession.toggles} 
                             solves={solves} 
-                            setSolves={setSolves} 
+                            addSolve={addSolve}
+                            deleteSolve={deleteSolve}
+                            deleteAllSolves={deleteAllSolves}
                         />
                     } 
                 />
