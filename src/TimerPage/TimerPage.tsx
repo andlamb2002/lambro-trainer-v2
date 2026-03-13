@@ -78,7 +78,7 @@ function TimerPage({ cases, toggles, solves, addSolve, deleteSolve, deleteAllSol
         setSelectedSolveId(solve.id);
 
         if (isActive) {
-            const nextRecap = handleNextRecap();
+            const nextRecap = handleNextRecap(solve.id);
             if (nextRecap) {
                 updateCaseAndScramble([nextRecap]);
             }
