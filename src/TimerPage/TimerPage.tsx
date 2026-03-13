@@ -68,7 +68,7 @@ function TimerPage({ cases, toggles, solves, addSolve, deleteSolve, deleteAllSol
         startRecap,
         stopRecap,
         handleNextRecap,
-    } = useRecap(enabledCases, updateCaseAndScramble);
+    } = useRecap(enabledCases);
 
     const handleStop = useCallback((finalTime: number) => {
         if (currentCase === null) return;
@@ -102,6 +102,15 @@ function TimerPage({ cases, toggles, solves, addSolve, deleteSolve, deleteAllSol
         deleteAllSolves();
     };
 
+    const handleStartRecap = () => {
+        const firstRecap = startRecap();
+        if (!firstRecap) {
+            setCurrent({ caseItem: null, scramble: "" });
+            return;
+        }
+        setCurrent({ caseItem: firstRecap, scramble: firstRecap ? getRandomCaseAndScramble([firstRecap])?.scramble ?? "" : "" });
+    };
+
     return (
         <> 
             <Scramble 
@@ -112,7 +121,7 @@ function TimerPage({ cases, toggles, solves, addSolve, deleteSolve, deleteAllSol
             <div>
                 {isActive 
                     ? <button onClick={stopRecap}>End Recap</button>
-                    : <button onClick={startRecap}>Recap</button>
+                    : <button onClick={handleStartRecap}>Recap</button>
                 }
                 {isActive && <>{recapProgress} / {recapLength}</>}
             </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import type { Case } from "../types/types"
 
-export function useRecap(enabledCases: Case[], updateCaseAndScramble: (cases: Case[]) => void) {
+export function useRecap(enabledCases: Case[]) {
 
     const [isActive, setIsActive] = useState<boolean>(false);
     const [recapQueue, setRecapQueue] = useState<Case[]>([]);
@@ -12,14 +12,13 @@ export function useRecap(enabledCases: Case[], updateCaseAndScramble: (cases: Ca
 
     const startRecap = () => {
         if (enabledCases.length === 0) return;
-        setRecapQueue(enabledCases);
+        const shuffled = [...enabledCases].sort(() => Math.random() - 0.5);
+        setRecapQueue(shuffled);
         setRecapIndex(1);
         setRecapProgress(0);
         setIsActive(true);
 
-        updateCaseAndScramble([enabledCases[0]]);
-
-        return recapQueue[0];
+        return shuffled[0];
     };
 
     const stopRecap = () => {
@@ -36,7 +35,7 @@ export function useRecap(enabledCases: Case[], updateCaseAndScramble: (cases: Ca
         }
         const nextCase = recapQueue[recapIndex];
         setRecapIndex(prev => prev + 1);
-        setRecapProgress(recapProgress + 1);
+        setRecapProgress(prev => prev + 1);
         return nextCase;
     }
 
