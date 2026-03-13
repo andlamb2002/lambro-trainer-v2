@@ -6,7 +6,7 @@ import { useTimer } from '../hooks/useTimer'
 import { useRecap } from '../hooks/useRecap'
 
 import { getEnabledCases } from '../lib/caseToggles'
-import { getRandomCaseAndScramble } from '../lib/randomScramble'
+import { getRandomCaseAndScramble, getRandomScrambleFromCase } from '../lib/randomScramble'
 import { createSolve } from '../lib/solves'
 import { formatTime, formatRunningTime } from '../lib/timeFormat'
 
@@ -108,7 +108,7 @@ function TimerPage({ cases, toggles, solves, addSolve, deleteSolve, deleteAllSol
             setCurrent({ caseItem: null, scramble: "" });
             return;
         }
-        setCurrent({ caseItem: firstRecap, scramble: firstRecap ? getRandomCaseAndScramble([firstRecap])?.scramble ?? "" : "" });
+        setCurrent({ caseItem: firstRecap, scramble: getRandomScrambleFromCase(firstRecap) });
     };
 
     return (
