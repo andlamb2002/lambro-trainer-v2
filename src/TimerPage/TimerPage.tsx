@@ -3,6 +3,7 @@ import { useCallback, useMemo, useState } from 'react'
 import type { Case, CaseToggles, Solve } from '../types/types'
 // import { useCaseStore } from './Stores/useCaseStore'
 import { useTimer } from '../hooks/useTimer'
+import { useRecap } from '../hooks/useRecap'
 
 import { getEnabledCases } from '../lib/caseToggles'
 import { getRandomCaseAndScramble } from '../lib/randomScramble'
@@ -60,21 +61,34 @@ function TimerPage({ cases, toggles, solves, addSolve, deleteSolve, deleteAllSol
         setCurrent({ caseItem: caseAndScramble.caseItem, scramble: caseAndScramble.scramble });
     }, []);
 
+    const { 
+        isActive,
+        recapLength,
+        recapProgress,
+        startRecap,
+        stopRecap,
+        handleNextRecap,
+    } = useRecap(enabledCases, updateCaseAndScramble);
+
     const handleStop = useCallback((finalTime: number) => {
         if (currentCase === null) return;
 
         const solve = createSolve(currentCase, currentScramble, finalTime);
         addSolve(solve);
         setSelectedSolveId(solve.id);
-        updateCaseAndScramble(enabledCases);
-    }, [currentCase, currentScramble, addSolve, updateCaseAndScramble, enabledCases]);
+
+        if (isActive) {
+            const nextRecap = handleNextRecap();
+            if (nextRecap) {
+                updateCaseAndScramble([nextRecap]);
+            }
+        }
+        else {
+            updateCaseAndScramble(enabledCases);
+        }
+    }, [currentCase, currentScramble, addSolve, updateCaseAndScramble, enabledCases, handleNextRecap, isActive]);
 
     const { time, phase } = useTimer(handleStop, isDisabled);
-
-    const nextCase = () => {
-        if (isDisabled) return;
-        updateCaseAndScramble(enabledCases);
-    }
 
     const handleDeleteSolve = (id: string) => {
         deleteSolve(id);
@@ -93,8 +107,15 @@ function TimerPage({ cases, toggles, solves, addSolve, deleteSolve, deleteAllSol
             <Scramble 
                 currentCase={currentCase} 
                 currentScramble={currentScramble} 
-                nextCase={nextCase}
             />
+
+            <div>
+                {isActive 
+                    ? <button onClick={stopRecap}>End Recap</button>
+                    : <button onClick={startRecap}>Recap</button>
+                }
+                {isActive && <>{recapProgress} / {recapLength}</>}
+            </div>
 
             <div>
                 {phase}
