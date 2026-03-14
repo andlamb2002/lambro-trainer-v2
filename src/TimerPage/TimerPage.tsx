@@ -95,8 +95,9 @@ function TimerPage({ cases, toggles, solves, addSolve, deleteSolve, deleteAllSol
     const { time, phase } = useTimer(handleStop, isDisabled);
 
     const handleDeleteSolve = (id: string) => {
+        const caseId = solves.find(s => s.id === id)?.caseId;
         deleteSolve(id);
-        handleDeleteRecap(id, currentCase?.id ?? "", cases);
+        handleDeleteRecap(id, caseId ?? "", cases);
         if (selectedSolveId === id) {
             const nextSelected = solves.filter(s => s.id !== id);
             setSelectedSolveId(nextSelected.length > 0 ? nextSelected[nextSelected.length - 1].id : null);
