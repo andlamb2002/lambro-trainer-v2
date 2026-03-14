@@ -30,6 +30,7 @@ export function useRecap(enabledCases: Case[]) {
         recapQueueRef.current = [];
         recapIndexRef.current = 0;
         setRecapProgress(0);
+        setRecapTotal(0);
         recapSolveIdsRef.current = [];
     };
 
