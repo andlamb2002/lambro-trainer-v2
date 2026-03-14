@@ -9,6 +9,7 @@ export function useRecap(enabledCases: Case[]) {
     const [recapIndex, setRecapIndex] = useState<number>(0);
     const [recapProgress, setRecapProgress] = useState<number>(0);
     const recapLength = recapQueue.length;
+    const [recapTotal, setRecapTotal] = useState<number>(0);
 
     const [recapSolveIds, setRecapSolveIds] = useState<string[]>([]);
 
@@ -17,7 +18,9 @@ export function useRecap(enabledCases: Case[]) {
         const shuffled = [...enabledCases].sort(() => Math.random() - 0.5);
         setRecapQueue(shuffled);
         setRecapIndex(1);
-        setRecapProgress(0);
+        setRecapProgress(1);
+        // setRecapTotal(recapLength);
+        setRecapTotal(shuffled.length);
         setIsActive(true);
 
         return shuffled[0];
@@ -43,19 +46,35 @@ export function useRecap(enabledCases: Case[]) {
         return nextCase;
     }
 
-    // const handleDeleteRecap = (solveId: string) => {
-    //     if(!recapSolveIds.includes(solveId)) return;
-    //     setRecapSolveIds(prev => prev.filter(id => id !== solveId));
+    const handleDeleteRecap = (solveId: string, caseId: string, cases: Case[]) => {
+        if(!recapSolveIds.includes(solveId)) return;
+        setRecapSolveIds(prev => prev.filter(id => id !== solveId));
 
-        
-    // }
+        const caseToReinsert = cases.find(c => c.id === caseId);
+        if (!caseToReinsert) return;
+
+        const insertMin = recapIndex + 1;
+        const insertMax = recapQueue.length;
+        const insertAt = insertMin >= insertMax 
+            ? insertMax
+            : Math.floor(Math.random() * (insertMax - insertMin + 1)) + insertMin;
+
+        const newQueue = [...recapQueue];
+        newQueue.splice(insertAt, 0, caseToReinsert);
+        setRecapQueue(newQueue);
+
+        setRecapProgress(prev => Math.max(1, prev - 1));
+        // setRecapTotal(prev => Math.max(1, prev - 1));
+    }
 
     return {
         isActive,
-        recapLength,
+        // recapIndex,
+        recapTotal,
         recapProgress,
         startRecap,
         stopRecap,
         handleNextRecap,
+        handleDeleteRecap,
     };
 }

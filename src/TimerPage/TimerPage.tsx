@@ -63,11 +63,12 @@ function TimerPage({ cases, toggles, solves, addSolve, deleteSolve, deleteAllSol
 
     const { 
         isActive,
-        recapLength,
+        recapTotal,
         recapProgress,
         startRecap,
         stopRecap,
         handleNextRecap,
+        handleDeleteRecap,
     } = useRecap(enabledCases);
 
     const handleStop = useCallback((finalTime: number) => {
@@ -82,6 +83,9 @@ function TimerPage({ cases, toggles, solves, addSolve, deleteSolve, deleteAllSol
             if (nextRecap) {
                 updateCaseAndScramble([nextRecap]);
             }
+            else {
+                updateCaseAndScramble(enabledCases);
+            }
         }
         else {
             updateCaseAndScramble(enabledCases);
@@ -92,6 +96,7 @@ function TimerPage({ cases, toggles, solves, addSolve, deleteSolve, deleteAllSol
 
     const handleDeleteSolve = (id: string) => {
         deleteSolve(id);
+        handleDeleteRecap(id, currentCase?.id ?? "", cases);
         if (selectedSolveId === id) {
             const nextSelected = solves.filter(s => s.id !== id);
             setSelectedSolveId(nextSelected.length > 0 ? nextSelected[nextSelected.length - 1].id : null);
@@ -123,7 +128,7 @@ function TimerPage({ cases, toggles, solves, addSolve, deleteSolve, deleteAllSol
                     ? <button onClick={stopRecap}>End Recap</button>
                     : <button onClick={handleStartRecap}>Recap</button>
                 }
-                {isActive && <>{recapProgress} / {recapLength}</>}
+                {isActive && <>{recapProgress} / {recapTotal}</>}
             </div>
 
             <div>

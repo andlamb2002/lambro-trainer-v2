@@ -39,6 +39,7 @@ export type CaseToggles = Record<string, boolean>;
 
 export type Solve = {
     id: string;
+    caseId: string;
     label: string;
     originalAlg: string;
     scramble: string;

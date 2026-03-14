@@ -1,13 +1,14 @@
 import type { Case, Solve } from "../types/types";
 
-export function createSolve(currentCase: Case, scramble: string, time?: number): Solve {
+export function createSolve(currentCase: Case, scramble: string, time: number): Solve {
     const solve: Solve = {
         id: `${currentCase.id}-${Date.now()}`,
+        caseId: currentCase.id,
         label: currentCase.label,
         originalAlg: currentCase.originalAlg,
         scramble: scramble,
         img: currentCase.img,
-        time: time ?? 0,
+        time: time,
         subset: currentCase.subset ?? undefined,
         variant: currentCase.variant ?? undefined,
     };
