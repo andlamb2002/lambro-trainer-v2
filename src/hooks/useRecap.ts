@@ -30,6 +30,7 @@ export function useRecap(enabledCases: Case[]) {
         setRecapProgress(1);
         setRecapTotal(shuffled.length);
         setIsActive(true);
+        recapSolveIdsRef.current = [];
 
         return shuffled[0];
     };
