@@ -63,13 +63,14 @@ export function useRecap(enabledCases: Case[], initialRecap: RecapState | null, 
         recapSolveIdsRef.current = [...recapSolveIdsRef.current, solveId];
         recapIndexRef.current += 1;
         const nextCase = recapQueueRef.current[recapIndexRef.current];
-        setRecapProgress(prev => prev + 1);
+        const newProgress = recapProgress + 1;
+        setRecapProgress(newProgress);
 
         onRecapChange({
             isActive: true,
             queue: recapQueueRef.current,
             index: recapIndexRef.current,
-            progress: recapProgress + 1,
+            progress: newProgress,
             total: recapTotal,
             solveIds: recapSolveIdsRef.current,
         });
@@ -94,13 +95,14 @@ export function useRecap(enabledCases: Case[], initialRecap: RecapState | null, 
         newQueue.splice(insertAt, 0, caseToReinsert);
         recapQueueRef.current = newQueue;
 
-        setRecapProgress(prev => Math.max(1, prev - 1));
-        
+        const newProgress = Math.max(1, recapProgress - 1);
+        setRecapProgress(newProgress);
+
         onRecapChange({
             isActive: true,
             queue: recapQueueRef.current,
             index: recapIndexRef.current,
-            progress: recapProgress - 1,
+            progress: newProgress,
             total: recapTotal,
             solveIds: recapSolveIdsRef.current,
         });
