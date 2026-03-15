@@ -63,7 +63,7 @@ function App() {
                         <TimerPage 
                             key={activeSessionId} 
                             cases={cases} 
-                            toggles={activeSession.toggles} 
+                            enabledCases={enabledCases}
                             solves={solves} 
                             addSolve={addSolve}
                             deleteSolve={deleteSolve}

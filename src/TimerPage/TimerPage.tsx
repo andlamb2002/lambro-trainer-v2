@@ -1,11 +1,10 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
 
-import type { Case, CaseToggles, Solve } from '../types/types'
+import type { Case, Solve } from '../types/types'
 // import { useCaseStore } from './Stores/useCaseStore'
 import { useTimer } from '../hooks/useTimer'
 import { useRecap } from '../hooks/useRecap'
 
-import { getEnabledCases } from '../lib/caseToggles'
 import { getRandomCaseAndScramble, getRandomScrambleFromCase } from '../lib/randomScramble'
 import { createSolve } from '../lib/solves'
 import { formatTime, formatRunningTime } from '../lib/timeFormat'
@@ -21,15 +20,14 @@ type CaseAndScramble = {
 
 type Props = {
     cases: Case[]
-    toggles: CaseToggles;
+    enabledCases: Case[];
     solves: Solve[];
     addSolve: (solve: Solve) => void;
     deleteSolve: (id: string) => void;
     deleteAllSolves: () => void;
 }
 
-function TimerPage({ cases, toggles, solves, addSolve, deleteSolve, deleteAllSolves }: Props) {
-    const enabledCases = useMemo(() => getEnabledCases(cases, toggles), [cases, toggles]);
+function TimerPage({ cases, enabledCases, solves, addSolve, deleteSolve, deleteAllSolves }: Props) {
     const isDisabled = enabledCases.length === 0;
 
     const [current, setCurrent] = useState<CaseAndScramble>(() => {
