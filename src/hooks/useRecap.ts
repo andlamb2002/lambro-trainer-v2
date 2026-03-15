@@ -1,17 +1,17 @@
 import { useRef, useState } from "react";
 
-import type { Case } from "../types/types"
+import type { Case, RecapState } from "../types/types"
 
-export function useRecap(enabledCases: Case[]) {
+export function useRecap(enabledCases: Case[], initialRecap: RecapState | null, onRecapChange: (recapState: RecapState | null) => void) {
 
-    const [isActive, setIsActive] = useState<boolean>(false);
-    const recapQueueRef = useRef<Case[]>([]);
+    const [isActive, setIsActive] = useState<boolean>(initialRecap ? initialRecap.isActive : false);
+    const recapQueueRef = useRef<Case[]>(initialRecap ? initialRecap.queue : []);
 
-    const recapIndexRef = useRef<number>(0);
-    const [recapProgress, setRecapProgress] = useState<number>(0);
-    const [recapTotal, setRecapTotal] = useState<number>(0);
+    const recapIndexRef = useRef<number>(initialRecap ? initialRecap.index : 0);
+    const [recapProgress, setRecapProgress] = useState<number>(initialRecap ? initialRecap.progress : 0);
+    const [recapTotal, setRecapTotal] = useState<number>(initialRecap ? initialRecap.total : 0);
 
-    const recapSolveIdsRef = useRef<string[]>([]);
+    const recapSolveIdsRef = useRef<string[]>(initialRecap ? initialRecap.solveIds : []);
 
     const startRecap = (firstCase?: Case) => {
         if (enabledCases.length === 0) return;
@@ -32,6 +32,15 @@ export function useRecap(enabledCases: Case[]) {
         setIsActive(true);
         recapSolveIdsRef.current = [];
 
+        onRecapChange({
+            isActive: true,
+            queue: shuffled,
+            index: 0,
+            progress: 1,
+            total: shuffled.length,
+            solveIds: [],
+        });
+
         return shuffled[0];
     };
 
@@ -42,6 +51,8 @@ export function useRecap(enabledCases: Case[]) {
         setRecapProgress(0);
         setRecapTotal(0);
         recapSolveIdsRef.current = [];
+
+        onRecapChange(null);
     };
 
     const handleNextRecap = (solveId: string) => {
@@ -53,6 +64,16 @@ export function useRecap(enabledCases: Case[]) {
         recapIndexRef.current += 1;
         const nextCase = recapQueueRef.current[recapIndexRef.current];
         setRecapProgress(prev => prev + 1);
+
+        onRecapChange({
+            isActive: true,
+            queue: recapQueueRef.current,
+            index: recapIndexRef.current,
+            progress: recapProgress + 1,
+            total: recapTotal,
+            solveIds: recapSolveIdsRef.current,
+        });
+        
         return nextCase;
     }
 
@@ -74,6 +95,15 @@ export function useRecap(enabledCases: Case[]) {
         recapQueueRef.current = newQueue;
 
         setRecapProgress(prev => Math.max(1, prev - 1));
+        
+        onRecapChange({
+            isActive: true,
+            queue: recapQueueRef.current,
+            index: recapIndexRef.current,
+            progress: recapProgress - 1,
+            total: recapTotal,
+            solveIds: recapSolveIdsRef.current,
+        });
     }
 
     const handleDeleteAllRecap = (currentCase: Case) => {

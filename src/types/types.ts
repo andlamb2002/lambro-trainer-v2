@@ -3,12 +3,22 @@ export type SessionState = {
     activeSessionId: string;
 }
 
+export type RecapState = {
+    isActive: boolean;
+    queue: Case[];
+    index: number;
+    progress: number;
+    total: number;
+    solveIds: string[];
+}
+
 export type Session = {
     id: string;
     label: string;
     setId: string;
     toggles: CaseToggles;
     solves: Solve[];
+    recapState: RecapState | null;
 }
 
 export type AlgSet = {

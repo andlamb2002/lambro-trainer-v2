@@ -1,4 +1,4 @@
-import type { Session, CaseToggles, Solve } from '../types/types'
+import type { Session, CaseToggles, Solve, RecapState } from '../types/types'
 import { getAlgSet } from '../data/algSets'
 import { setInitialToggles } from './caseToggles'
 
@@ -8,7 +8,8 @@ export function createSession(label: string, setKey: string): Session {
         label: label,
         setId: setKey,
         toggles: setInitialToggles(getAlgSet(setKey).cases),
-        solves: []
+        solves: [],
+        recapState: null,
     }
 }
 
@@ -36,6 +37,18 @@ export function updateSessionToggles(sessions: Session[], id: string, newToggles
             return {
                 ...session,
                 toggles: newToggles
+            }
+        }
+        return session;
+    })
+}
+
+export function updateSessionRecapState(sessions: Session[], id: string, newRecapState: RecapState | null): Session[] {
+    return sessions.map(session => {
+        if (session.id === id) {
+            return {
+                ...session,
+                recapState: newRecapState
             }
         }
         return session;

@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 
-import type { Case, Solve } from '../types/types'
+import type { Case, RecapState, Solve } from '../types/types'
 // import { useCaseStore } from './Stores/useCaseStore'
 import { useTimer } from '../hooks/useTimer'
 import { useRecap } from '../hooks/useRecap'
@@ -25,14 +25,21 @@ type Props = {
     addSolve: (solve: Solve) => void;
     deleteSolve: (id: string) => void;
     deleteAllSolves: () => void;
+    recapState: RecapState | null;
+    updateRecap: (recapState: RecapState | null) => void;
 }
 
-function TimerPage({ cases, enabledCases, solves, addSolve, deleteSolve, deleteAllSolves }: Props) {
+function TimerPage({ cases, enabledCases, solves, addSolve, deleteSolve, deleteAllSolves, recapState, updateRecap }: Props) {
     const isDisabled = enabledCases.length === 0;
 
     const [current, setCurrent] = useState<CaseAndScramble>(() => {
         if (isDisabled) {
             return { caseItem: null, scramble: "" };
+        }
+
+        if (recapState && recapState.queue.length > 0) {
+            const currentRecapCase = recapState.queue[recapState.index];
+            return { caseItem: currentRecapCase, scramble: getRandomScrambleFromCase(currentRecapCase) };
         }
 
         const caseAndScramble = getRandomCaseAndScramble(enabledCases);
@@ -68,7 +75,7 @@ function TimerPage({ cases, enabledCases, solves, addSolve, deleteSolve, deleteA
         handleNextRecap,
         handleDeleteRecap,
         handleDeleteAllRecap,
-    } = useRecap(enabledCases);
+    } = useRecap(enabledCases, recapState, updateRecap);
 
     const handleStop = useCallback((finalTime: number) => {
         if (currentCase === null) return;

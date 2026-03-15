@@ -1,8 +1,8 @@
 import { useState, useEffect, useMemo } from 'react';
 
-import type { SessionState, CaseToggles, Solve } from '../types/types'
+import type { SessionState, CaseToggles, Solve, RecapState } from '../types/types'
 
-import { createSession, updateSessionSet, updateSessionToggles, updateSessionSolves } from '../lib/sessions'
+import { createSession, updateSessionSet, updateSessionToggles, updateSessionSolves, updateSessionRecapState } from '../lib/sessions'
 import { saveSessionState, loadSessionState } from '../lib/storage'
 import { getAlgSet } from '../data/algSets'
 
@@ -22,6 +22,8 @@ export function useSessionState() {
     const enabledCases = useMemo(() => {
         return cases.filter(c => activeSession.toggles[c.id] === true);
     }, [cases, activeSession.toggles]);
+
+    const recapState = activeSession.recapState;
 
     const setActiveSessionId = (id: string) => {
         setSessionState(prev => ({ ...prev, activeSessionId: id }));
@@ -62,6 +64,15 @@ export function useSessionState() {
             }
         });
     };
+
+    const updateRecap = (recapState: RecapState | null) => {
+        setSessionState(prev => {
+            return {
+                ...prev,
+                sessions: updateSessionRecapState(prev.sessions, prev.activeSessionId, recapState)
+            }
+        });
+    }
 
     const handleNewSession = () => {
         setSessionState(prev => {
@@ -111,10 +122,12 @@ export function useSessionState() {
         subsets,
         solves,
         enabledCases,
+        recapState,
         setToggles,
         addSolve,
         deleteSolve,
         deleteAllSolves,
+        updateRecap,
         handleNewSession,
         handleDeleteSession,
         handleChangeSet,

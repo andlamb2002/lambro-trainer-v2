@@ -16,10 +16,12 @@ function App() {
         subsets,
         solves,
         enabledCases,
+        recapState,
         setToggles,
         addSolve,
         deleteSolve,
         deleteAllSolves,
+        updateRecap,
         handleNewSession,
         handleDeleteSession,
         handleChangeSet,
@@ -67,6 +69,8 @@ function App() {
                             addSolve={addSolve}
                             deleteSolve={deleteSolve}
                             deleteAllSolves={deleteAllSolves}
+                            recapState={recapState}
+                            updateRecap={updateRecap}
                         />
                     } 
                 />
