@@ -13,9 +13,18 @@ export function useRecap(enabledCases: Case[]) {
 
     const recapSolveIdsRef = useRef<string[]>([]);
 
-    const startRecap = () => {
+    const startRecap = (firstCase?: Case) => {
         if (enabledCases.length === 0) return;
-        const shuffled = [...enabledCases].sort(() => Math.random() - 0.5);
+
+        let shuffled: Case[] = [];
+        if (firstCase) {
+            const remainingCases = enabledCases.filter(c => c.id !== firstCase.id);
+            shuffled = [firstCase, ...remainingCases.sort(() => Math.random() - 0.5)];
+        }
+        else {
+            shuffled = [...enabledCases].sort(() => Math.random() - 0.5);
+        }
+
         recapQueueRef.current = shuffled;
         recapIndexRef.current = 0;
         setRecapProgress(1);
@@ -66,6 +75,11 @@ export function useRecap(enabledCases: Case[]) {
         setRecapProgress(prev => Math.max(1, prev - 1));
     }
 
+    const handleDeleteAllRecap = (currentCase: Case) => {
+        if (!isActive) return;
+        startRecap(currentCase);
+    };
+
     return {
         isActive,
         recapTotal,
@@ -74,5 +88,6 @@ export function useRecap(enabledCases: Case[]) {
         stopRecap,
         handleNextRecap,
         handleDeleteRecap,
+        handleDeleteAllRecap,
     };
 }

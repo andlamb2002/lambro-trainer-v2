@@ -69,6 +69,7 @@ function TimerPage({ cases, toggles, solves, addSolve, deleteSolve, deleteAllSol
         stopRecap,
         handleNextRecap,
         handleDeleteRecap,
+        handleDeleteAllRecap,
     } = useRecap(enabledCases);
 
     const handleStop = useCallback((finalTime: number) => {
@@ -107,6 +108,7 @@ function TimerPage({ cases, toggles, solves, addSolve, deleteSolve, deleteAllSol
 
     const handleDeleteAllSolves = () => {
         deleteAllSolves();
+        if (currentCase) handleDeleteAllRecap(currentCase);
     };
 
     const handleStartRecap = () => {
