@@ -2,6 +2,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 type Phase = 'idle' | 'holdStart' | 'running' | 'holdStop' | 'cooldown';
 
+const START_COOLDOWN_MS = 500;
+
 export function useTimer(onStop: (time: number) => void, isDisabled: boolean) {
     
         const [phase, setPhase] = useState<Phase>('idle');
@@ -13,7 +15,6 @@ export function useTimer(onStop: (time: number) => void, isDisabled: boolean) {
         const intervalIdRef = useRef<number | null>(null);
         const startTimeRef = useRef<number>(0);
     
-        const START_COOLDOWN_MS = 500;
         const cooldownIdRef = useRef<number | null>(null);
     
         const setPhaseRef = useCallback((p: Phase) => {
