@@ -39,9 +39,10 @@ export function useSessionState() {
     const addSolve = (solve: Solve) => {
         setSessionState(prev => {
             const current = prev.sessions.find(s => s.id === prev.activeSessionId);
+            if (!current) return prev;
             return {
                 ...prev,
-                sessions: updateSessionSolves(prev.sessions, prev.activeSessionId, [...current!.solves, solve])
+                sessions: updateSessionSolves(prev.sessions, prev.activeSessionId, [...current.solves, solve])
             }
         });
     };
@@ -49,9 +50,10 @@ export function useSessionState() {
     const deleteSolve = (id: string) => {
         setSessionState(prev => {
             const current = prev.sessions.find(s => s.id === prev.activeSessionId);
+            if (!current) return prev;
             return {
                 ...prev,
-                sessions: updateSessionSolves(prev.sessions, prev.activeSessionId, current!.solves.filter(s => s.id !== id))
+                sessions: updateSessionSolves(prev.sessions, prev.activeSessionId, current.solves.filter(s => s.id !== id))
             }
         });
     };
