@@ -1,6 +1,8 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
-import type { Case, RecapState, Solve } from '../types/types'
+import type { Case } from '../types/types'
+
+import { useSessionStore } from './Stores/useSessionStore'
 import { useTimer } from '../hooks/useTimer'
 import { useRecap } from '../hooks/useRecap'
 
@@ -11,24 +13,32 @@ import { formatTime, formatRunningTime } from '../lib/timeFormat'
 import Scramble from './components/Scramble'
 import Solves from './components/Solves'
 import SelectedSolve from './components/SelectedSolve'
+import { getAlgSet } from '../data/algSets'
 
 type CaseAndScramble = {
     caseItem: Case | null;
     scramble: string;
 }
 
-type Props = {
-    cases: Case[]
-    enabledCases: Case[];
-    solves: Solve[];
-    addSolve: (solve: Solve) => void;
-    deleteSolve: (id: string) => void;
-    deleteAllSolves: () => void;
-    recapState: RecapState | null;
-    updateRecap: (recapState: RecapState | null) => void;
-}
+function TimerPage() {
+    const sessions = useSessionStore(s => s.sessions);
+    const activeSessionId = useSessionStore(s => s.activeSessionId);
+    const addSolve = useSessionStore(s => s.addSolve);
+    const deleteSolve = useSessionStore(s => s.deleteSolve);
+    const deleteAllSolves = useSessionStore(s => s.deleteAllSolves);
+    const updateRecap = useSessionStore(s => s.updateRecap);
 
-function TimerPage({ cases, enabledCases, solves, addSolve, deleteSolve, deleteAllSolves, recapState, updateRecap }: Props) {
+    const activeSession = sessions.find(s => s.id === activeSessionId) ?? sessions[0];
+    const activeSetKey = activeSession?.setId ?? 'zbll';
+    const activeAlgSet = getAlgSet(activeSetKey);
+    const cases = activeAlgSet.cases;
+    const enabledCases = useMemo(() =>
+        cases.filter(c => activeSession.toggles[c.id] === true),
+        [cases, activeSession.toggles]
+    );
+    const recapState = activeSession.recapState;
+    const solves = activeSession.solves;
+
     const isDisabled = enabledCases.length === 0;
 
     const [current, setCurrent] = useState<CaseAndScramble>(() => {
