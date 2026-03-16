@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useSessionStore } from '../TimerPage/Stores/useSessionStore';
+import { useActiveSession } from '../hooks/useActiveSession';
 
 import type { Case, Subset } from '../types/types';
 
@@ -9,23 +10,21 @@ import {
     toggleSubset,
     toggle,
 } from '../lib/caseToggles'
-import { getAlgSet, getAllAlgSets } from '../data/algSets';
+import { getAllAlgSets } from '../data/algSets';
 
 function CaseSelectPage() {
 
     const allSets = getAllAlgSets();
 
-    const sessions = useSessionStore(s => s.sessions);
-    const activeSessionId = useSessionStore(s => s.activeSessionId);
     const handleChangeSet = useSessionStore(s => s.handleChangeSet);
     const setToggles = useSessionStore(s => s.setToggles);
 
-    const activeSession = sessions.find(s => s.id === activeSessionId) ?? sessions[0];
-    const activeSetKey = activeSession?.setId ?? 'zbll';
-    const activeAlgSet = getAlgSet(activeSetKey);
-    const cases = activeAlgSet.cases;
-    const subsets = activeAlgSet.subsets;
-    const toggles = activeSession.toggles;
+    const { 
+        activeSetKey,
+        cases,
+        subsets,
+        toggles,
+    } = useActiveSession();
 
     const sets = useMemo(() => {
         const s = new Set<string>();

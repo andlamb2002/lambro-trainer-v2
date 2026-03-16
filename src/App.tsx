@@ -1,12 +1,10 @@
-import { useMemo } from 'react';
 import { Routes, Route, Navigate, Link } from 'react-router-dom'
 
 import TimerPage from './TimerPage/TimerPage'
 import CaseSelectPage from './CaseSelectPage/CaseSelectPage'
 
 import { useSessionStore } from './TimerPage/Stores/useSessionStore'
-import { getAlgSet } from './data/algSets';
-import { getEnabledCases } from './lib/caseToggles';
+import { useActiveSession } from './hooks/useActiveSession';
 
 
 function App() {
@@ -17,15 +15,9 @@ function App() {
     const handleNewSession = useSessionStore(s => s.handleNewSession);
     const handleDeleteSession = useSessionStore(s => s.handleDeleteSession);
 
-    const activeSession = sessions.find(s => s.id === activeSessionId) ?? sessions[0];
-    const activeSetKey = activeSession?.setId ?? 'zbll';
-    const activeAlgSet = getAlgSet(activeSetKey);
-    const cases = activeAlgSet.cases;
-
-    const enabledCases = useMemo(() =>
-        getEnabledCases(cases, activeSession.toggles),
-        [cases, activeSession.toggles]
-    );
+    const { 
+        enabledCases,
+    } = useActiveSession();
 
     return (
         <>

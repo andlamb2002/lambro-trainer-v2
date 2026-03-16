@@ -1,10 +1,11 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import type { Case } from '../types/types'
 
 import { useSessionStore } from './Stores/useSessionStore'
 import { useTimer } from '../hooks/useTimer'
 import { useRecap } from '../hooks/useRecap'
+import { useActiveSession } from '../hooks/useActiveSession'
 
 import { getRandomCaseAndScramble, getRandomScrambleFromCase } from '../lib/randomScramble'
 import { createSolve } from '../lib/solves'
@@ -13,8 +14,6 @@ import { formatTime, formatRunningTime } from '../lib/timeFormat'
 import Scramble from './components/Scramble'
 import Solves from './components/Solves'
 import SelectedSolve from './components/SelectedSolve'
-import { getAlgSet } from '../data/algSets'
-import { getEnabledCases } from '../lib/caseToggles'
 
 type CaseAndScramble = {
     caseItem: Case | null;
@@ -22,23 +21,17 @@ type CaseAndScramble = {
 }
 
 function TimerPage() {
-    const sessions = useSessionStore(s => s.sessions);
-    const activeSessionId = useSessionStore(s => s.activeSessionId);
     const addSolve = useSessionStore(s => s.addSolve);
     const deleteSolve = useSessionStore(s => s.deleteSolve);
     const deleteAllSolves = useSessionStore(s => s.deleteAllSolves);
     const updateRecap = useSessionStore(s => s.updateRecap);
 
-    const activeSession = sessions.find(s => s.id === activeSessionId) ?? sessions[0];
-    const activeSetKey = activeSession?.setId ?? 'zbll';
-    const activeAlgSet = getAlgSet(activeSetKey);
-    const cases = activeAlgSet.cases;
-    const enabledCases = useMemo(() =>
-        getEnabledCases(cases, activeSession.toggles),
-        [cases, activeSession.toggles]
-    );
-    const recapState = activeSession.recapState;
-    const solves = activeSession.solves;
+    const { 
+        cases,
+        enabledCases,
+        solves,
+        recapState,
+    } = useActiveSession();
 
     const isDisabled = enabledCases.length === 0;
 
