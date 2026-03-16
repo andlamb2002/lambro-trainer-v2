@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-import { useSessionStore } from '../TimerPage/Stores/useSessionStore';
+import { useSessionStore } from '../Stores/useSessionStore';
 import { getAlgSet } from '../data/algSets';
 import { getEnabledCases } from '../lib/caseToggles';
 

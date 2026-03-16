@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 
 import type { Case } from '../types/types'
 
-import { useSessionStore } from './Stores/useSessionStore'
+import { useSessionStore } from '../Stores/useSessionStore'
 import { useTimer } from '../hooks/useTimer'
 import { useRecap } from '../hooks/useRecap'
 import { useActiveSession } from '../hooks/useActiveSession'

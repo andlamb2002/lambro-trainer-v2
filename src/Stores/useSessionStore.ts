@@ -1,8 +1,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-import type { CaseToggles, RecapState, SessionState, Solve } from '../../types/types'
-import { createSession, updateSessionRecapState, updateSessionSet, updateSessionSolves, updateSessionToggles } from '../../lib/sessions';
+import type { CaseToggles, RecapState, SessionState, Solve } from '../types/types'
+import { createSession, updateSessionRecapState, updateSessionSet, updateSessionSolves, updateSessionToggles } from '../lib/sessions';
 
 type SessionStore = SessionState & {
     setActiveSessionId: (id: string) => void;

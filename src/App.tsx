@@ -3,7 +3,7 @@ import { Routes, Route, Navigate, Link } from 'react-router-dom'
 import TimerPage from './TimerPage/TimerPage'
 import CaseSelectPage from './CaseSelectPage/CaseSelectPage'
 
-import { useSessionStore } from './TimerPage/Stores/useSessionStore'
+import { useSessionStore } from './Stores/useSessionStore'
 import { useActiveSession } from './hooks/useActiveSession';
 
 

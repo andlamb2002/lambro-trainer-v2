@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useSessionStore } from '../TimerPage/Stores/useSessionStore';
+import { useSessionStore } from '../Stores/useSessionStore';
 import { useActiveSession } from '../hooks/useActiveSession';
 
 import type { Case, Subset } from '../types/types';
