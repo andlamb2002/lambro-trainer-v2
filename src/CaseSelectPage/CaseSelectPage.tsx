@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
-import type { Case, Subset, CaseToggles } from '../types/types';
+import { useSessionStore } from '../TimerPage/Stores/useSessionStore';
+
+import type { Case, Subset } from '../types/types';
 
 import { 
     toggleAll, 
@@ -7,20 +9,32 @@ import {
     toggleSubset,
     toggle,
 } from '../lib/caseToggles'
-import { getAllAlgSets } from '../data/algSets';
+import { getAlgSet, getAllAlgSets } from '../data/algSets';
 
-type Props = {
-    cases: Case[]
-    subsets: Subset[] | undefined;
-    toggles: CaseToggles;
-    setToggles: (toggles: CaseToggles) => void;
-    activeSetKey: string;
-    handleChangeSet: (nextSetKey: string) => void;
-}
+// type Props = {
+//     cases: Case[]
+//     subsets: Subset[] | undefined;
+//     toggles: CaseToggles;
+//     setToggles: (toggles: CaseToggles) => void;
+//     activeSetKey: string;
+//     handleChangeSet: (nextSetKey: string) => void;
+// }
 
-function CaseSelectPage( { cases, subsets, toggles, setToggles, activeSetKey, handleChangeSet }: Props) {
+function CaseSelectPage() {
 
     const allSets = getAllAlgSets();
+
+    const sessions = useSessionStore(s => s.sessions);
+    const activeSessionId = useSessionStore(s => s.activeSessionId);
+    const handleChangeSet = useSessionStore(s => s.handleChangeSet);
+    const setToggles = useSessionStore(s => s.setToggles);
+
+    const activeSession = sessions.find(s => s.id === activeSessionId) ?? sessions[0];
+    const activeSetKey = activeSession?.setId ?? 'zbll';
+    const activeAlgSet = getAlgSet(activeSetKey);
+    const cases = activeAlgSet.cases;
+    const subsets = activeAlgSet.subsets;
+    const toggles = activeSession.toggles;
 
     const sets = useMemo(() => {
         const s = new Set<string>();

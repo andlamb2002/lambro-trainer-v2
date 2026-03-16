@@ -37,8 +37,8 @@ function App() {
     const setActiveSessionId = useSessionStore(s => s.setActiveSessionId);
     const handleNewSession = useSessionStore(s => s.handleNewSession);
     const handleDeleteSession = useSessionStore(s => s.handleDeleteSession);
-    const handleChangeSet = useSessionStore(s => s.handleChangeSet);
-    const setToggles = useSessionStore(s => s.setToggles);
+    // const handleChangeSet = useSessionStore(s => s.handleChangeSet);
+    // const setToggles = useSessionStore(s => s.setToggles);
     const addSolve = useSessionStore(s => s.addSolve);
     const deleteSolve = useSessionStore(s => s.deleteSolve);
     const deleteAllSolves = useSessionStore(s => s.deleteAllSolves);
@@ -48,7 +48,7 @@ function App() {
     const activeSetKey = activeSession?.setId ?? 'zbll';
     const activeAlgSet = getAlgSet(activeSetKey);
     const cases = activeAlgSet.cases;
-    const subsets = activeAlgSet.subsets;
+    // const subsets = activeAlgSet.subsets;
     const solves = activeSession.solves;
     const enabledCases = useMemo(() =>
         cases.filter(c => activeSession.toggles[c.id] === true),
@@ -105,12 +105,12 @@ function App() {
                 <Route path="/cases" 
                     element={
                         <CaseSelectPage 
-                            cases={cases} 
-                            subsets={subsets} 
-                            toggles={activeSession.toggles} 
-                            setToggles={setToggles} 
-                            activeSetKey={activeSetKey}
-                            handleChangeSet={handleChangeSet}
+                            // cases={cases} 
+                            // subsets={subsets} 
+                            // toggles={activeSession.toggles} 
+                            // setToggles={setToggles} 
+                            // activeSetKey={activeSetKey}
+                            // handleChangeSet={handleChangeSet}
                         />
                     } 
                 />
