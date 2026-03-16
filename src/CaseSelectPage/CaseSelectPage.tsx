@@ -11,15 +11,6 @@ import {
 } from '../lib/caseToggles'
 import { getAlgSet, getAllAlgSets } from '../data/algSets';
 
-// type Props = {
-//     cases: Case[]
-//     subsets: Subset[] | undefined;
-//     toggles: CaseToggles;
-//     setToggles: (toggles: CaseToggles) => void;
-//     activeSetKey: string;
-//     handleChangeSet: (nextSetKey: string) => void;
-// }
-
 function CaseSelectPage() {
 
     const allSets = getAllAlgSets();
@@ -74,10 +65,6 @@ function CaseSelectPage() {
         });
         return map;
     }, [cases]);
-
-    // const enabledCases = useMemo(() => {
-    //     return cases.filter(c => toggles[c.id] === true);
-    // }, [cases, toggles]);
 
     const toggleAllCases = (enabled: boolean) => {
         setToggles(toggleAll(toggles, enabled));
