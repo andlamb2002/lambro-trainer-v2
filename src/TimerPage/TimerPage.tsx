@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react'
 
 import type { Case, RecapState, Solve } from '../types/types'
-// import { useCaseStore } from './Stores/useCaseStore'
 import { useTimer } from '../hooks/useTimer'
 import { useRecap } from '../hooks/useRecap'
 
