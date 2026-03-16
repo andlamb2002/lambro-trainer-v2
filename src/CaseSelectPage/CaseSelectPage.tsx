@@ -94,7 +94,6 @@ function CaseSelectPage() {
                 </select>
                 <button onClick={() => toggleAllCases(true)}>All</button>
                 <button onClick={() => toggleAllCases(false)}>None</button>
-                {/* <div>Selected: {enabledCases.length}</div> */}
             </div>
 
             <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 12 }}>

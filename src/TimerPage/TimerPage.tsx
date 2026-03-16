@@ -14,6 +14,7 @@ import Scramble from './components/Scramble'
 import Solves from './components/Solves'
 import SelectedSolve from './components/SelectedSolve'
 import { getAlgSet } from '../data/algSets'
+import { getEnabledCases } from '../lib/caseToggles'
 
 type CaseAndScramble = {
     caseItem: Case | null;
@@ -33,7 +34,7 @@ function TimerPage() {
     const activeAlgSet = getAlgSet(activeSetKey);
     const cases = activeAlgSet.cases;
     const enabledCases = useMemo(() =>
-        cases.filter(c => activeSession.toggles[c.id] === true),
+        getEnabledCases(cases, activeSession.toggles),
         [cases, activeSession.toggles]
     );
     const recapState = activeSession.recapState;

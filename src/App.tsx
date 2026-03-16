@@ -6,6 +6,7 @@ import CaseSelectPage from './CaseSelectPage/CaseSelectPage'
 
 import { useSessionStore } from './TimerPage/Stores/useSessionStore'
 import { getAlgSet } from './data/algSets';
+import { getEnabledCases } from './lib/caseToggles';
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
     const cases = activeAlgSet.cases;
 
     const enabledCases = useMemo(() =>
-        cases.filter(c => activeSession.toggles[c.id] === true),
+        getEnabledCases(cases, activeSession.toggles),
         [cases, activeSession.toggles]
     );
 
