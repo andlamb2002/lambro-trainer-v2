@@ -132,15 +132,12 @@ function TimerPage() {
         <> 
             <ScrambleBar 
                 currentScramble={currentScramble} 
+                isActive={isActive}
+                recapProgress={recapProgress}
+                recapTotal={recapTotal}
+                handleStartRecap={handleStartRecap}
+                stopRecap={stopRecap}
             />
-
-            <div>
-                {isActive 
-                    ? <button onClick={stopRecap}>End Recap</button>
-                    : <button onClick={handleStartRecap}>Recap</button>
-                }
-                {isActive && <>{recapProgress} / {recapTotal}</>}
-            </div>
 
             <TimerDisplay 
                 phase={phase} 
