@@ -4,6 +4,8 @@ import type { Solve } from '../../types/types';
 
 import { formatTime } from '../../lib/timeFormat';
 
+import SolveItem from './SolveItem';
+
 type Props = {
     solves: Solve[];
     selectedSolveId: string | null;
@@ -31,20 +33,12 @@ function SolvesList({ solves, selectedSolveId, onSelectSolve, onDeleteSolve, onD
             <ul>
                 {solves.map((solve) => (
                     <li key={solve.id}>
-                        <button
-                            type="button"
-                            onClick={() => onSelectSolve(solve.id)}
-                            style={{ fontWeight: solve.id === selectedSolveId ? "bold" : "normal" }}
-                        >
-                            {formatTime(solve.time)}
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => onDeleteSolve(solve.id)}
-                            style={{ marginLeft: 8 }}
-                        >
-                            Delete
-                        </button>
+                        <SolveItem
+                            solve={solve}
+                            selectedSolveId={selectedSolveId}
+                            onSelectSolve={onSelectSolve}
+                            onDeleteSolve={onDeleteSolve}
+                        />
                     </li>
                 ))}
             </ul>
