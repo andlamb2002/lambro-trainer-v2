@@ -131,7 +131,6 @@ function TimerPage() {
     return (
         <> 
             <Scramble 
-                currentCase={currentCase} 
                 currentScramble={currentScramble} 
             />
 
