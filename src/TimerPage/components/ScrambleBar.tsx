@@ -2,7 +2,7 @@ type Props = {
     currentScramble: string;
 }
 
-function Scramble({ currentScramble }: Props) {
+function ScrambleBar({ currentScramble }: Props) {
   return (
     <>
         <div>{currentScramble}</div>
@@ -10,4 +10,4 @@ function Scramble({ currentScramble }: Props) {
   )
 }
 
-export default Scramble
+export default ScrambleBar

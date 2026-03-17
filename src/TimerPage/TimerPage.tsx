@@ -10,7 +10,7 @@ import { useActiveSession } from '../hooks/useActiveSession'
 import { getRandomCaseAndScramble, getRandomScrambleFromCase } from '../lib/randomScramble'
 import { createSolve } from '../lib/solves'
 
-import Scramble from './components/Scramble'
+import ScrambleBar from './components/ScrambleBar'
 import Solves from './components/Solves'
 import SelectedSolve from './components/SelectedSolve'
 import TimerDisplay from './components/TimerDisplay'
@@ -130,7 +130,7 @@ function TimerPage() {
 
     return (
         <> 
-            <Scramble 
+            <ScrambleBar 
                 currentScramble={currentScramble} 
             />
 
