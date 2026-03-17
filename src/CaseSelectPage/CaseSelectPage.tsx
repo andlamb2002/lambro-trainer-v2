@@ -8,7 +8,7 @@ import {
     toggle,
 } from '../lib/caseToggles'
 import { getAllAlgSets } from '../data/algSets';
-import { useCaseSets } from '../hooks/useCaseSets';
+import { useCaseGroups } from '../hooks/useCaseGroups';
 
 function CaseSelectPage() {
 
@@ -29,7 +29,7 @@ function CaseSelectPage() {
         casesBySet,
         subsetsBySet,
         casesBySubset,
-    } = useCaseSets(cases, subsets);
+    } = useCaseGroups(cases, subsets);
 
     const toggleAllCases = (enabled: boolean) => {
         setToggles(toggleAll(toggles, enabled));

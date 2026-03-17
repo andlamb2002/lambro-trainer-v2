@@ -2,7 +2,7 @@ import { useMemo } from "react";
 
 import type { Case, Subset } from "../types/types";
 
-export function useCaseSets(cases: Case[], subsets?: Subset[]) {
+export function useCaseGroups(cases: Case[], subsets?: Subset[]) {
 
     const sets = useMemo(() => {
         const s = new Set<string>();
