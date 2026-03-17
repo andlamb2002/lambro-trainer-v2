@@ -9,11 +9,11 @@ import { useActiveSession } from '../hooks/useActiveSession'
 
 import { getRandomCaseAndScramble, getRandomScrambleFromCase } from '../lib/randomScramble'
 import { createSolve } from '../lib/solves'
-import { formatTime, formatRunningTime } from '../lib/timeFormat'
 
 import Scramble from './components/Scramble'
 import Solves from './components/Solves'
 import SelectedSolve from './components/SelectedSolve'
+import TimerDisplay from './components/TimerDisplay'
 
 type CaseAndScramble = {
     caseItem: Case | null;
@@ -142,14 +142,10 @@ function TimerPage() {
                 {isActive && <>{recapProgress} / {recapTotal}</>}
             </div>
 
-            <div>
-                {phase}
-                {phase === 'running' ? 
-                     <>{formatRunningTime(time)}</>
-                    :
-                    <>{formatTime(time)}</>
-                }
-            </div>
+            <TimerDisplay 
+                phase={phase} 
+                time={time} 
+            />
 
             <Solves 
                 solves={solves} 

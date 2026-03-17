@@ -47,6 +47,8 @@ export type Case = {
 
 export type CaseToggles = Record<string, boolean>;
 
+export type Phase = 'idle' | 'holdStart' | 'running' | 'holdStop' | 'cooldown';
+
 export type Solve = {
     id: string;
     caseId: string;

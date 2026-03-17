@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-type Phase = 'idle' | 'holdStart' | 'running' | 'holdStop' | 'cooldown';
+import type { Phase } from '../types/types';
 
 const START_COOLDOWN_MS = 500;
 
