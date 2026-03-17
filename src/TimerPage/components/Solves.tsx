@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import type { Solve } from '../../types/types';
 
 import { formatTime } from '../../lib/timeFormat';
@@ -10,10 +12,17 @@ type Props = {
 }
 
 function Solves({ solves, selectedSolveId, onSelectSolve, onDeleteAllSolves }: Props) {
+
+    const count = solves.length;
+    const mean = useMemo(() => {
+        return count > 0 ? formatTime(solves.reduce((acc, solve) => acc + solve.time, 0) / count) : "0.00";
+    }, [count, solves]);
+
     return (
         <>
             <div style={{ display: "flex", gap: 8, alignItems: "center", marginTop: 12 }}>
-                <strong>Solves</strong>
+                <span>Solves: {count}</span>
+                <span>Mean: {mean}</span>
                 <button onClick={onDeleteAllSolves} disabled={solves.length === 0}>
                     Delete All
                 </button>
