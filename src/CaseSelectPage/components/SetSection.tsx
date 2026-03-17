@@ -9,7 +9,6 @@ type Props = {
     toggleCase: (caseId: string) => void;
     toggleSetCases: (set: string, enabled: boolean) => void;
     toggleSubsetCases: (subset: string, enabled: boolean) => void;
-
 }
 
 function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles, toggleCase, toggleSetCases, toggleSubsetCases }: Props) {
