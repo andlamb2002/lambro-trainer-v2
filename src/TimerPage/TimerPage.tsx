@@ -11,7 +11,7 @@ import { getRandomCaseAndScramble, getRandomScrambleFromCase } from '../lib/rand
 import { createSolve } from '../lib/solves'
 
 import ScrambleBar from './components/ScrambleBar'
-import Solves from './components/Solves'
+import SolvesList from './components/SolvesList'
 import SelectedSolve from './components/SelectedSolve'
 import TimerDisplay from './components/TimerDisplay'
 
@@ -144,10 +144,11 @@ function TimerPage() {
                 time={time} 
             />
 
-            <Solves 
+            <SolvesList 
                 solves={solves} 
                 selectedSolveId={selectedSolveId} 
                 onSelectSolve={setSelectedSolveId} 
+                onDeleteSolve={handleDeleteSolve}
                 onDeleteAllSolves={handleDeleteAllSolves} 
             />
 

@@ -8,10 +8,11 @@ type Props = {
     solves: Solve[];
     selectedSolveId: string | null;
     onSelectSolve: (id: string) => void;
+    onDeleteSolve: (id: string) => void;
     onDeleteAllSolves: () => void;
 }
 
-function Solves({ solves, selectedSolveId, onSelectSolve, onDeleteAllSolves }: Props) {
+function SolvesList({ solves, selectedSolveId, onSelectSolve, onDeleteSolve, onDeleteAllSolves }: Props) {
 
     const count = solves.length;
     const mean = useMemo(() => {
@@ -37,6 +38,13 @@ function Solves({ solves, selectedSolveId, onSelectSolve, onDeleteAllSolves }: P
                         >
                             {formatTime(solve.time)}
                         </button>
+                        <button
+                            type="button"
+                            onClick={() => onDeleteSolve(solve.id)}
+                            style={{ marginLeft: 8 }}
+                        >
+                            Delete
+                        </button>
                     </li>
                 ))}
             </ul>
@@ -44,4 +52,4 @@ function Solves({ solves, selectedSolveId, onSelectSolve, onDeleteAllSolves }: P
     )
 }
 
-export default Solves
+export default SolvesList
