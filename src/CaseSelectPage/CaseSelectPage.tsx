@@ -62,8 +62,7 @@ function CaseSelectPage() {
             <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 12 }}>
                 {sets.map((setName) => {
                     return (
-                        <SetSection 
-                            key={setName}
+                        <SetSection
                             setName={setName}
                             casesBySet={casesBySet}
                             subsetsBySet={subsetsBySet}
