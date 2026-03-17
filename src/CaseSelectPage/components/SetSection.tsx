@@ -1,5 +1,7 @@
 import type { Case, Subset } from "../../types/types";
 
+import CaseItem from "./CaseItem";
+
 type Props = {
     setName: string;
     casesBySet: Map<string, Case[]>;
@@ -39,9 +41,14 @@ function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles,
 
                                 <div style={{ marginTop: 6, display: "flex", gap: 8, flexWrap: "wrap" }}>
                                     {subsetCases.map((c) => (
-                                        <button key={c.id} onClick={() => toggleCase(c.id)}>
-                                            {toggles[c.id] ? "ON" : "OFF"} {c.label}
-                                        </button>
+                                        <CaseItem
+                                            c={c}
+                                            toggleCase={toggleCase}
+                                            toggles={toggles}
+                                        />
+                                        // <button key={c.id} onClick={() => toggleCase(c.id)}>
+                                        //     {toggles[c.id] ? "ON" : "OFF"} {c.label}
+                                        // </button>
                                     ))}
                                 </div>
                             </div>
@@ -51,9 +58,11 @@ function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles,
             ) : (
                 <div style={{ marginTop: 10, display: "flex", gap: 8, flexWrap: "wrap" }}>
                     {setCases.map((c) => (
-                        <button key={c.id} onClick={() => toggleCase(c.id)}>
-                            {toggles[c.id] ? "ON" : "OFF"} {c.label}
-                        </button>
+                        <CaseItem
+                            c={c}
+                            toggleCase={toggleCase}
+                            toggles={toggles}
+                        />
                     ))}
                 </div>
             )}
