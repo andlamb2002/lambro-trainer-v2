@@ -1,6 +1,8 @@
 import { useSessionStore } from '../Stores/useSessionStore';
 import { useActiveSession } from '../hooks/useActiveSession';
 
+import AlgSetSelect from './components/AlgSetSelect';
+
 import { 
     toggleAll, 
     toggleSet,
@@ -49,17 +51,12 @@ function CaseSelectPage() {
 
     return (
         <>
-            <div style={{ display: "flex", gap: 8 }}>
-                <select value={activeSetKey} onChange={(e) => handleChangeSet(e.target.value)}>
-                    {allSets.map(s => (
-                        <option key={s.id} value={s.id}>
-                            {s.label}
-                        </option>
-                    ))}
-                </select>
-                <button onClick={() => toggleAllCases(true)}>All</button>
-                <button onClick={() => toggleAllCases(false)}>None</button>
-            </div>
+            <AlgSetSelect
+                allSets={allSets}
+                activeSetKey={activeSetKey}
+                handleChangeSet={handleChangeSet}
+                toggleAllCases={toggleAllCases}
+            />
 
             <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 12 }}>
                 {sets.map((setName) => {
