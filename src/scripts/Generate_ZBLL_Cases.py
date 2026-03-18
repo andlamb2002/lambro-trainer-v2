@@ -1,4 +1,4 @@
-from utils import load_json, save_json, invert_alg, generate_case, generate_auf_variations, choose_unique_solutions, solve_then_invert_to_scramble
+from utils import load_json, save_json, invert_alg, generate_case, generate_auf_variations, remove_duplicate_solutions, solve_then_invert_to_scramble
 
 SKIP_SUBSETS = {
     ("H", 1): {3, 4, 9, 11},
@@ -113,7 +113,7 @@ def process_zbll(oll_data: list[dict], pll_data: list[dict]):
             subset_map = {old: new for new, old in enumerate(kept_subsets, start=1)}
 
             for old_subset in kept_subsets:
-                scrambles = choose_unique_solutions(buckets[old_subset], max_solutions=4)
+                scrambles = remove_duplicate_solutions(buckets[old_subset])
                 new_subset = subset_map[old_subset]
                 case_id = f"ZBLL{base_code}_{new_subset:02d}"
                 label   = f"{base_code}_{new_subset:02d}"
@@ -128,7 +128,7 @@ def process_zbll(oll_data: list[dict], pll_data: list[dict]):
                 case["subset"] = new_subset
                 cases.append(case)
 
-            print(f"{set_name} {base_code}: {len(kept_subsets)} subsets × 4 scrambles")
+            print(f"{set_name} {base_code}: {len(kept_subsets)} subsets × {len(scrambles)} scrambles")
 
     return cases
 
@@ -136,7 +136,7 @@ def main():
     pll_data = load_json("pll.json")
     oll_data = load_json("oll.json")
     all_cases = process_zbll(oll_data, pll_data)
-    save_json(all_cases, "zbll_cases.json")
+    save_json(all_cases, "zbll_cases_unordered.json")
     print(f"Total cases: {len(all_cases)}")
 
 if __name__ == "__main__":

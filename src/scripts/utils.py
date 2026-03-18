@@ -12,6 +12,8 @@ COLOR_MAP = {
 
 Z2_MAP = {'U': 'D', 'D': 'U', 'R': 'L', 'L': 'R', 'F': 'F', 'B': 'B'}
 
+U_MOVES = {'U', "U'", 'U2'}
+
 def load_json(filename: str):
     with open(DATA_DIR / filename, "r") as f:
         return json.load(f)
@@ -154,6 +156,22 @@ def choose_unique_solutions(solutions: list[str], max_solutions: int = 4) -> lis
                 break
     return chosen
 
+def remove_duplicate_solutions(solutions: list[str]) -> list[str]:
+    seen: set[str] = set()
+    unique: list[str] = []
+    for sol in solutions:
+        moves = sol.split()
+        if not moves:
+            continue
+        if moves[-1] in U_MOVES:
+            key = ' '.join(moves[:-1])
+        else:
+            key = sol
+        if key not in seen:
+            unique.append(sol)
+            seen.add(key)
+    return unique
+
 def kociemba_solve_from_sequence(seq: str) -> str:
     cube = pc.Cube()
     if seq.strip():
@@ -171,4 +189,5 @@ def scrambles_from_base_sequence(base_scramble: str, max_solutions: int = 4) -> 
     for var in generate_auf_variations(base_scramble):
         sol = kociemba_solve_from_sequence(var)
         solutions.append(sol)
-    return choose_unique_solutions(solutions, max_solutions)
+    # return choose_unique_solutions(solutions, max_solutions)
+    return remove_duplicate_solutions(solutions)

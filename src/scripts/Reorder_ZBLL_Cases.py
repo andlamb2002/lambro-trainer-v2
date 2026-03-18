@@ -116,21 +116,41 @@ def reorder_zbll_cases(
 
             for c in group_sorted:
                 new_subset = s_map[c["_sCanon"]]
+                # c["id"] = f"ZBLL{base_code}_{new_subset:02d}"
+                # c["label"] = f"{base_code}_{new_subset:02d}"
+                # c["subset"] = new_subset
                 c["id"] = f"ZBLL{base_code}_{new_subset:02d}"
                 c["label"] = f"{base_code}_{new_subset:02d}"
-                c["subset"] = new_subset
+                c["subset"] = base_code
+                c["variant"] = new_subset 
                 out.append(c)
 
     for c in out:
         c.pop("_set", None)
         c.pop("_pCanon", None)
         c.pop("_sCanon", None)
+        c.pop("enabled", None) 
 
     return out
 
+def generate_zbll_subsets(cases: list[dict]) -> list[dict]:
+    seen: set[str] = set()
+    subsets: list[dict] = []
+    for c in cases:
+        subset_id = c["subset"]
+        if subset_id not in seen:
+            seen.add(subset_id)
+            first_scramble = c["scrambles"][0].replace(" ", "")
+            subsets.append({
+                "id": subset_id,
+                "set": c["set"],
+                "img": f"https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg={first_scramble}"
+            })
+    return subsets
+
 def main():
-    infile = "zbll_cases.json"
-    outfile = "zbll_reordered_cases.json"
+    infile = "zbll_cases_unordered.json"
+    outfile = "zbll_cases.json"
     cases = load_json(infile)
     cases = reorder_zbll_cases(
         cases,
@@ -140,6 +160,10 @@ def main():
     )
     save_json(cases, outfile)
     print(f"Reordered {len(cases)} ZBLL cases -> {outfile}")
+
+    subsets = generate_zbll_subsets(cases)
+    save_json(subsets, "zbll_subsets.json")
+    print(f"Generated {len(subsets)} ZBLL subsets -> zbll_subsets.json")
 
 if __name__ == "__main__":
     main()
