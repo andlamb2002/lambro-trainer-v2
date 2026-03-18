@@ -116,9 +116,6 @@ def reorder_zbll_cases(
 
             for c in group_sorted:
                 new_subset = s_map[c["_sCanon"]]
-                # c["id"] = f"ZBLL{base_code}_{new_subset:02d}"
-                # c["label"] = f"{base_code}_{new_subset:02d}"
-                # c["subset"] = new_subset
                 c["id"] = f"ZBLL{base_code}_{new_subset:02d}"
                 c["label"] = f"{base_code}_{new_subset:02d}"
                 c["subset"] = base_code

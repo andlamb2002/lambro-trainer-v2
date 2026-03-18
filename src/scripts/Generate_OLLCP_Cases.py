@@ -65,18 +65,39 @@ def process_ollcp(oll_data: list[dict], pll_data: list[dict]):
                 set_name=oll["set"],
                 shape=oll["label"]
             )
-            case["subset"] = subset
+            case["subset"] = f"OLL{counter:02d}"
+            case["variant"] = subset
             cases.append(case)
 
         counter += 1
 
     return cases
 
+def generate_ollcp_subsets(cases: list[dict]) -> list[dict]:
+    seen: set[str] = set()
+    subsets: list[dict] = []
+    for c in cases:
+        subset_id = c["subset"]
+        if subset_id not in seen:
+            seen.add(subset_id)
+            first_scramble = c["scrambles"][0].replace(" ", "")
+            subsets.append({
+                "id": subset_id,
+                "set": c["set"],
+                "shape": c.get("shape", ""),
+                "img": f"https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg={first_scramble}"
+            })
+    return subsets
+
 def main():
     pll_data = load_json("pll.json")
     oll_data = load_json("oll.json")
     all_cases = process_ollcp(oll_data, pll_data)
     save_json(all_cases, "ollcp_cases.json")
+
+    subsets = generate_ollcp_subsets(all_cases)
+    save_json(subsets, "ollcp_subsets.json")
+    print(f"Generated {len(subsets)} OLLCP subsets -> ollcp_subsets.json")
 
 if __name__ == "__main__":
     main()
