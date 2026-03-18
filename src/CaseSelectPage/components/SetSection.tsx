@@ -42,9 +42,10 @@ function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles,
                                 <div style={{ marginTop: 6, display: "flex", gap: 8, flexWrap: "wrap" }}>
                                     {subsetCases.map((c) => (
                                         <CaseItem
+                                            key={c.id}
                                             c={c}
                                             toggleCase={toggleCase}
-                                            toggles={toggles}
+                                            enabled={toggles[c.id]}
                                         />
                                         // <button key={c.id} onClick={() => toggleCase(c.id)}>
                                         //     {toggles[c.id] ? "ON" : "OFF"} {c.label}
@@ -59,9 +60,10 @@ function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles,
                 <div style={{ marginTop: 10, display: "flex", gap: 8, flexWrap: "wrap" }}>
                     {setCases.map((c) => (
                         <CaseItem
+                            key={c.id}
                             c={c}
                             toggleCase={toggleCase}
-                            toggles={toggles}
+                            enabled={toggles[c.id]}
                         />
                     ))}
                 </div>

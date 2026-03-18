@@ -63,6 +63,7 @@ function CaseSelectPage() {
                 {sets.map((setName) => {
                     return (
                         <SetSection
+                            key={setName}
                             setName={setName}
                             casesBySet={casesBySet}
                             subsetsBySet={subsetsBySet}
