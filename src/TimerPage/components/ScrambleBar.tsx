@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 type Props = {
     currentScramble: string;
     isActive: boolean;
@@ -10,6 +12,7 @@ type Props = {
 function ScrambleBar({ currentScramble, isActive, recapProgress, recapTotal, handleStartRecap, stopRecap }: Props) {
     return (
         <>
+            <Link to="/cases">Cases</Link>
             <div>
                 {isActive 
                     ? <button onClick={stopRecap}>End Recap</button>

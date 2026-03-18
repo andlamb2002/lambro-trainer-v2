@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, Link } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 
 import Header from './Header'
 import TimerPage from './TimerPage/TimerPage'
@@ -12,13 +12,7 @@ function App() {
 
     return (
         <>
-            <nav style={{ display: "flex", gap: 8 }}>
-                <Link to="/cases">Cases</Link>
-                <Link to="/">Timer</Link>
-            </nav>
-
             <Header />
-
             <Routes>
                 <Route path="/" 
                     element={

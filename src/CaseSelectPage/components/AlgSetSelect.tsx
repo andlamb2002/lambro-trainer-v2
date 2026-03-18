@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 type Props = {
     allSets: { id: string; label: string }[];
     activeSetKey: string;
@@ -17,6 +19,7 @@ function AlgSetSelect({ allSets, activeSetKey, handleChangeSet, toggleAllCases }
             </select>
             <button onClick={() => toggleAllCases(true)}>All</button>
             <button onClick={() => toggleAllCases(false)}>None</button>
+            <Link to="/">Timer</Link>
         </div>
     )
 }
