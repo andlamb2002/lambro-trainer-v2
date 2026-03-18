@@ -189,5 +189,4 @@ def scrambles_from_base_sequence(base_scramble: str, max_solutions: int = 4) -> 
     for var in generate_auf_variations(base_scramble):
         sol = kociemba_solve_from_sequence(var)
         solutions.append(sol)
-    # return choose_unique_solutions(solutions, max_solutions)
     return remove_duplicate_solutions(solutions)
