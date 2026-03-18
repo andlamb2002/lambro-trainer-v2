@@ -53,12 +53,27 @@ def process_ollcp(oll_data: list[dict], pll_data: list[dict]):
         counts = {k: len(v) for k, v in buckets.items()}
         print(f"OLL {counter:02d} '{oll['label']}': subset counts {counts}")
 
-        for subset in sorted(present_subsets):
-            case_id = f"OLL{counter:02d}_{subset:02d}"
-            label = case_id
+        # for subset in sorted(present_subsets):
+        #     case_id = f"OLL{counter:02d}_{subset:02d}"
+        #     label = case_id
+        #     case = generate_case(
+        #         case_id=case_id,
+        #         label=label,
+        #         scrambles=buckets[subset],
+        #         original_alg=oll["scramble"],
+        #         img_stage="coll",
+        #         set_name=oll["set"],
+        #         shape=oll["label"]
+        #     )
+        #     case["subset"] = f"OLL{counter:02d}"
+        #     case["variant"] = subset
+        #     cases.append(case)
+
+        for variant, subset in enumerate(sorted(present_subsets), start=1):
+            case_id = f"OLL{counter:02d}_{variant:02d}"
             case = generate_case(
                 case_id=case_id,
-                label=label,
+                label=case_id,
                 scrambles=buckets[subset],
                 original_alg=oll["scramble"],
                 img_stage="coll",
@@ -66,7 +81,7 @@ def process_ollcp(oll_data: list[dict], pll_data: list[dict]):
                 shape=oll["label"]
             )
             case["subset"] = f"OLL{counter:02d}"
-            case["variant"] = subset
+            case["variant"] = variant
             cases.append(case)
 
         counter += 1

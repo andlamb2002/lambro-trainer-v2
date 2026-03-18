@@ -24,9 +24,9 @@
     "variant": 1
   },
   {
-    "id": "OLL01_03",
+    "id": "OLL01_02",
     "set": "dot",
-    "label": "OLL01_03",
+    "label": "OLL01_02",
     "originalAlg": "R U2 R2 F R F' U2 R' F R F'",
     "scrambles": [
       "F2 U L2 U B2 R2 D B2 F U B' R' U' R2 U2 B U F'",
@@ -45,12 +45,12 @@
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=F2UL2UB2R2DB2FUB'R'U'R2U2BUF'",
     "shape": "dot",
     "subset": "OLL01",
-    "variant": 3
+    "variant": 2
   },
   {
-    "id": "OLL01_04",
+    "id": "OLL01_03",
     "set": "dot",
-    "label": "OLL01_04",
+    "label": "OLL01_03",
     "originalAlg": "R U2 R2 F R F' U2 R' F R F'",
     "scrambles": [
       "D2 R2 D R2 D2 F R U R' L' U2 L2 F' D' L'",
@@ -69,12 +69,12 @@
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=D2R2DR2D2FRUR'L'U2L2F'D'L'",
     "shape": "dot",
     "subset": "OLL01",
-    "variant": 4
+    "variant": 3
   },
   {
-    "id": "OLL01_05",
+    "id": "OLL01_04",
     "set": "dot",
-    "label": "OLL01_05",
+    "label": "OLL01_04",
     "originalAlg": "R U2 R2 F R F' U2 R' F R F'",
     "scrambles": [
       "R2 U R2 F2 L2 B2 D' B2 D2 L B' D2 L F' R2 B2 R B2 F'",
@@ -93,7 +93,7 @@
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=R2UR2F2L2B2D'B2D2LB'D2LF'R2B2RB2F'",
     "shape": "dot",
     "subset": "OLL01",
-    "variant": 5
+    "variant": 4
   },
   {
     "id": "OLL02_01",
@@ -2832,9 +2832,9 @@
     "variant": 3
   },
   {
-    "id": "OLL21_05",
+    "id": "OLL21_04",
     "set": "cross",
-    "label": "OLL21_05",
+    "label": "OLL21_04",
     "originalAlg": "U R U2 R' U' R U R' U' R U' R'",
     "scrambles": [
       "U' R2 U' F2 L2 D' B2 D' B' D2 L2 F U2 F2 R2 F'",
@@ -2853,7 +2853,7 @@
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U'R2U'F2L2D'B2D'B'D2L2FU2F2R2F'",
     "shape": "cross",
     "subset": "OLL21",
-    "variant": 5
+    "variant": 4
   },
   {
     "id": "OLL22_01",
@@ -7680,9 +7680,9 @@
     "variant": 3
   },
   {
-    "id": "OLL55_05",
+    "id": "OLL55_04",
     "set": "line",
-    "label": "OLL55_05",
+    "label": "OLL55_04",
     "originalAlg": "R' F R U R U' R2 F' R2 U' R' U R U R'",
     "scrambles": [
       "D' B2 D L2 B2 U L2 U' B2 D R' F' R U' D' L2 B' U B",
@@ -7701,7 +7701,7 @@
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=D'B2DL2B2UL2U'B2DR'F'RU'D'L2B'UB",
     "shape": "i_shape",
     "subset": "OLL55",
-    "variant": 5
+    "variant": 4
   },
   {
     "id": "OLL56_01",
@@ -7776,9 +7776,9 @@
     "variant": 3
   },
   {
-    "id": "OLL56_05",
+    "id": "OLL56_04",
     "set": "line",
-    "label": "OLL56_05",
+    "label": "OLL56_04",
     "originalAlg": "r' U' r U' R' U R U' R' U R r' U r",
     "scrambles": [
       "U2 B2 D F2 D R D R2 B' D2 F2 L' D' B'",
@@ -7797,7 +7797,7 @@
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U2B2DF2DRDR2B'D2F2L'D'B'",
     "shape": "i_shape",
     "subset": "OLL56",
-    "variant": 5
+    "variant": 4
   },
   {
     "id": "OLL57_01",
@@ -7872,9 +7872,9 @@
     "variant": 3
   },
   {
-    "id": "OLL57_05",
+    "id": "OLL57_04",
     "set": "line",
-    "label": "OLL57_05",
+    "label": "OLL57_04",
     "originalAlg": "R U R' U' M' U R U' r'",
     "scrambles": [
       "R2 D L2 B2 D L2 B2 U' B2 R' U' F D2 L B2 D F L'",
@@ -7893,6 +7893,6 @@
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=R2DL2B2DL2B2U'B2R'U'FD2LB2DFL'",
     "shape": "corners_oriented",
     "subset": "OLL57",
-    "variant": 5
+    "variant": 4
   }
 ]
