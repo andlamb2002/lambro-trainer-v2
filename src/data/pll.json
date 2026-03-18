@@ -1,0 +1,112 @@
+[
+    {
+        "set": "edges_only",
+        "label": "skip", 
+        "scramble": ""
+    },
+    {
+        "set": "adj_swap",
+        "label": "Aa",
+        "scramble": "U x R' U R' D2 R U' R' D2 R2 x' U2"
+    },
+    {
+        "set": "adj_swap",
+        "label": "Ab",
+        "scramble": "U2 x R2 D2 R U R' D2 R U' R x' U'"
+    },
+    {
+        "set": "diag_swap",
+        "label": "E",
+        "scramble": "x' R U' R' D R U R' D' R U R' D R U' R' D' x"
+    },
+    {
+        "set": "adj_swap",
+        "label": "F",
+        "scramble": "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R"
+    },
+    {
+        "set": "adj_swap",
+        "label": "Ga",
+        "scramble": "R2 U R' U R' U' R U' R2 D U' R' U R D'"
+    },
+    {
+        "set": "adj_swap",
+        "label": "Gb",
+        "scramble": "R' U' R U D' R2 U R' U R U' R U' R2 D"
+    },
+    {
+        "set": "adj_swap",
+        "label": "Gc",
+        "scramble": "R2 U' R U' R U R' U R2 D' U R U' R' D"
+    },
+    {
+        "set": "adj_swap",
+        "label": "Gd",
+        "scramble": "R U R' U' D R2 U' R U' R' U R' U R2 D'"
+    },
+    {
+        "set": "edges_only",
+        "label": "H",
+        "scramble": "M2 U M2 U2 M2 U M2"
+    },
+    {
+        "set": "adj_swap",
+        "label": "Ja",
+        "scramble": "x R2 F R F' R U2 r' U r U2 x'"
+    },
+    {
+        "set": "adj_swap",
+        "label": "Jb",
+        "scramble": "R U R' F' R U R' U' R' F R2 U' R' U'"
+    },
+    {
+        "set": "diag_swap",
+        "label": "Na",
+        "scramble": "R U R' U R U R' F' R U R' U' R' F R2 U' R' U2 R U' R'"
+    },
+    {
+        "set": "diag_swap",
+        "label": "Nb",
+        "scramble": "R' U L' U2 R U' L R' U L' U2 R U' L"
+    },
+    {
+        "set": "adj_swap",
+        "label": "Ra",
+        "scramble": "R U' R' U' R U R D R' U' R D' R' U2 R' U'"
+    },
+    {
+        "set": "adj_swap",
+        "label": "Rb",
+        "scramble": "R2 F R U R U' R' F' R U2 R' U2 R U"
+    },
+    {
+        "set": "adj_swap",
+        "label": "T",
+        "scramble": "R U R' U' R' F R2 U' R' U' R U R' F'"
+    },
+    {
+        "set": "edges_only",
+        "label": "Ua",
+        "scramble": "R U' R U R U R U' R' U' R2"
+    },
+    {
+        "set": "edges_only",
+        "label": "Ub",
+        "scramble": "R2 U R U R' U' R' U' R' U R'"
+    },
+    {
+        "set": "diag_swap",
+        "label": "V",
+        "scramble": "R' U R' U' R D' R' D R' U D' R2 U' R2 D R2"
+    },
+    {
+        "set": "diag_swap",
+        "label": "Y",
+        "scramble": "F R U' R' U' R U R' F' R U R' U' R' F R F'"
+    },
+    {
+        "set": "edges_only",
+        "label": "Z",
+        "scramble": "M' U' M2 U' M2 U' M' U2 M2"
+    }
+]
