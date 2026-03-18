@@ -16,8 +16,9 @@ function SelectedSolve({ solve, onDelete }: Props) {
 
             <div>Label: {solve.label}</div>
             <div>Time: {formatTime(solve.time)}</div>
-            <div>Subset: {solve.subset ?? "-"}</div>
-            <div>Variant: {solve.variant ?? "-"}</div>
+            {solve.subset && <div>Subset: {solve.subset}</div>}
+            {solve.variant && <div>Variant: {solve.variant}</div>}
+            {!solve.subset && <div>Original Alg: {solve.originalAlg}</div>}
             <div>Scramble: {solve.scramble}</div>
 
             <button onClick={() => onDelete(solve.id)} style={{ marginTop: 8 }}>
