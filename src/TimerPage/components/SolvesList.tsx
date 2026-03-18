@@ -31,10 +31,11 @@ function SolvesList({ solves, selectedSolveId, onSelectSolve, onDeleteSolve, onD
                 </button>
             </div>
             <ul>
-                {solves.map((solve) => (
+                {[...solves].reverse().map((solve, index) => (
                     <li key={solve.id}>
                         <SolveItem
                             solve={solve}
+                            index={solves.length - index}
                             selectedSolveId={selectedSolveId}
                             onSelectSolve={onSelectSolve}
                             onDeleteSolve={onDeleteSolve}

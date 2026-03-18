@@ -4,12 +4,13 @@ import type { Solve } from '../../types/types';
 
 type Props = {
     solve: Solve;
+    index: number;
     selectedSolveId: string | null;
     onSelectSolve: (id: string) => void;
     onDeleteSolve: (id: string) => void;
 }
 
-function SolveItem({ solve, selectedSolveId, onSelectSolve, onDeleteSolve }: Props) {
+function SolveItem({ solve, index, selectedSolveId, onSelectSolve, onDeleteSolve }: Props) {
     return (
         <div>
             <button
@@ -17,7 +18,7 @@ function SolveItem({ solve, selectedSolveId, onSelectSolve, onDeleteSolve }: Pro
                 onClick={() => onSelectSolve(solve.id)}
                 style={{ fontWeight: solve.id === selectedSolveId ? "bold" : "normal" }}
             >
-                {formatTime(solve.time)}
+                {index}. {formatTime(solve.time)}
             </button>
             <button
                 type="button"
