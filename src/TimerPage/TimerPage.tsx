@@ -102,6 +102,7 @@ function TimerPage() {
     }, [currentCase, currentScramble, addSolve, updateCaseAndScramble, enabledCases, handleNextRecap, isActive]);
 
     const { time, phase } = useTimer(handleStop, isDisabled);
+    const hudHidden = phase === 'running' || phase === 'holdStart' || phase === 'holdStop';
 
     const handleDeleteSolve = (id: string) => {
         const solve = solves.find(s => s.id === id);
@@ -129,9 +130,9 @@ function TimerPage() {
     };
 
     return (
-        <> 
-            <ScrambleBar 
-                currentScramble={currentScramble} 
+        <div className="flex flex-col grow px-2 py-2 sm:py-4">
+            <ScrambleBar
+                currentScramble={currentScramble}
                 isActive={isActive}
                 recapProgress={recapProgress}
                 recapTotal={recapTotal}
@@ -139,25 +140,32 @@ function TimerPage() {
                 stopRecap={stopRecap}
             />
 
-            <TimerDisplay 
-                phase={phase} 
-                time={time} 
-            />
+            <div className={`grid ${hudHidden ? 'grid-cols-1' : 'grid-cols-3'} h-full`}>
 
-            <SolvesList 
-                solves={solves} 
-                selectedSolveId={selectedSolveId} 
-                onSelectSolve={setSelectedSolveId} 
-                onDeleteSolve={handleDeleteSolve}
-                onDeleteAllSolves={handleDeleteAllSolves} 
-            />
+                <div className={`order-2 sm:order-1 col-span-1 ${hudHidden ? 'hidden' : 'block'}`}>
+                    <SolvesList
+                        solves={solves}
+                        selectedSolveId={selectedSolveId}
+                        onSelectSolve={setSelectedSolveId}
+                        onDeleteSolve={handleDeleteSolve}
+                        onDeleteAllSolves={handleDeleteAllSolves}
+                    />
+                </div>
 
-            <SelectedSolve 
-                solve={selectedSolve} 
-                onDelete={(id) => handleDeleteSolve(id)} 
-            />
-        </>
-    )
+                <div className={`order-1 sm:order-2 ${hudHidden ? 'col-span-1' : 'col-span-3 sm:col-span-1'} h-full`}>
+                    <TimerDisplay phase={phase} time={time} />
+                </div>
+
+                <div className={`order-3 col-span-2 sm:col-span-1 ${hudHidden ? 'hidden' : 'block'}`}>
+                    <SelectedSolve
+                        solve={selectedSolve}
+                        onDelete={(id) => handleDeleteSolve(id)}
+                    />
+                </div>
+
+            </div>
+        </div>
+    );
 }
 
 export default TimerPage
