@@ -11,22 +11,24 @@ function App() {
     const activeSessionId = useSessionStore(s => s.activeSessionId);
 
     return (
-        <>
+        <div className="flex flex-col min-h-screen bg-primary text-text scrollbar-hide">
             <Header />
-            <Routes>
-                <Route path="/" 
-                    element={
-                        <TimerPage key={activeSessionId} />
-                    } 
-                />
-                <Route path="/cases" 
-                    element={
-                        <CaseSelectPage />
-                    } 
-                />
-                <Route path="*" element={<Navigate to="/" />} />
-            </Routes>
-        </>
+            <main className="flex flex-col grow">
+                <Routes>
+                    <Route path="/" 
+                        element={
+                            <TimerPage key={activeSessionId} />
+                        } 
+                    />
+                    <Route path="/cases" 
+                        element={
+                            <CaseSelectPage />
+                        } 
+                    />
+                    <Route path="*" element={<Navigate to="/" />} />
+                </Routes>
+            </main>
+        </div>
     )
 }
 
