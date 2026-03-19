@@ -8,15 +8,20 @@ type Props = {
 
 function CaseItem({ c, toggleCase, enabled }: Props) {
     return (
-        <>
-            <button 
-                key={c.id} 
-                onClick={() => toggleCase(c.id)}
-            >
-                {enabled ? "ON" : "OFF"} {c.label}
-            </button>
-        </>
-    )
+        <div
+            onClick={() => toggleCase(c.id)}
+            className={`aspect-square flex items-center justify-center rounded cursor-pointer hover:opacity-60 ${enabled ? 'bg-success' : ''}`}
+            title={`${c.label} (${c.id})`}
+            role="button"
+            aria-pressed={enabled}
+        >
+            <img
+                src={c.img}
+                alt={`Case ${c.label}`}
+                className="object-contain"
+            />
+        </div>
+    );
 }
 
 export default CaseItem
