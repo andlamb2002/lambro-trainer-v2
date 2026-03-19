@@ -1,1 +1,34 @@
 @import "tailwindcss";
+
+@theme {
+    --font-sans: "Open Sans", sans-serif;
+    --color-primary: #E9F0FD;
+    --color-secondary: #C5D5EB;
+    --color-text: #1B232F;
+    --color-accent: #17544B;
+    --color-success: #16A34A;
+    --color-warning: #F59E0B;
+    --color-danger: #DC2626;
+}
+
+.dark {
+    --color-primary: #1B232F;
+    --color-secondary: #213249;
+    --color-text: #F6F7F9;
+    --color-accent: #6FD8C6;
+}
+
+@layer base {
+    html, body { @apply bg-primary text-text; }
+    * { @apply font-sans select-none sm:select-text; }
+}
+
+@layer components {
+    .btn { @apply rounded shadow-md px-2 py-1 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed; }
+    .btn-primary { @apply bg-accent text-primary hover:bg-accent/60; }
+    .btn-danger  { @apply bg-danger  text-white  hover:bg-danger/60; }
+    .btn-success { @apply bg-success text-white  hover:bg-success/60; }
+    .link { @apply text-text hover:underline hover:text-text/60 cursor-pointer; }
+    .scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+}

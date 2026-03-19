@@ -12,7 +12,6 @@ function App() {
 
     return (
         <>
-            <div className="bg-gray-500">Hello World!</div>
             <Header />
             <Routes>
                 <Route path="/" 
