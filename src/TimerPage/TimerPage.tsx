@@ -102,7 +102,6 @@ function TimerPage() {
     }, [currentCase, currentScramble, addSolve, updateCaseAndScramble, enabledCases, handleNextRecap, isActive]);
 
     const { time, phase } = useTimer(handleStop, isDisabled);
-    const hudHidden = phase === 'running' || phase === 'holdStart' || phase === 'holdStop';
 
     const handleDeleteSolve = (id: string) => {
         const solve = solves.find(s => s.id === id);
@@ -140,9 +139,9 @@ function TimerPage() {
                 stopRecap={stopRecap}
             />
 
-            <div className={`grid ${hudHidden ? 'grid-cols-1' : 'grid-cols-3'} h-full`}>
+            <div className="grid grid-cols-3 h-full">
 
-                <div className={`order-2 sm:order-1 col-span-1 ${hudHidden ? 'hidden' : 'block'}`}>
+                <div className="order-2 sm:order-1 col-span-1">
                     <SolvesList
                         solves={solves}
                         selectedSolveId={selectedSolveId}
@@ -152,11 +151,11 @@ function TimerPage() {
                     />
                 </div>
 
-                <div className={`order-1 sm:order-2 ${hudHidden ? 'col-span-1' : 'col-span-3 sm:col-span-1'} h-full`}>
+                <div className="order-1 sm:order-2 col-span-3 sm:col-span-1 h-full">
                     <TimerDisplay phase={phase} time={time} />
                 </div>
 
-                <div className={`order-3 col-span-2 sm:col-span-1 ${hudHidden ? 'hidden' : 'block'}`}>
+                <div className="order-3 col-span-2 sm:col-span-1">
                     <SelectedSolve
                         solve={selectedSolve}
                         index={solves.findIndex(s => s.id === selectedSolveId) + 1}
