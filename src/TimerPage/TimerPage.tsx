@@ -159,6 +159,8 @@ function TimerPage() {
                 <div className={`order-3 col-span-2 sm:col-span-1 ${hudHidden ? 'hidden' : 'block'}`}>
                     <SelectedSolve
                         solve={selectedSolve}
+                        index={solves.findIndex(s => s.id === selectedSolveId) + 1}
+                        isCooldown={isActive}
                         onDelete={(id) => handleDeleteSolve(id)}
                     />
                 </div>
