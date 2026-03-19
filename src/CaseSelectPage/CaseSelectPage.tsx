@@ -51,32 +51,29 @@ function CaseSelectPage() {
     };
 
     return (
-        <>
+        <div className="px-2 py-2 sm:py-4">
             <AlgSetSelect
                 allSets={allSets}
                 activeSetKey={activeSetKey}
                 handleChangeSet={handleChangeSet}
                 toggleAllCases={toggleAllCases}
             />
-
-            <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 12 }}>
-                {sets.map((setName) => {
-                    return (
-                        <SetSection
-                            key={setName}
-                            setName={setName}
-                            casesBySet={casesBySet}
-                            subsetsBySet={subsetsBySet}
-                            casesBySubset={casesBySubset}
-                            toggles={toggles}
-                            toggleCase={toggleCase}
-                            toggleSetCases={toggleSetCases}
-                            toggleSubsetCases={toggleSubsetCases}
-                        />
-                    );
-                })}
+            <div className="flex flex-col gap-8 mt-6">
+                {sets.map((setName) => (
+                    <SetSection
+                        key={setName}
+                        setName={setName}
+                        casesBySet={casesBySet}
+                        subsetsBySet={subsetsBySet}
+                        casesBySubset={casesBySubset}
+                        toggles={toggles}
+                        toggleCase={toggleCase}
+                        toggleSetCases={toggleSetCases}
+                        toggleSubsetCases={toggleSubsetCases}
+                    />
+                ))}
             </div>
-        </>
+        </div>
     )
 }
 
