@@ -102,7 +102,7 @@ function TimerPage() {
     }, [currentCase, currentScramble, addSolve, updateCaseAndScramble, enabledCases, handleNextRecap, isActive]);
 
     const { time, phase } = useTimer(handleStop, isDisabled);
-    const displayTime = (phase === 'idle') 
+    const displayTime = (phase === 'idle' || phase === 'holdStart') 
         ? (selectedSolve ? selectedSolve.time : 0)
         : time;
 
