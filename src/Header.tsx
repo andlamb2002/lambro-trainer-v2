@@ -21,7 +21,7 @@ function Header() {
     const { theme, toggleTheme } = useTheme();
     
     return (
-        <header className="flex items-center justify-between bg-secondary px-4 py-3 sm:px-6 sm:py-4 shadow-lg gap-4">
+        <header className="flex items-center justify-between bg-secondary px-2 py-4 sm:p-6 shadow-lg">
             
             <div className="flex items-center gap-4 min-w-0">
                 <Link
@@ -41,13 +41,13 @@ function Header() {
                     >
                         {sessions.map(s => (
                             <option key={s.id} value={s.id}>
-                                {s.label} ({s.setId} {enabledCases.length})
+                                {s.label} ({s.setId})
                             </option>
                         ))}
                     </select>
                     <button
                         onClick={handleNewSession}
-                        className="btn btn-primary p-1"
+                        className="btn btn-success p-1"
                         title="New Session"
                         aria-label="New Session"
                     >
@@ -62,6 +62,7 @@ function Header() {
                     >
                         <MdRemove size={20} />
                     </button>
+                    {enabledCases.length} Cases
                 </div>
             </div>
 
