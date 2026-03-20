@@ -102,6 +102,9 @@ function TimerPage() {
     }, [currentCase, currentScramble, addSolve, updateCaseAndScramble, enabledCases, handleNextRecap, isActive]);
 
     const { time, phase } = useTimer(handleStop, isDisabled);
+    const displayTime = (phase === 'idle') 
+        ? (selectedSolve ? selectedSolve.time : 0)
+        : time;
 
     const handleDeleteSolve = (id: string) => {
         const solve = solves.find(s => s.id === id);
@@ -152,7 +155,7 @@ function TimerPage() {
                 </div>
 
                 <div className="order-1 sm:order-2 col-span-3 sm:col-span-1 h-full">
-                    <TimerDisplay phase={phase} time={time} />
+                    <TimerDisplay phase={phase} time={displayTime} />
                 </div>
 
                 <div className="order-3 col-span-2 sm:col-span-1">
