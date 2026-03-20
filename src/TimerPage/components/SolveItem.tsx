@@ -18,7 +18,7 @@ function SolveItem({ solve, index, selectedSolveId, onSelectSolve, onDeleteSolve
 
     return (
         <li
-            className={`flex justify-between items-center p-2 rounded shadow-md cursor-pointer ${isSelected ? 'bg-accent text-primary' : 'bg-secondary hover:bg-secondary/60'}`}
+            className="flex justify-between items-center p-2 rounded shadow-md cursor-pointer bg-secondary hover:bg-secondary/60"
             onClick={() => onSelectSolve(solve.id)}
             title={`Select Solve ${index}`}
             role="button"
