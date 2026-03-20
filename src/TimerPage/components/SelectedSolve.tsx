@@ -51,10 +51,6 @@ function SelectedSolve({ solve, index, isCooldown, onDelete }: Props) {
 
             <div>{solve.scramble}</div>
 
-            {solve.variant && (
-                <div>Variant: {solve.variant}</div>
-            )}
-
             {!hasSubset && (
                 <div className="mt-2">Solution: {solve.originalAlg}</div>
             )}
