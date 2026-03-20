@@ -51,7 +51,7 @@ function CaseSelectPage() {
     };
 
     return (
-        <div className="px-2 py-2 sm:py-4">
+        <div className="px-2 py-2 sm:py-4 sm:px-4">
             <AlgSetSelect
                 allSets={allSets}
                 activeSetKey={activeSetKey}

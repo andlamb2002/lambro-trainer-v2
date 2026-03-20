@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { MdArrowBack } from "react-icons/md";
+import { MdArrowForward } from "react-icons/md";
 
 type Props = {
     allSets: { id: string; label: string }[];
@@ -41,12 +41,12 @@ function AlgSetSelect({ allSets, activeSetKey, handleChangeSet, toggleAllCases }
             </button>
             <Link
                 to="/"
-                className="btn btn-primary flex items-center gap-1 font-bold"
+                className="btn btn-primary flex items-center gap-1 text-2xl font-bold w-auto self-start sm:self-auto px-2 py-1 sm:px-4 sm:py-2"
                 title="Timer"
                 aria-label="Timer"
             >
-                <MdArrowBack size={20} />
-                Timer
+                Train
+                <MdArrowForward size={24} />
             </Link>
         </div>
     );
