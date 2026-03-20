@@ -37,7 +37,7 @@ function ScrambleBar({ currentScramble, isActive, recapProgress, recapTotal, han
                         {isActive ? 'End' : 'Recap'}
                     </button>
                     {isActive && (
-                        <span className="text-sm font-medium">
+                        <span>
                             {recapProgress} / {recapTotal}
                         </span>
                     )}
