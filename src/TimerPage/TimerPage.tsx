@@ -107,19 +107,23 @@ function TimerPage() {
         : time;
 
     const handleDeleteSolve = (id: string) => {
-        const solve = solves.find(s => s.id === id);
-        if (!solve) return;
-        deleteSolve(id);
-        handleDeleteRecap(id, solve.caseId, cases);
-        if (selectedSolveId === id) {
-            const nextSelected = solves.filter(s => s.id !== id);
-            setSelectedSolveId(nextSelected.length > 0 ? nextSelected[nextSelected.length - 1].id : null);
-        } 
+        if(window.confirm(`Delete solve?`)) {
+            const solve = solves.find(s => s.id === id);
+            if (!solve) return;
+            deleteSolve(id);
+            handleDeleteRecap(id, solve.caseId, cases);
+            if (selectedSolveId === id) {
+                const nextSelected = solves.filter(s => s.id !== id);
+                setSelectedSolveId(nextSelected.length > 0 ? nextSelected[nextSelected.length - 1].id : null);
+            } 
+        }
     };
 
     const handleDeleteAllSolves = () => {
-        deleteAllSolves();
-        if (currentCase) handleDeleteAllRecap(currentCase);
+        if(window.confirm(`Delete all solves?`)) {
+            deleteAllSolves();
+            if (currentCase) handleDeleteAllRecap(currentCase);
+        }
     };
 
     const handleStartRecap = () => {
