@@ -135,8 +135,7 @@ function TimerPage() {
         onDeleteAll: () => {
             handleDeleteAllSolves();
         }
-    }
-    );
+    });
 
     const handleStartRecap = () => {
         const firstRecap = startRecap();
