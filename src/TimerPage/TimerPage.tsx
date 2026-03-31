@@ -14,6 +14,7 @@ import ScrambleBar from './components/ScrambleBar'
 import SolvesList from './components/SolvesList'
 import SelectedSolve from './components/SelectedSolve'
 import TimerDisplay from './components/TimerDisplay'
+import { useHotkeys } from '../hooks/useHotkeys'
 
 type CaseAndScramble = {
     caseItem: Case | null;
@@ -125,6 +126,17 @@ function TimerPage() {
             if (currentCase) handleDeleteAllRecap(currentCase);
         }
     };
+
+    useHotkeys({
+        onDeleteSolve: () => {
+            if (!selectedSolveId) return;
+            handleDeleteSolve(selectedSolveId);
+        },
+        onDeleteAll: () => {
+            handleDeleteAllSolves();
+        }
+    }
+    );
 
     const handleStartRecap = () => {
         const firstRecap = startRecap();
