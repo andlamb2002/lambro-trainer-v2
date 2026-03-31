@@ -89,9 +89,11 @@ export const useSessionStore = create<SessionStore>()(
                 });
             },
             handleChangeSet: (nextSetKey: string) => {
-                set(prev => ({
-                    sessions: updateSessionSet(prev.sessions, prev.activeSessionId, nextSetKey),
-                }));
+                if(window.confirm("You will lose the cases you selected.")) {
+                    set(prev => ({
+                        sessions: updateSessionSet(prev.sessions, prev.activeSessionId, nextSetKey),
+                    }));
+                }
             },
         }),
         {name: "session_state"}
