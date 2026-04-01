@@ -28,18 +28,28 @@ function SubsetCaseItem({ subset, cases, toggles, enableAll, disableAll }: Props
     }
 
     return (
-        <div
-            onClick={() => handleToggleAll()}
-            className={`aspect-square flex items-center justify-center rounded cursor-pointer hover:opacity-60 ${bgClass}`}
-            title={`${subset.set} (${subset.id})`}
-            role="button"
-            aria-pressed={state === 'all'}
-        >
-            <img
-                src={subset.img}
-                alt={`Case ${subset.set}`}
-                className="object-contain"
-            />
+        <div className="flex flex-col rounded overflow-hidden select-none">
+            <div
+                onClick={() => handleToggleAll()}
+                className={`aspect-square flex items-center justify-center cursor-pointer hover:opacity-60 ${bgClass}`}
+                title={`${subset.set} (${subset.id})`}
+                role="button"
+                aria-pressed={state === 'all'}
+            >
+                <img
+                    src={subset.img}
+                    alt={`Case ${subset.set}`}
+                    className="object-contain"
+                />
+            </div>
+            <button
+                className="w-full text-base px-2 py-1 bg-secondary cursor-pointer hover:bg-secondary/60 text-center"
+                onClick={() => {/* onOpen goes here next */}}
+                title={`Open ${subset.id}`}
+                aria-label={`Open ${subset.id}`}
+            >
+                {enabledCount} / {total}
+            </button>
         </div>
     );
 }
