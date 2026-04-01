@@ -2,6 +2,7 @@ import type { Case, Subset } from "../../types/types";
 
 import SubsetCaseItem from "./SubsetCaseItem";
 import CaseItem from "./CaseItem";
+import { useState } from "react";
 
 type Props = {
     setName: string;
@@ -18,6 +19,10 @@ function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles,
     const setCases = casesBySet.get(setName) ?? [];
     const setSubsets = subsetsBySet.get(setName) ?? [];
     const hasSubsets = setSubsets.length > 0;
+
+    const [activeSubsetId, setActiveSubsetId] = useState<string | null>(null);
+
+    const activeSubset = setSubsets.find(s => s.id === activeSubsetId) ?? null;
 
     return (
         <div>
@@ -52,6 +57,7 @@ function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles,
                                 toggles={toggles}
                                 enableAll={() => toggleSubsetCases(subset.id, true)}
                                 disableAll={() => toggleSubsetCases(subset.id, false)}
+                                onOpen={() => setActiveSubsetId(subset.id)}
                             />
                             // <div key={subset.id}>
                             //     <div className="flex items-center gap-2 mb-2 pl-2">
@@ -98,6 +104,9 @@ function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles,
                         />
                     ))}
                 </div>
+            )}
+            {activeSubset && (
+                <div>Active: {activeSubset.id}</div>
             )}
         </div>
     );

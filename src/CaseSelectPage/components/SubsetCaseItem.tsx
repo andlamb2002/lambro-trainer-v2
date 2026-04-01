@@ -6,9 +6,10 @@ type Props = {
     toggles: Record<string, boolean>;
     enableAll: () => void;
     disableAll: () => void;
+    onOpen: () => void;
 }
 
-function SubsetCaseItem({ subset, cases, toggles, enableAll, disableAll }: Props) {
+function SubsetCaseItem({ subset, cases, toggles, enableAll, disableAll, onOpen }: Props) {
 
     const enabledCount = cases.filter(c => toggles[c.id]).length;
     const total = cases.length;
@@ -44,7 +45,7 @@ function SubsetCaseItem({ subset, cases, toggles, enableAll, disableAll }: Props
             </div>
             <button
                 className="w-full text-base px-2 py-1 bg-secondary cursor-pointer hover:bg-secondary/60 text-center"
-                onClick={() => {/* onOpen goes here next */}}
+                onClick={onOpen}
                 title={`Open ${subset.id}`}
                 aria-label={`Open ${subset.id}`}
             >
