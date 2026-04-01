@@ -46,15 +46,13 @@ function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles,
                     {setSubsets.map((subset) => {
                         const subsetCases = casesBySubset.get(subset.id) ?? [];
                         return (
-                            <div key={subset.id}>
-                                <SubsetCaseItem 
-                                    subset={subset}
-                                    cases={subsetCases}
-                                    toggles={toggles}
-                                    enableAll={() => toggleSubsetCases(subset.id, true)}
-                                    disableAll={() => toggleSubsetCases(subset.id, false)}
-                                />
-                            </div>
+                            <SubsetCaseItem 
+                                subset={subset}
+                                cases={subsetCases}
+                                toggles={toggles}
+                                enableAll={() => toggleSubsetCases(subset.id, true)}
+                                disableAll={() => toggleSubsetCases(subset.id, false)}
+                            />
                             // <div key={subset.id}>
                             //     <div className="flex items-center gap-2 mb-2 pl-2">
                             //         <span className="font-medium">{subset.id}</span>
