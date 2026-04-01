@@ -1,5 +1,6 @@
 import type { Case, Subset } from "../../types/types";
 
+import SubsetCaseItem from "./SubsetCaseItem";
 import CaseItem from "./CaseItem";
 
 type Props = {
@@ -41,41 +42,50 @@ function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles,
             </div>
 
             {hasSubsets ? (
-                <div className="flex flex-col gap-6">
+                <div className="grid grid-cols-4 sm:grid-cols-8 gap-1">
                     {setSubsets.map((subset) => {
                         const subsetCases = casesBySubset.get(subset.id) ?? [];
                         return (
                             <div key={subset.id}>
-                                <div className="flex items-center gap-2 mb-2 pl-2">
-                                    <span className="font-medium">{subset.id}</span>
-                                    <button
-                                        className="btn btn-success"
-                                        onClick={() => toggleSubsetCases(subset.id, true)}
-                                        title={`Enable All - ${subset.id}`}
-                                        aria-label={`Enable All - ${subset.id}`}
-                                    >
-                                        All
-                                    </button>
-                                    <button
-                                        className="btn btn-danger"
-                                        onClick={() => toggleSubsetCases(subset.id, false)}
-                                        title={`Disable All - ${subset.id}`}
-                                        aria-label={`Disable All - ${subset.id}`}
-                                    >
-                                        None
-                                    </button>
-                                </div>
-                                <div className="grid grid-cols-4 sm:grid-cols-8 gap-1">
-                                    {subsetCases.map((c) => (
-                                        <CaseItem
-                                            key={c.id}
-                                            c={c}
-                                            toggleCase={toggleCase}
-                                            enabled={toggles[c.id]}
-                                        />
-                                    ))}
-                                </div>
+                                <SubsetCaseItem 
+                                    subset={subset}
+                                    cases={subsetCases}
+                                    toggles={toggles}
+                                    enableAll={() => toggleSubsetCases(subset.id, true)}
+                                    disableAll={() => toggleSubsetCases(subset.id, false)}
+                                />
                             </div>
+                            // <div key={subset.id}>
+                            //     <div className="flex items-center gap-2 mb-2 pl-2">
+                            //         <span className="font-medium">{subset.id}</span>
+                            //         <button
+                            //             className="btn btn-success"
+                            //             onClick={() => toggleSubsetCases(subset.id, true)}
+                            //             title={`Enable All - ${subset.id}`}
+                            //             aria-label={`Enable All - ${subset.id}`}
+                            //         >
+                            //             All
+                            //         </button>
+                            //         <button
+                            //             className="btn btn-danger"
+                            //             onClick={() => toggleSubsetCases(subset.id, false)}
+                            //             title={`Disable All - ${subset.id}`}
+                            //             aria-label={`Disable All - ${subset.id}`}
+                            //         >
+                            //             None
+                            //         </button>
+                            //     </div>
+                            //     <div className="grid grid-cols-4 sm:grid-cols-8 gap-1">
+                            //         {subsetCases.map((c) => (
+                            //             <CaseItem
+                            //                 key={c.id}
+                            //                 c={c}
+                            //                 toggleCase={toggleCase}
+                            //                 enabled={toggles[c.id]}
+                            //             />
+                            //         ))}
+                            //     </div>
+                            // </div>
                         );
                     })}
                 </div>

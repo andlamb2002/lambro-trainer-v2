@@ -84,7 +84,7 @@ def generate_ollcp_subsets(cases: list[dict]) -> list[dict]:
                 "id": subset_id,
                 "set": c["set"],
                 "shape": c.get("shape", ""),
-                "img": f"https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg={first_scramble}"
+                "img": f"https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg={first_scramble}"
             })
     return subsets
 

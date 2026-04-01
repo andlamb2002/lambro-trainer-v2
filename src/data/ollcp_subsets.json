@@ -3,342 +3,342 @@
     "id": "OLL01",
     "set": "dot",
     "shape": "dot",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=B2DF2DF2D2B2U'L2ULBL2B'FR'FRF2L'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=B2DF2DF2D2B2U'L2ULBL2B'FR'FRF2L'"
   },
   {
     "id": "OLL02",
     "set": "dot",
     "shape": "dot",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U2L2UF2U'B2UF2U'RB2LB'R2U2RBL"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=U2L2UF2U'B2UF2U'RB2LB'R2U2RBL"
   },
   {
     "id": "OLL03",
     "set": "dot",
     "shape": "dot",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=DL2B2UF2D'R2DF2D2FRF'DB2LFU'F'L'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=DL2B2UF2D'R2DF2D2FRF'DB2LFU'F'L'"
   },
   {
     "id": "OLL04",
     "set": "dot",
     "shape": "dot",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=D'B2R2F2L2DL2F2U'D'FR'FR'FR'F'D2B2L2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=D'B2R2F2L2DL2F2U'D'FR'FR'FR'F'D2B2L2"
   },
   {
     "id": "OLL05",
     "set": "l_shape",
     "shape": "square_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=L2B2R2D2L2F2L2D2R'B'LB'R'U2L"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=L2B2R2D2L2F2L2D2R'B'LB'R'U2L"
   },
   {
     "id": "OLL06",
     "set": "l_shape",
     "shape": "square_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U'FRB'RBR2F'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=U'FRB'RBR2F'"
   },
   {
     "id": "OLL07",
     "set": "l_shape",
     "shape": "small_lightning_bolt",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=D2L2F2L2D2L2F2R'D2L'F'RF'L'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=D2L2F2L2D2L2F2R'D2L'F'RF'L'"
   },
   {
     "id": "OLL08",
     "set": "l_shape",
     "shape": "small_lightning_bolt",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U'B'R2FRF'RB"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=U'B'R2FRF'RB"
   },
   {
     "id": "OLL09",
     "set": "l_shape",
     "shape": "fish_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=UF2L2F2R2D'R2U'R2DRFDFD'F2R'B2R2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=UF2L2F2R2D'R2U'R2DRFDFD'F2R'B2R2"
   },
   {
     "id": "OLL10",
     "set": "l_shape",
     "shape": "fish_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=L2B2R2D'R2B2L2UF2U2FUR'F2RU'F2UF'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=L2B2R2D'R2B2L2UF2U2FUR'F2RU'F2UF'"
   },
   {
     "id": "OLL11",
     "set": "l_shape",
     "shape": "small_lightning_bolt",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U'R2B2D'R2UR2DF2R'B2RB2F2RFRF'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=U'R2B2D'R2UR2DF2R'B2RB2F2RFRF'"
   },
   {
     "id": "OLL12",
     "set": "l_shape",
     "shape": "small_lightning_bolt",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=R2F2R2U'L2UR2B2L2DF'RB2R'B2RB2F'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=R2F2R2U'L2UR2B2L2DF'RB2R'B2RB2F'"
   },
   {
     "id": "OLL13",
     "set": "line",
     "shape": "knight_move_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=F2UF2UF2U2R2DR2F'U2FR'D'RF'U2F'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=F2UF2UF2U2R2DR2F'U2FR'D'RF'U2F'"
   },
   {
     "id": "OLL14",
     "set": "line",
     "shape": "knight_move_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=F2D2B2UR2U'R2DB2RB2LB'L'B'R'DF2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=F2D2B2UR2U'R2DB2RB2LB'L'B'R'DF2"
   },
   {
     "id": "OLL15",
     "set": "line",
     "shape": "knight_move_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U'F2D'B2D'B2D2F2L'F2DB'RBD'F2L"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=U'F2D'B2D'B2D2F2L'F2DB'RBD'F2L"
   },
   {
     "id": "OLL16",
     "set": "line",
     "shape": "knight_move_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U'DF2L2UR2D'B2DRF'RD'L'FUF'L'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=U'DF2L2UR2D'B2DRF'RD'L'FUF'L'"
   },
   {
     "id": "OLL17",
     "set": "dot",
     "shape": "dot",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=UF2L2B2R2DR2B2LD2RBR'D2LF2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=UF2L2B2R2DR2B2LD2RBR'D2LF2"
   },
   {
     "id": "OLL18",
     "set": "dot",
     "shape": "dot",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=D'R2D'L2DR2D'B2R2U2L'D2FL'FR'B'R'B"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=D'R2D'L2DR2D'B2R2U2L'D2FL'FR'B'R'B"
   },
   {
     "id": "OLL19",
     "set": "dot",
     "shape": "dot",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=R2DB2D'F2DB2D'L2D2R'BRD2L2F'RF'R"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=R2DB2D'F2DB2D'L2D2R'BRD2L2F'RF'R"
   },
   {
     "id": "OLL20",
     "set": "dot",
     "shape": "dot",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U'B2R2F2L2DR2B2L2U2R'LF'U2F2RL'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=U'B2R2F2L2DR2B2L2U2R'LF'U2F2RL'"
   },
   {
     "id": "OLL21",
     "set": "cross",
     "shape": "cross",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=DF2UF2D2R2UB2DR2BU2R2B'U2B2R2B"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=DF2UF2D2R2UB2DR2BU2R2B'U2B2R2B"
   },
   {
     "id": "OLL22",
     "set": "cross",
     "shape": "cross",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=DL2D'B2D'B2R2U2R2DFU'F'L2UF'L2F"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=DL2D'B2D'B2R2U2R2DFU'F'L2UF'L2F"
   },
   {
     "id": "OLL23",
     "set": "cross",
     "shape": "cross",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=L2DF2D'B2DF'D'B2DF'D'L2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=L2DF2D'B2DF'D'B2DF'D'L2"
   },
   {
     "id": "OLL24",
     "set": "cross",
     "shape": "cross",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=UL2DR2B2D'L2DB2R2BU'F2UB'D'L2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=UL2DR2B2D'L2DB2R2BU'F2UB'D'L2"
   },
   {
     "id": "OLL25",
     "set": "cross",
     "shape": "cross",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U2L2D'R2DLD'R2DL"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=U2L2D'R2DLD'R2DL"
   },
   {
     "id": "OLL26",
     "set": "cross",
     "shape": "cross",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=B2L2F2DF2L2B'UB'UFR2F'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=B2L2F2DF2L2B'UB'UFR2F'"
   },
   {
     "id": "OLL27",
     "set": "cross",
     "shape": "cross",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=F2D2R2F2L2UB2L2F2D'FU'FU'F'U2F"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=F2D2R2F2L2UB2L2F2D'FU'FU'F'U2F"
   },
   {
     "id": "OLL28",
     "set": "l_shape",
     "shape": "corners_oriented",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=B2L2DF2L2B2U2R2UR'LF'R2F'R'L'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=B2L2DF2L2B2U2R2UR'LF'R2F'R'L'"
   },
   {
     "id": "OLL29",
     "set": "l_shape",
     "shape": "awkward_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=B2L2D2R2F2L2UL2B2U'BUBL2URF'R"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=B2L2D2R2F2L2UL2B2U'BUBL2URF'R"
   },
   {
     "id": "OLL30",
     "set": "l_shape",
     "shape": "awkward_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=L2DB2R2U'L2UF2R2U'FR'F2RFL2DL2D2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=L2DB2R2U'L2UF2R2U'FR'F2RFL2DL2D2"
   },
   {
     "id": "OLL31",
     "set": "l_shape",
     "shape": "p_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=L2D'L2B2U'B2UB2R2L2F'RF2R'FR2DL2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=L2D'L2B2U'B2UB2R2L2F'RF2R'FR2DL2"
   },
   {
     "id": "OLL32",
     "set": "l_shape",
     "shape": "p_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=DB2D'B2D'B2L2UB2L2B'L2B'U2R'F'RL2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=DB2D'B2D'B2L2UB2L2B'L2B'U2R'F'RL2"
   },
   {
     "id": "OLL33",
     "set": "line",
     "shape": "t_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=F2UF'RFU'F'R'F'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=F2UF'RFU'F'R'F'"
   },
   {
     "id": "OLL34",
     "set": "line",
     "shape": "c_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=F2L2DB2D'L2F2U2L2D2B'D2L2U'R'U'R'F'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=F2L2DB2D'L2F2U2L2D2B'D2L2U'R'U'R'F'"
   },
   {
     "id": "OLL35",
     "set": "l_shape",
     "shape": "fish_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U2LU2L'BL'B'L2U2L'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=U2LU2L'BL'B'L2U2L'"
   },
   {
     "id": "OLL36",
     "set": "l_shape",
     "shape": "w_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=B2L2UL2B2R2L2D'L2D2RFU'F'UF'R"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=B2L2UL2B2R2L2D'L2D2RFU'F'UF'R"
   },
   {
     "id": "OLL37",
     "set": "l_shape",
     "shape": "fish_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=R2UR2D'F2U'DF'R'F2RF"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=R2UR2D'F2U'DF'R'F2RF"
   },
   {
     "id": "OLL38",
     "set": "l_shape",
     "shape": "w_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=R2D'F2R2U'R2F2DR2D'FR'URU'RF'D"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=R2D'F2R2U'R2F2DR2D'FR'URU'RF'D"
   },
   {
     "id": "OLL39",
     "set": "line",
     "shape": "big_lightning_bolt",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=UF2D2B2D'F2DB2D'F2R'BUB'U'RD'F2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=UF2D2B2D'F2DB2D'F2R'BUB'U'RD'F2"
   },
   {
     "id": "OLL40",
     "set": "line",
     "shape": "big_lightning_bolt",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=L2D'L2DF2DF2D'F2U'F'L'URU'R'LF'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=L2D'L2DF2DF2D'F2U'F'L'URU'R'LF'"
   },
   {
     "id": "OLL41",
     "set": "l_shape",
     "shape": "awkward_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=L2B2L2UL2B2L2U'FU2RU2L'B2R'LF'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=L2B2L2UL2B2L2U'FU2RU2L'B2R'LF'"
   },
   {
     "id": "OLL42",
     "set": "l_shape",
     "shape": "awkward_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=F2U2F2U'F2U'F2U2FL'B2D'RDB2LF'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=F2U2F2U'F2U'F2U2FL'B2D'RDB2LF'"
   },
   {
     "id": "OLL43",
     "set": "l_shape",
     "shape": "p_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U'R'F'U'FUR"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=U'R'F'U'FUR"
   },
   {
     "id": "OLL44",
     "set": "l_shape",
     "shape": "p_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=FRUR'U'F'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=FRUR'U'F'"
   },
   {
     "id": "OLL45",
     "set": "line",
     "shape": "t_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=FURU'R'F'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=FURU'R'F'"
   },
   {
     "id": "OLL46",
     "set": "line",
     "shape": "c_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U'F2D'F2R2UF2L2DB2LBL2B'LDL2F2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=U'F2D'F2R2UF2L2DB2LBL2B'LDL2F2"
   },
   {
     "id": "OLL47",
     "set": "l_shape",
     "shape": "small_l_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=F2D'L2UB2D'R2DR2D2RFL'FR2D2L'B2R'D"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=F2D'L2UB2D'R2DR2D2RFL'FR2D2L'B2R'D"
   },
   {
     "id": "OLL48",
     "set": "l_shape",
     "shape": "small_l_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=F2DR2U'B2UB2D'B2U2F'R'BR'F2D2BL2FD2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=F2DR2U'B2UB2D'B2U2F'R'BR'F2D2BL2FD2"
   },
   {
     "id": "OLL49",
     "set": "l_shape",
     "shape": "small_l_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U'R2U2F2L2B2D2F2R'F2L2F'R'B2R2F'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=U'R2U2F2L2B2D2F2R'F2L2F'R'B2R2F'"
   },
   {
     "id": "OLL50",
     "set": "l_shape",
     "shape": "small_l_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U2F2U2R2B2L2D2R2F'L2F2R'F'R2B2R'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=U2F2U2R2B2L2D2R2F'L2F2R'F'R2B2R'"
   },
   {
     "id": "OLL51",
     "set": "line",
     "shape": "i_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=UL2U'F2U'B2U'B2U2B2F'L'FU2B2F2ULB2L"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=UL2U'F2U'B2U'B2U2B2F'L'FU2B2F2ULB2L"
   },
   {
     "id": "OLL52",
     "set": "line",
     "shape": "i_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=UFRUR'UF'U'FU'F'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=UFRUR'UF'U'FU'F'"
   },
   {
     "id": "OLL53",
     "set": "l_shape",
     "shape": "small_l_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U'L2F2U2L2UF2L2U'FU2FU2L'FL'U'L2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=U'L2F2U2L2UF2L2U'FU2FU2L'FL'U'L2"
   },
   {
     "id": "OLL54",
     "set": "l_shape",
     "shape": "small_l_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=B2R2UDL2U2DL2F2DF'U2F'U2RF'RDB2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=B2R2UDL2U2DL2F2DF'U2F'U2RF'RDB2"
   },
   {
     "id": "OLL55",
     "set": "line",
     "shape": "i_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=U'B2D2L2UR2U'R2L2D'L'U'LD'B'ULU'B'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=U'B2D2L2UR2U'R2L2D'L'U'LD'B'ULU'B'"
   },
   {
     "id": "OLL56",
     "set": "line",
     "shape": "i_shape",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=D'F2DR2F2UR2U'F2R2FRB'RBUR2U'F'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=D'F2DR2F2UR2U'F2R2FRB'RBUR2U'F'"
   },
   {
     "id": "OLL57",
     "set": "line",
     "shape": "corners_oriented",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=B2D'F2R2F2DB2L2FU'DLF2L'UD'F'"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&alg=B2D'F2R2F2DB2L2FU'DLF2L'UD'F'"
   }
 ]
