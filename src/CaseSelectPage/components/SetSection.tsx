@@ -1,8 +1,9 @@
+import { useState } from "react";
 import type { Case, Subset } from "../../types/types";
 
 import SubsetCaseItem from "./SubsetCaseItem";
 import CaseItem from "./CaseItem";
-import { useState } from "react";
+import SubsetModal from "./SubsetModal"
 
 type Props = {
     setName: string;
@@ -21,8 +22,8 @@ function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles,
     const hasSubsets = setSubsets.length > 0;
 
     const [activeSubsetId, setActiveSubsetId] = useState<string | null>(null);
-
     const activeSubset = setSubsets.find(s => s.id === activeSubsetId) ?? null;
+    const activeSubsetCases = activeSubset ? (casesBySubset.get(activeSubset.id) ?? []) : [];
 
     return (
         <div>
@@ -59,39 +60,19 @@ function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles,
                                 disableAll={() => toggleSubsetCases(subset.id, false)}
                                 onOpen={() => setActiveSubsetId(subset.id)}
                             />
-                            // <div key={subset.id}>
-                            //     <div className="flex items-center gap-2 mb-2 pl-2">
-                            //         <span className="font-medium">{subset.id}</span>
-                            //         <button
-                            //             className="btn btn-success"
-                            //             onClick={() => toggleSubsetCases(subset.id, true)}
-                            //             title={`Enable All - ${subset.id}`}
-                            //             aria-label={`Enable All - ${subset.id}`}
-                            //         >
-                            //             All
-                            //         </button>
-                            //         <button
-                            //             className="btn btn-danger"
-                            //             onClick={() => toggleSubsetCases(subset.id, false)}
-                            //             title={`Disable All - ${subset.id}`}
-                            //             aria-label={`Disable All - ${subset.id}`}
-                            //         >
-                            //             None
-                            //         </button>
-                            //     </div>
-                            //     <div className="grid grid-cols-4 sm:grid-cols-8 gap-1">
-                            //         {subsetCases.map((c) => (
-                            //             <CaseItem
-                            //                 key={c.id}
-                            //                 c={c}
-                            //                 toggleCase={toggleCase}
-                            //                 enabled={toggles[c.id]}
-                            //             />
-                            //         ))}
-                            //     </div>
-                            // </div>
                         );
                     })}
+                    {activeSubset && (
+                        <SubsetModal
+                            subset={activeSubset}
+                            cases={activeSubsetCases}
+                            toggles={toggles}
+                            toggleCase={toggleCase}
+                            enableAll={() => toggleSubsetCases(activeSubset.id, true)}
+                            disableAll={() => toggleSubsetCases(activeSubset.id, false)}
+                            onClose={() => setActiveSubsetId(null)}
+                        />
+                    )}
                 </div>
             ) : (
                 <div className="grid grid-cols-4 sm:grid-cols-8 gap-1">
@@ -104,9 +85,6 @@ function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles,
                         />
                     ))}
                 </div>
-            )}
-            {activeSubset && (
-                <div>Active: {activeSubset.id}</div>
             )}
         </div>
     );
