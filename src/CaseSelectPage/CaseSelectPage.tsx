@@ -3,6 +3,7 @@ import { useActiveSession } from '../hooks/useActiveSession';
 
 import AlgSetSelect from './components/AlgSetSelect';
 import SetSection from './components/SetSection';
+import SessionSection from './components/SessionsSection';
 
 import { 
     toggleAll, 
@@ -17,6 +18,9 @@ function CaseSelectPage() {
 
     const allSets = getAllAlgSets();
 
+    const sessions = useSessionStore(s => s.sessions);
+    const activeSessionId = useSessionStore(s => s.activeSessionId);
+    const setActiveSessionId = useSessionStore(s => s.setActiveSessionId);
     const handleChangeSet = useSessionStore(s => s.handleChangeSet);
     const setToggles = useSessionStore(s => s.setToggles);
 
@@ -51,27 +55,39 @@ function CaseSelectPage() {
     };
 
     return (
-        <div className="px-2 py-2 sm:py-4 sm:px-4">
-            <AlgSetSelect
-                allSets={allSets}
-                activeSetKey={activeSetKey}
-                handleChangeSet={handleChangeSet}
-                toggleAllCases={toggleAllCases}
-            />
-            <div className="flex flex-col gap-8 mt-6">
-                {sets.map((setName) => (
-                    <SetSection
-                        key={setName}
-                        setName={setName}
-                        casesBySet={casesBySet}
-                        subsetsBySet={subsetsBySet}
-                        casesBySubset={casesBySubset}
-                        toggles={toggles}
-                        toggleCase={toggleCase}
-                        toggleSetCases={toggleSetCases}
-                        toggleSubsetCases={toggleSubsetCases}
-                    />
-                ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 px-2 py-2 sm:py-4">
+            <div className="col-span-2 flex flex-col gap-4">
+                    <AlgSetSelect
+                    allSets={allSets}
+                    activeSetKey={activeSetKey}
+                    handleChangeSet={handleChangeSet}
+                    toggleAllCases={toggleAllCases}
+                />
+                <div className="flex flex-col gap-8 mt-6">
+                    {sets.map((setName) => (
+                        <SetSection
+                            key={setName}
+                            setName={setName}
+                            casesBySet={casesBySet}
+                            subsetsBySet={subsetsBySet}
+                            casesBySubset={casesBySubset}
+                            toggles={toggles}
+                            toggleCase={toggleCase}
+                            toggleSetCases={toggleSetCases}
+                            toggleSubsetCases={toggleSubsetCases}
+                        />
+                    ))}
+                </div>
+            </div>
+            <div className="col-span-1">
+                <SessionSection
+                    sessions={sessions}
+                    activeSessionId={activeSessionId}
+                    onSelect={setActiveSessionId}
+                    onNew={() => {}}       // wired next step
+                    onDelete={() => {}}    // wired next step
+                    onRename={() => {}}    // wired next step
+                />
             </div>
         </div>
     )
