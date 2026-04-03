@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MdOutlineLightMode, MdOutlineDarkMode, MdAdd, MdRemove } from "react-icons/md";
+import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 
 import { useSessionStore } from "./Stores/useSessionStore";
 import { useActiveSession } from "./hooks/useActiveSession";
@@ -11,8 +11,8 @@ function Header() {
     const sessions = useSessionStore(s => s.sessions);
     const activeSessionId = useSessionStore(s => s.activeSessionId);
     const setActiveSessionId = useSessionStore(s => s.setActiveSessionId);
-    const handleNewSession = useSessionStore(s => s.handleNewSession);
-    const handleDeleteSession = useSessionStore(s => s.handleDeleteSession);
+    // const handleNewSession = useSessionStore(s => s.handleNewSession);
+    // const handleDeleteSession = useSessionStore(s => s.handleDeleteSession);
 
     const { 
         enabledCases,
@@ -26,7 +26,7 @@ function Header() {
             <div className="flex items-center gap-4 min-w-0">
                 <Link
                     to="/"
-                    className="link text-xl sm:text-2xl font-bold shrink-0"
+                    className="link text-xl sm:text-2xl font-bold"
                     title="Home"
                     aria-label="Home"
                 >
@@ -42,35 +42,9 @@ function Header() {
                         {sessions.map(s => (
                             <option key={s.id} value={s.id}>
                                 {s.label} ({s.setId}) 
-                                <button
-                                    onClick={() => handleDeleteSession(s.id)}
-                                    disabled={sessions.length <= 1}
-                                    className="btn btn-danger p-1"
-                                    title="Delete Session"
-                                    aria-label="Delete Session"
-                                >
-                                    <MdRemove size={20} />
-                                </button>
                             </option>
                         ))}
                     </select>
-                    <button
-                        onClick={handleNewSession}
-                        className="btn btn-success p-1"
-                        title="New Session"
-                        aria-label="New Session"
-                    >
-                        <MdAdd size={20} />
-                    </button>
-                    {/* <button
-                        onClick={handleDeleteSession}
-                        disabled={sessions.length <= 1}
-                        className="btn btn-danger p-1"
-                        title="Delete Session"
-                        aria-label="Delete Session"
-                    >
-                        <MdRemove size={20} />
-                    </button> */}
                     {enabledCases.length} Cases
                 </div>
             </div>
