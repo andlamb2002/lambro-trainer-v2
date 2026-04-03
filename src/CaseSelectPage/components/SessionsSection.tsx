@@ -1,4 +1,4 @@
-import { MdDelete } from "react-icons/md";
+import SessionItem from "./SessionItem";
 
 type SessionItem = {
     id: string;
@@ -28,7 +28,7 @@ function SessionSection({ sessions, activeSessionId, onSelect, onNew, onDelete, 
                 <input
                     className="min-w-0 grow bg-secondary placeholder:text-text/60 rounded shadow-md px-2 py-1 focus:outline-none"
                     type="text"
-                    placeholder="New session name"
+                    placeholder="Enter session name"
                     // value and onChange come next step
                 />
                 <button
@@ -36,37 +36,23 @@ function SessionSection({ sessions, activeSessionId, onSelect, onNew, onDelete, 
                     title="New Session"
                     aria-label="New Session"
                 >
-                    New
+                    Save
                 </button>
             </div>
 
             {/* Session list - mirrors PresetSection's item list */}
             <ul className="flex flex-col gap-2 py-2">
                 {sessions.map((session) => (
-                    <li
+                    <SessionItem
                         key={session.id}
-                        className={`flex justify-between items-center bg-secondary p-2 rounded shadow-md cursor-pointer hover:bg-secondary/60 ${session.id === activeSessionId ? 'font-bold' : ''}`}
-                        onClick={() => onSelect(session.id)}
-                        title={`Switch to ${session.label}`}
-                        role="button"
-                        aria-pressed={session.id === activeSessionId}
-                    >
-                        <div>
-                            {session.label} ({session.setId})
-                        </div>
-                        <button
-                            className="btn btn-danger p-1"
-                            disabled={sessions.length <= 1}
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                // onDelete call comes next step
-                            }}
-                            title={`Delete ${session.label}`}
-                            aria-label={`Delete ${session.label}`}
-                        >
-                            <MdDelete size={24} />
-                        </button>
-                    </li>
+                        id={session.id}
+                        label={session.label}
+                        setId={session.setId}
+                        isActive={session.id === activeSessionId}
+                        isOnly={sessions.length <= 1}
+                        onSelect={onSelect}
+                        onDelete={onDelete}
+                    />
                 ))}
             </ul>
         </div>
