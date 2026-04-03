@@ -41,7 +41,16 @@ function Header() {
                     >
                         {sessions.map(s => (
                             <option key={s.id} value={s.id}>
-                                {s.label} ({s.setId})
+                                {s.label} ({s.setId}) 
+                                <button
+                                    onClick={() => handleDeleteSession(s.id)}
+                                    disabled={sessions.length <= 1}
+                                    className="btn btn-danger p-1"
+                                    title="Delete Session"
+                                    aria-label="Delete Session"
+                                >
+                                    <MdRemove size={20} />
+                                </button>
                             </option>
                         ))}
                     </select>
@@ -53,7 +62,7 @@ function Header() {
                     >
                         <MdAdd size={20} />
                     </button>
-                    <button
+                    {/* <button
                         onClick={handleDeleteSession}
                         disabled={sessions.length <= 1}
                         className="btn btn-danger p-1"
@@ -61,7 +70,7 @@ function Header() {
                         aria-label="Delete Session"
                     >
                         <MdRemove size={20} />
-                    </button>
+                    </button> */}
                     {enabledCases.length} Cases
                 </div>
             </div>

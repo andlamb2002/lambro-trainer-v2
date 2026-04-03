@@ -53,6 +53,7 @@ function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles,
                         const subsetCases = casesBySubset.get(subset.id) ?? [];
                         return (
                             <SubsetCaseItem 
+                                key={subset.id}
                                 subset={subset}
                                 cases={subsetCases}
                                 toggles={toggles}

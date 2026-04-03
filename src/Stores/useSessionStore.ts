@@ -12,7 +12,7 @@ type SessionStore = SessionState & {
     deleteAllSolves: () => void;
     updateRecap: (recapState: RecapState | null) => void;
     handleNewSession: () => void;
-    handleDeleteSession: () => void;
+    handleDeleteSession: (id: string) => void;
     handleChangeSet: (nextSetKey: string) => void;
 }
 
@@ -77,14 +77,19 @@ export const useSessionStore = create<SessionStore>()(
                     }
                 });
             },
-            handleDeleteSession: () => {
+            handleDeleteSession: (id: string) => {
                 set(prev => {
-                    const updatedSessions = prev.sessions.filter(s => s.id !== prev.activeSessionId);
-                    const newActiveSessionId = updatedSessions[0]?.id ?? "";
+                    const updatedSessions = prev.sessions.filter(s => s.id !== id);
+                    if(prev.activeSessionId === id) {
+                        const newActiveSessionId = updatedSessions[0]?.id ?? "";
+                        return {
+                            sessions: updatedSessions,
+                            activeSessionId: newActiveSessionId,
+                        }
+                    }
 
                     return {
                         sessions: updatedSessions,
-                        activeSessionId: newActiveSessionId,
                     }
                 });
             },
