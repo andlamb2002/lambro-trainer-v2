@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Case, Subset } from "../../types/types";
+import { formatSetName } from "../../lib/format";
 
 import SubsetCaseItem from "./SubsetCaseItem";
 import CaseItem from "./CaseItem";
@@ -28,7 +29,7 @@ function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles,
     return (
         <div>
             <div className="flex items-center gap-2 mb-3">
-                <h3 className="text-lg font-semibold">{setName}</h3>
+                <h3 className="text-lg font-semibold">{formatSetName(setName)}</h3>
                 <button
                     className="btn btn-success"
                     onClick={() => toggleSetCases(setName, true)}

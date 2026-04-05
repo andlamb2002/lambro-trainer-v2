@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import type { Solve } from '../../types/types';
 
-import { formatTime } from '../../lib/timeFormat';
+import { formatTime } from '../../lib/format';
 import SolveItem from './SolveItem';
 
 import { MdBarChart } from "react-icons/md";

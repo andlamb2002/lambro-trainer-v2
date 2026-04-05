@@ -5,3 +5,10 @@ export function formatTime(ms: number): string {
 export function formatRunningTime(ms: number): string {
     return Math.floor(ms / 1000).toString();
 }
+
+export function formatSetName(name: string): string {
+    return name
+        .split('_')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+}

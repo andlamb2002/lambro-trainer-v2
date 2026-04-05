@@ -1,5 +1,5 @@
 import type { Solve } from '../../types/types';
-import { formatTime } from '../../lib/timeFormat';
+import { formatTime } from '../../lib/format';
 
 import { MdDelete } from "react-icons/md";
 

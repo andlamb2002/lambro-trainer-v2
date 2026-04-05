@@ -1,4 +1,4 @@
-import { formatTime, formatRunningTime } from '../../lib/timeFormat'
+import { formatTime, formatRunningTime } from '../../lib/format'
 
 import type { Phase } from '../../types/types';
 
