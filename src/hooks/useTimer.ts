@@ -100,8 +100,6 @@ export function useTimer(onStop: (time: number) => void, isDisabled: boolean) {
 
     return {
         time,
-        // formattedTime: formatTime(time),
-        // formattedRunningTime: formatRunningTime(time),
         phase,
     }
 }
