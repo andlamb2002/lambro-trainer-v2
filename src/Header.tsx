@@ -25,7 +25,7 @@ function Header() {
                     Lambro Trainer
                 </Link>
 
-                <div className="flex items-center gap-2 min-w-0">
+                <div className="flex items-center gap-2 min-w-0 sm:pl-6">
                     <select
                         value={activeSessionId}
                         onChange={(e) => setActiveSessionId(e.target.value)}
