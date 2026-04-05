@@ -16,6 +16,7 @@ export type Session = {
     id: string;
     label: string;
     setId: string;
+    setLabel: string;
     toggles: CaseToggles;
     solves: Solve[];
     recapState: RecapState | null;

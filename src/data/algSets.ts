@@ -10,23 +10,23 @@ import ollCases from './oll_cases.json'
 export const ALG_SETS: Record<string, AlgSet> = {
     pll: {
         id: "pll",
-        label: "pll",
+        label: "PLL",
         cases: pllCases as Case[],
     },
     oll: {
         id: "oll",
-        label: "oll",
+        label: "OLL",
         cases: ollCases as Case[],
     },
     ollcp: {
         id: "ollcp",
-        label: "ollcp",
+        label: "OLLCP",
         cases: ollcpCases as Case[],
         subsets: ollcpSubsets as Subset[],
     },
     zbll: {
         id: "zbll",
-        label: "zbll",
+        label: "ZBLL",
         cases: zbllCases as Case[],
         subsets: zbllSubsets as Subset[],
     },

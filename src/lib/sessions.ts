@@ -7,6 +7,7 @@ export function createSession(label: string, setKey: string): Session {
         id: "session-" + Date.now(),
         label: label,
         setId: setKey,
+        setLabel: getAlgSet(setKey).label,
         toggles: setInitialToggles(getAlgSet(setKey).cases),
         solves: [],
         recapState: null,
@@ -24,6 +25,7 @@ export function updateSessionSet(sessions: Session[], id: string, newSetKey: str
             return {
                 ...session,
                 setId: newSetKey,
+                setLabel: getAlgSet(newSetKey).label,
                 toggles: newToggles,
             }
         }

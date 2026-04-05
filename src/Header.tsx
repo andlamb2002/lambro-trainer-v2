@@ -44,7 +44,7 @@ function Header() {
                     >
                         {sessions.map(s => (
                             <option key={s.id} value={s.id}>
-                                {s.label} ({s.setId})
+                                {s.label} ({s.setLabel})
                             </option>
                         ))}
                     </select>
