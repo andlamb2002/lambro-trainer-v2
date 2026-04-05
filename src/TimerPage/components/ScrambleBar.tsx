@@ -13,7 +13,7 @@ type Props = {
 
 function ScrambleBar({ currentScramble, isActive, recapProgress, recapTotal, handleStartRecap, stopRecap }: Props) {
     return (
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:mb-4 px-4">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:mb-4 sm:px-4">
             
             <div className="flex items-center gap-2">
                 <Link
@@ -44,7 +44,7 @@ function ScrambleBar({ currentScramble, isActive, recapProgress, recapTotal, han
                 </div>
             </div>
 
-            <p className="font-bold text-xl sm:text-2xl sm:pl-8">
+            <p className="font-bold text-2xl sm:pl-8">
                 {currentScramble}
             </p>
         </div>
