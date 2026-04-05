@@ -17,7 +17,7 @@ type SessionStore = SessionState & {
     handleChangeSet: (nextSetKey: string) => void;
 }
 
-const defaultSession = createSession("Session 1", "zbll");
+const defaultSession = createSession("Session 1", "pll");
 
 export const useSessionStore = create<SessionStore>()(
     persist(
