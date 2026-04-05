@@ -103,6 +103,7 @@ function TimerPage() {
     }, [currentCase, currentScramble, addSolve, updateCaseAndScramble, enabledCases, handleNextRecap, isActive]);
 
     const { time, phase, onTouchStart, onTouchEnd } = useTimer(handleStop, isDisabled);
+    const hudHidden = phase === 'running' || phase === 'holdStart' || phase === 'holdStop';
     const displayTime = (phase === 'idle' || phase === 'holdStart' || phase === 'cooldown') 
         ? (selectedSolve ? selectedSolve.time : 0)
         : time;
@@ -157,9 +158,10 @@ function TimerPage() {
                 stopRecap={stopRecap}
             />
 
-            <div className="grid grid-cols-3 h-full">
+            {/* <div className="grid grid-cols-3 h-full"> */}
+            <div className={`grid h-full ${hudHidden ? 'grid-cols-1' : 'grid-cols-3'}`}>
 
-                <div className="order-2 sm:order-1 col-span-1">
+                <div className={`order-2 sm:order-1 col-span-1 ${hudHidden ? 'hidden' : 'block'}`}>
                     <SolvesList
                         solves={solves}
                         selectedSolveId={selectedSolveId}
@@ -169,16 +171,17 @@ function TimerPage() {
                     />
                 </div>
 
-                <div className="order-1 sm:order-2 col-span-3 sm:col-span-1 h-full">
+                <div className={`order-1 sm:order-2 col-span-3 sm:col-span-1 h-full ${hudHidden ? 'col-span-1' : 'col-span-3 sm:col-span-1'}`}>
                     <TimerDisplay 
                         phase={phase} 
                         time={displayTime} 
+                        hudHidden={hudHidden}
                         onTouchStart={onTouchStart} 
                         onTouchEnd={onTouchEnd} 
                     />
                 </div>
 
-                <div className="order-3 col-span-2 sm:col-span-1">
+                <div className={`order-3 col-span-2 sm:col-span-1 ${hudHidden ? 'hidden' : 'block'}`}>
                     <SelectedSolve
                         solve={selectedSolve}
                         index={solves.findIndex(s => s.id === selectedSolveId) + 1}
