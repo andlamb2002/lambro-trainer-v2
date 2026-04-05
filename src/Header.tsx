@@ -2,21 +2,13 @@ import { Link } from 'react-router-dom';
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 
 import { useSessionStore } from "./Stores/useSessionStore";
-import { useActiveSession } from "./hooks/useActiveSession";
-
 import { useTheme } from "./hooks/useTheme";
 
 function Header() {
-
     const sessions = useSessionStore(s => s.sessions);
     const activeSessionId = useSessionStore(s => s.activeSessionId);
     const setActiveSessionId = useSessionStore(s => s.setActiveSessionId);
-    // const handleNewSession = useSessionStore(s => s.handleNewSession);
-    // const handleDeleteSession = useSessionStore(s => s.handleDeleteSession);
-
-    const { 
-        enabledCases,
-    } = useActiveSession();
+    const getSessionCount = useSessionStore(s => s.getSessionCount);
 
     const { theme, toggleTheme } = useTheme();
     
@@ -45,7 +37,7 @@ function Header() {
                             </option>
                         ))}
                     </select>
-                    {enabledCases.length} Cases
+                    {getSessionCount(activeSessionId)} Cases
                 </div>
             </div>
 
