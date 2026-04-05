@@ -4,7 +4,7 @@ import SessionItem from "./SessionItem";
 type SessionItem = {
     id: string;
     label: string;
-    setId: string;
+    setLabel: string;
     count: number;
 };
 
@@ -70,7 +70,7 @@ function SessionSection({ sessions, activeSessionId, onSelect, onSave, onDelete 
                         id={session.id}
                         label={session.label}
                         count={session.count}
-                        setId={session.setId}
+                        setLabel={session.setLabel}
                         isActive={session.id === activeSessionId}
                         isOnly={sessions.length <= 1}
                         onSelect={handleSelect}

@@ -4,14 +4,14 @@ type Props = {
     id: string;
     label: string;
     count: number;
-    setId: string;
+    setLabel: string;
     isActive: boolean;
     isOnly: boolean;
     onSelect: (id: string, label: string) => void;
     onDelete: (id: string) => void;
 };
 
-function SessionItem({ id, label, count, setId, isActive, isOnly, onSelect, onDelete }: Props) {
+function SessionItem({ id, label, count, setLabel, isActive, isOnly, onSelect, onDelete }: Props) {
     return (
         <li
             className={`flex justify-between items-center bg-secondary p-2 rounded shadow-md cursor-pointer hover:bg-secondary/60 ${isActive ? 'font-bold' : ''}`}
@@ -21,7 +21,7 @@ function SessionItem({ id, label, count, setId, isActive, isOnly, onSelect, onDe
             aria-pressed={isActive}
         >
             <div>
-                {label} ({setId}, {count})
+                {label} ({setLabel}, {count})
             </div>
             <button
                 className="btn btn-danger p-1"
