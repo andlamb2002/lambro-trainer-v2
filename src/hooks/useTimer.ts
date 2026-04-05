@@ -49,6 +49,15 @@ export function useTimer(onStop: (time: number) => void, isDisabled: boolean) {
             setPhaseRef('holdStop');
             onStop(finalTime);
         }, [onStop, setPhaseRef]);
+
+        const beginCooldown = useCallback(() => {
+            setPhaseRef('cooldown');
+            if (cooldownIdRef.current !== null) clearTimeout(cooldownIdRef.current);
+            cooldownIdRef.current = window.setTimeout(() => {
+                setPhaseRef('idle');
+                cooldownIdRef.current = null;
+            }, START_COOLDOWN_MS);
+        }, [setPhaseRef]);
     
         const handleKeyDown = useCallback((e: KeyboardEvent) => {
             if (isDisabled) return;
@@ -72,21 +81,11 @@ export function useTimer(onStop: (time: number) => void, isDisabled: boolean) {
             const p = phaseRef.current;
     
             if (p === 'holdStop') {
-                setPhaseRef('cooldown');
-    
-                if(cooldownIdRef.current !== null) {
-                    clearTimeout(cooldownIdRef.current);
-                }
-    
-                cooldownIdRef.current = window.setTimeout(() => {
-                    setPhaseRef('idle');
-                    cooldownIdRef.current = null;
-                }, START_COOLDOWN_MS);
-    
+                beginCooldown();
             } else if (e.code === "Space" && p === 'holdStart') {
                 start();
             }
-        }, [start, setPhaseRef, isDisabled]);
+        }, [start, beginCooldown, isDisabled]);
     
         useEffect(() => {
             document.addEventListener("keydown", handleKeyDown, { passive: false });
@@ -98,8 +97,24 @@ export function useTimer(onStop: (time: number) => void, isDisabled: boolean) {
             };
         }, [handleKeyDown, handleKeyUp]);
 
+        const onTouchStart = useCallback(() => {
+            if (isDisabled) return;
+            const p = phaseRef.current;
+            if (p === 'running') stop();
+            else if (p === 'idle') setPhaseRef('holdStart');
+        }, [stop, setPhaseRef, isDisabled]);
+
+        const onTouchEnd = useCallback(() => {
+            if (isDisabled) return;
+            const p = phaseRef.current;
+            if (p === 'holdStop') beginCooldown();
+            else if (p === 'holdStart') start();
+        }, [start, beginCooldown, isDisabled]);
+
     return {
         time,
         phase,
+        onTouchStart,
+        onTouchEnd,
     }
 }

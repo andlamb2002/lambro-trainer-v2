@@ -5,9 +5,11 @@ import type { Phase } from '../../types/types';
 type Props = {
     phase: Phase;
     time: number;
+    onTouchStart: () => void;
+    onTouchEnd: () => void;
 }
 
-function TimerDisplay({ phase, time }: Props) {
+function TimerDisplay({ phase, time, onTouchStart, onTouchEnd }: Props) {
 
     const colorClass: Record<Phase, string> = {
         idle: '',
@@ -19,7 +21,12 @@ function TimerDisplay({ phase, time }: Props) {
 
 
     return (
-         <h1 className={`${colorClass[phase]} sm:h-96 text-6xl text-center py-12 sm:py-8 select-none`}>
+         <h1 
+            className={`${colorClass[phase]} sm:h-96 text-6xl text-center py-12 sm:py-8 select-none`}
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
+            style={{ touchAction: 'none' }}
+        >
             {phase === 'running' ? formatRunningTime(time) : formatTime(time)}
         </h1>
     )

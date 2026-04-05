@@ -102,7 +102,7 @@ function TimerPage() {
         }
     }, [currentCase, currentScramble, addSolve, updateCaseAndScramble, enabledCases, handleNextRecap, isActive]);
 
-    const { time, phase } = useTimer(handleStop, isDisabled);
+    const { time, phase, onTouchStart, onTouchEnd } = useTimer(handleStop, isDisabled);
     const displayTime = (phase === 'idle' || phase === 'holdStart' || phase === 'cooldown') 
         ? (selectedSolve ? selectedSolve.time : 0)
         : time;
@@ -170,7 +170,12 @@ function TimerPage() {
                 </div>
 
                 <div className="order-1 sm:order-2 col-span-3 sm:col-span-1 h-full">
-                    <TimerDisplay phase={phase} time={displayTime} />
+                    <TimerDisplay 
+                        phase={phase} 
+                        time={displayTime} 
+                        onTouchStart={onTouchStart} 
+                        onTouchEnd={onTouchEnd} 
+                    />
                 </div>
 
                 <div className="order-3 col-span-2 sm:col-span-1">
