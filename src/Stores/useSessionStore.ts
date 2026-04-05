@@ -12,7 +12,7 @@ type SessionStore = SessionState & {
     deleteSolve: (id: string) => void;
     deleteAllSolves: () => void;
     updateRecap: (recapState: RecapState | null) => void;
-    handleSaveSession: (label: string) => void;
+    handleNewSession: (label: string) => void;
     handleDeleteSession: (id: string) => void;
     handleChangeSet: (nextSetKey: string) => void;
 }
@@ -70,27 +70,10 @@ export const useSessionStore = create<SessionStore>()(
                     }
                 });
             },
-            handleSaveSession: (label: string) => {
+            handleNewSession: (label: string) => {
                 set(prev => {
-                    const active = prev.sessions.find(s => s.id === prev.activeSessionId);
-                    if (!active) return prev;
-
-                    const existing = prev.sessions.find(s => s.label === label);
-
-                    if (existing) {
-                        return {
-                            sessions: prev.sessions.map(s =>
-                                s.id === existing.id
-                                    ? { ...s, toggles: active.toggles, setId: active.setId }
-                                    : s
-                            ),
-                            activeSessionId: existing.id,
-                        };
-                    }
-
-                    const newSession = createSession(label, active.setId);
-                    newSession.toggles = active.toggles;
-
+                    const active = prev.sessions.find(s => s.id === prev.activeSessionId) ?? prev.sessions[0];
+                    const newSession = createSession(label, active?.setId ?? "pll");
                     return {
                         sessions: [...prev.sessions, newSession],
                         activeSessionId: newSession.id,

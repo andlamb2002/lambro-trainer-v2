@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { MdAdd } from "react-icons/md";
 import SessionItem from "./SessionItem";
 
 type SessionItem = {
@@ -12,24 +12,24 @@ type Props = {
     sessions: SessionItem[];
     activeSessionId: string;
     onSelect: (id: string) => void;
-    onSave: (label: string) => void;
+    onNew: (label: string) => void;
     onDelete: (id: string) => void;
 };
 
-function SessionSection({ sessions, activeSessionId, onSelect, onSave, onDelete }: Props) {
-    const [inputName, setInputName] = useState<string>(
-        () => sessions.find(s => s.id === activeSessionId)?.label ?? ""
-    );
+function SessionSection({ sessions, activeSessionId, onSelect, onNew, onDelete }: Props) {
 
-    const handleSelect = (id: string, label: string) => {
+    const handleSelect = (id: string) => {
         onSelect(id);
-        setInputName(label);
     };
 
-    const handleSave = () => {
-        const trimmed = inputName.trim();
-        if (!trimmed) return;
-        onSave(trimmed);
+    const handleAdd = () => {
+        const name = window.prompt("Session name:")?.trim();
+        if (!name) return;
+        if (sessions.some(s => s.label === name)) {
+            window.alert(`A session named "${name}" already exists.`);
+            return;
+        }
+        onNew(name);
     };
 
     const handleDelete = (id: string) => {
@@ -41,26 +41,18 @@ function SessionSection({ sessions, activeSessionId, onSelect, onSave, onDelete 
     };
 
     return (
-        <div className="sm:px-4 pt-2 sm:pt-0">
-            <h2 className="text-xl font-bold underline">Sessions</h2>
-
-            <div className="flex gap-2 pt-2">
-                <input
-                    className="min-w-0 grow bg-secondary placeholder:text-text/60 rounded shadow-md px-2 py-1 focus:outline-none"
-                    type="text"
-                    placeholder="Enter session name"
-                    value={inputName}
-                    onChange={(e) => setInputName(e.target.value)}
-                />
+        <div className="sm:px-4 pt-4 md:pt-0">
+            <div className="flex items-center gap-2">
+                <h2 className="text-xl font-bold underline">Sessions</h2>
                 <button
-                    className="btn btn-primary"
-                    onClick={handleSave}
-                    disabled={inputName.trim() === ""}
+                    className="btn btn-success p-1"
+                    onClick={handleAdd}
                     title="New Session"
                     aria-label="New Session"
                 >
-                    Save
+                    <MdAdd size={20} />
                 </button>
+
             </div>
 
             <ul className="flex flex-col gap-2 py-2">
