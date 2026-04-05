@@ -18,26 +18,39 @@ function Header() {
             <div className="flex items-center gap-4 min-w-0">
                 <Link
                     to="/"
-                    className="link text-xl sm:text-2xl font-bold"
+                    className="link text-xl sm:text-2xl text-nowrap font-bold"
                     title="Home"
                     aria-label="Home"
                 >
                     Lambro Trainer
                 </Link>
 
-                <div className="flex items-center gap-2 min-w-0 sm:pl-6">
+                <div className="flex items-center text-sm sm:text-base gap-2 min-w-0 sm:pl-6">
                     <select
                         value={activeSessionId}
                         onChange={(e) => setActiveSessionId(e.target.value)}
-                        className="bg-primary text-text rounded shadow-md px-2 py-1 min-w-0 truncate cursor-pointer"
+                        className="sm:hidden bg-primary text-text rounded shadow-md px-2 py-1 min-w-0 truncate cursor-pointer"
                     >
                         {sessions.map(s => (
                             <option key={s.id} value={s.id}>
-                                {s.label} ({s.setId}) 
+                                {s.label}
                             </option>
                         ))}
                     </select>
-                    {getSessionCount(activeSessionId)} Cases
+                    <select
+                        value={activeSessionId}
+                        onChange={(e) => setActiveSessionId(e.target.value)}
+                        className="hidden sm:block bg-primary text-text rounded shadow-md px-2 py-1 min-w-0 truncate cursor-pointer"
+                    >
+                        {sessions.map(s => (
+                            <option key={s.id} value={s.id}>
+                                {s.label} ({s.setId})
+                            </option>
+                        ))}
+                    </select>
+                    <div className="pr-2 sm:pr-0">
+                        {getSessionCount(activeSessionId)} Cases
+                    </div>
                 </div>
             </div>
 
