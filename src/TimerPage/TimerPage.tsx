@@ -184,7 +184,6 @@ function TimerPage() {
                     <SelectedSolve
                         solve={selectedSolve}
                         index={solves.findIndex(s => s.id === selectedSolveId) + 1}
-                        isCooldown={isActive}
                         onDelete={(id) => handleDeleteSolve(id)}
                     />
                 </div>

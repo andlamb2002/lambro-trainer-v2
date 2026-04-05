@@ -6,11 +6,10 @@ import { MdDelete } from "react-icons/md";
 type Props = {
     solve: Solve | null;
     index: number;
-    isCooldown: boolean;
     onDelete: (id: string) => void;
 }
 
-function SelectedSolve({ solve, index, isCooldown, onDelete }: Props) {
+function SelectedSolve({ solve, index, onDelete }: Props) {
     if (!solve) {
         return (
             <div className="bg-secondary text-xl font-bold rounded shadow-md p-4 ml-1 sm:ml-0 sm:mr-4">
@@ -33,7 +32,6 @@ function SelectedSolve({ solve, index, isCooldown, onDelete }: Props) {
                     onClick={() => onDelete(solve.id)}
                     title={`Delete Solve ${index}`}
                     aria-label={`Delete Solve ${index}`}
-                    disabled={isCooldown}
                 >
                     <MdDelete size={24} />
                 </button>
