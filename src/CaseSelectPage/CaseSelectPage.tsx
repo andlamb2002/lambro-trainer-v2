@@ -23,8 +23,14 @@ function CaseSelectPage() {
     const setActiveSessionId = useSessionStore(s => s.setActiveSessionId);
     const handleChangeSet = useSessionStore(s => s.handleChangeSet);
     const setToggles = useSessionStore(s => s.setToggles);
+    const getSessionCount = useSessionStore(s => s.getSessionCount);
     const handleSaveSession = useSessionStore(s => s.handleSaveSession);
     const handleDeleteSession = useSessionStore(s => s.handleDeleteSession);
+
+    const sessionsWithCount = sessions.map(s => ({
+        ...s,
+        count: getSessionCount(s.id),
+    }));
 
     const { 
         activeSetKey,
@@ -83,7 +89,7 @@ function CaseSelectPage() {
             </div>
             <div className="col-span-1">
                 <SessionSection
-                    sessions={sessions}
+                    sessions={sessionsWithCount}
                     activeSessionId={activeSessionId}
                     onSelect={setActiveSessionId}
                     onSave={handleSaveSession}

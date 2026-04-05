@@ -5,6 +5,7 @@ type SessionItem = {
     id: string;
     label: string;
     setId: string;
+    count: number;
 };
 
 type Props = {
@@ -68,6 +69,7 @@ function SessionSection({ sessions, activeSessionId, onSelect, onSave, onDelete 
                         key={session.id}
                         id={session.id}
                         label={session.label}
+                        count={session.count}
                         setId={session.setId}
                         isActive={session.id === activeSessionId}
                         isOnly={sessions.length <= 1}

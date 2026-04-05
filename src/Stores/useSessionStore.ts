@@ -8,6 +8,7 @@ type SessionStore = SessionState & {
     setActiveSessionId: (id: string) => void;
     setToggles: (toggles: CaseToggles) => void;
     addSolve: (solve: Solve) => void;
+    getSessionCount: (id: string) => number;
     deleteSolve: (id: string) => void;
     deleteAllSolves: () => void;
     updateRecap: (recapState: RecapState | null) => void;
@@ -20,7 +21,7 @@ const defaultSession = createSession("Session 1", "zbll");
 
 export const useSessionStore = create<SessionStore>()(
     persist(
-        (set) => ({
+        (set, get) => ({
             sessions: [defaultSession],
             activeSessionId: defaultSession.id,
 
@@ -40,6 +41,11 @@ export const useSessionStore = create<SessionStore>()(
                         sessions: updateSessionSolves(prev.sessions, prev.activeSessionId, [...current.solves, solve])
                     }
                 });
+            },
+            getSessionCount: (id: string) => {
+                const session = get().sessions.find(s => s.id === id);
+                if (!session) return 0;
+                return Object.values(session.toggles).filter(Boolean).length;
             },
             deleteSolve: (id: string) => {
                 set(prev => {
