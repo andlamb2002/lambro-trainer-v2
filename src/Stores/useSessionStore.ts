@@ -122,7 +122,12 @@ export const useSessionStore = create<SessionStore>()(
                 });
             },
             handleChangeSet: (nextSetKey: string) => {
-                if(window.confirm("You will lose the cases you selected.")) {
+                const active = get().sessions.find(s => s.id === get().activeSessionId);
+                const allEnabled = active 
+                    ? Object.values(active.toggles).every(Boolean)
+                    : true;
+
+                if (allEnabled || window.confirm("You will lose the cases you selected.")) {
                     set(prev => ({
                         sessions: updateSessionSet(prev.sessions, prev.activeSessionId, nextSetKey),
                     }));
