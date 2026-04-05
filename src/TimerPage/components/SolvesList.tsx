@@ -1,9 +1,10 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 import type { Solve } from '../../types/types';
 
 import { formatTime } from '../../lib/format';
 import SolveItem from './SolveItem';
+import StatsModal from './StatsModal';
 
 import { MdBarChart } from "react-icons/md";
 
@@ -22,6 +23,8 @@ function SolvesList({ solves, selectedSolveId, onSelectSolve, onDeleteSolve, onD
         return count > 0 ? formatTime(solves.reduce((acc, solve) => acc + solve.time, 0) / count) : "0.00";
     }, [count, solves]);
 
+    const [statsOpen, setStatsOpen] = useState(false);
+
     return (
         <div className="flex flex-col sm:pl-4 pt-2 pr-1 sm:pr-0">
 
@@ -32,13 +35,21 @@ function SolvesList({ solves, selectedSolveId, onSelectSolve, onDeleteSolve, onD
                 </div>
                 <button
                     className="btn btn-primary p-1 sm:p-2"
-                    title="Statistics (coming soon)"
-                    aria-label="Statistics (coming soon)"
-                    disabled
+                    onClick={() => setStatsOpen(true)}
+                    title="Statistics"
+                    aria-label="Statistics"
                 >
                     <MdBarChart size={24} />
                 </button>
             </div>
+
+            {statsOpen && (
+                <StatsModal
+                    open={statsOpen}
+                    onClose={() => setStatsOpen(false)}
+                    solves={solves}
+                />
+            )}
 
             <ul className="flex-1 overflow-y-auto max-h-50 sm:max-h-80 my-4 space-y-2 scrollbar-hide">
                 {[...solves].reverse().map((solve, index) => (
