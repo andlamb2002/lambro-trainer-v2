@@ -158,7 +158,6 @@ function TimerPage() {
                 stopRecap={stopRecap}
             />
 
-            {/* <div className="grid grid-cols-3 h-full"> */}
             <div className={`grid h-full ${hudHidden ? 'grid-cols-1' : 'grid-cols-3'}`}>
 
                 <div className={`order-2 sm:order-1 col-span-1 ${hudHidden ? 'hidden' : 'block'}`}>
