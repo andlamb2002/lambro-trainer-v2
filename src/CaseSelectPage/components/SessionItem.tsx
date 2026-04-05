@@ -6,7 +6,7 @@ type Props = {
     setId: string;
     isActive: boolean;
     isOnly: boolean;
-    onSelect: (id: string) => void;
+    onSelect: (id: string, label: string) => void;
     onDelete: (id: string) => void;
 };
 
@@ -14,7 +14,7 @@ function SessionItem({ id, label, setId, isActive, isOnly, onSelect, onDelete }:
     return (
         <li
             className={`flex justify-between items-center bg-secondary p-2 rounded shadow-md cursor-pointer hover:bg-secondary/60 ${isActive ? 'font-bold' : ''}`}
-            onClick={() => onSelect(id)}
+            onClick={() => onSelect(id, label)}
             title={`Switch to ${label}`}
             role="button"
             aria-pressed={isActive}

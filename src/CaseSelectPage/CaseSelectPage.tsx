@@ -23,6 +23,8 @@ function CaseSelectPage() {
     const setActiveSessionId = useSessionStore(s => s.setActiveSessionId);
     const handleChangeSet = useSessionStore(s => s.handleChangeSet);
     const setToggles = useSessionStore(s => s.setToggles);
+    const handleSaveSession = useSessionStore(s => s.handleSaveSession);
+    const handleDeleteSession = useSessionStore(s => s.handleDeleteSession);
 
     const { 
         activeSetKey,
@@ -84,9 +86,8 @@ function CaseSelectPage() {
                     sessions={sessions}
                     activeSessionId={activeSessionId}
                     onSelect={setActiveSessionId}
-                    onNew={() => {}}       // wired next step
-                    onDelete={() => {}}    // wired next step
-                    onRename={() => {}}    // wired next step
+                    onSave={handleSaveSession}
+                    onDelete={handleDeleteSession}
                 />
             </div>
         </div>

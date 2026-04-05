@@ -11,7 +11,7 @@ type SessionStore = SessionState & {
     deleteSolve: (id: string) => void;
     deleteAllSolves: () => void;
     updateRecap: (recapState: RecapState | null) => void;
-    handleNewSession: () => void;
+    handleSaveSession: (label: string) => void;
     handleDeleteSession: (id: string) => void;
     handleChangeSet: (nextSetKey: string) => void;
 }
@@ -64,18 +64,40 @@ export const useSessionStore = create<SessionStore>()(
                     }
                 });
             },
-            handleNewSession: () => {
+            handleSaveSession: (label: string) => {
                 set(prev => {
-                    const active = prev.sessions.find(s => s.id === prev.activeSessionId) ?? prev.sessions[0];
-                    const activeSetKey = active?.setId ?? "zbll";
+                    const active = prev.sessions.find(s => s.id === prev.activeSessionId);
+                    if (!active) return prev;
 
-                    const newSession = createSession(`Session ${prev.sessions.length + 1}`, activeSetKey);
+                    const existing = prev.sessions.find(s => s.label === label);
+
+                    if (existing) {
+                        return {
+                            sessions: prev.sessions.map(s =>
+                                s.id === existing.id
+                                    ? { ...s, toggles: active.toggles, setId: active.setId }
+                                    : s
+                            ),
+                            activeSessionId: existing.id,
+                        };
+                    }
+
+                    const newSession = createSession(label, active.setId);
+                    newSession.toggles = active.toggles;
 
                     return {
                         sessions: [...prev.sessions, newSession],
                         activeSessionId: newSession.id,
-                    }
+                    };
                 });
+            },
+            handleRenameSession: (id: string, label: string) => {
+                set(prev => {
+                    const updatedSessions = prev.sessions.map(s => s.id === id ? {...s, label} : s);
+                    return {
+                        sessions: updatedSessions,
+                    }
+                });            
             },
             handleDeleteSession: (id: string) => {
                 set(prev => {
