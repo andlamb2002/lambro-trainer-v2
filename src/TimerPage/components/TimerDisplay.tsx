@@ -25,7 +25,7 @@ function TimerDisplay({ phase, time, onTouchStart, onTouchEnd }: Props) {
             className={`${colorClass[phase]} sm:h-96 text-6xl text-center py-12 sm:py-8 select-none`}
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
-            style={{ touchAction: 'none' }}
+            style={{ touchAction: 'manipulation' }}
         >
             {phase === 'running' ? formatRunningTime(time) : formatTime(time)}
         </h1>
