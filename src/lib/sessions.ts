@@ -4,7 +4,7 @@ import { setInitialToggles } from './caseToggles'
 
 export function createSession(label: string, setKey: string): Session {
     return {
-        id: "session-" + Date.now(),
+        id: `session-${setKey}-${Date.now()}`,
         label: label,
         setId: setKey,
         setLabel: getAlgSet(setKey).label,
