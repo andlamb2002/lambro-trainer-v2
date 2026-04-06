@@ -18,10 +18,10 @@ type SessionStore = SessionState & {
 }
 
 const defaultSessions = [
-    createSession("PLL", "pll"),
-    createSession("OLL", "oll"),
-    createSession("OLLCP", "ollcp"),
-    createSession("ZBLL", "zbll"),
+    createSession("1", "pll"),
+    createSession("2", "oll"),
+    createSession("3", "ollcp"),
+    createSession("4", "zbll"),
 ];
 
 export const useSessionStore = create<SessionStore>()(
