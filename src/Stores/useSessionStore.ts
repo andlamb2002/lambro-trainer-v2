@@ -73,20 +73,13 @@ export const useSessionStore = create<SessionStore>()(
             handleNewSession: (label: string) => {
                 set(prev => {
                     const active = prev.sessions.find(s => s.id === prev.activeSessionId) ?? prev.sessions[0];
-                    const newSession = createSession(label, active?.setId ?? "pll");
+                    const trimmed = label.trim().slice(0, 30);
+                    const newSession = createSession(trimmed, active?.setId ?? "pll");
                     return {
                         sessions: [...prev.sessions, newSession],
                         activeSessionId: newSession.id,
                     };
                 });
-            },
-            handleRenameSession: (id: string, label: string) => {
-                set(prev => {
-                    const updatedSessions = prev.sessions.map(s => s.id === id ? {...s, label} : s);
-                    return {
-                        sessions: updatedSessions,
-                    }
-                });            
             },
             handleDeleteSession: (id: string) => {
                 set(prev => {
