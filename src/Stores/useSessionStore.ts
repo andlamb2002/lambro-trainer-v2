@@ -34,9 +34,11 @@ export const useSessionStore = create<SessionStore>()(
                 set({ activeSessionId: id });
             },
             setToggles: (toggles: CaseToggles) => {
-                set(prev => ({
-                    sessions: updateSessionToggles(prev.sessions, prev.activeSessionId, toggles)
-                }));
+                set(prev => {
+                    const withToggles = updateSessionToggles(prev.sessions, prev.activeSessionId, toggles);
+                    const withReset = updateSessionRecapState(withToggles, prev.activeSessionId, null);
+                    return { sessions: withReset };
+                });
             },
             addSolve: (solve: Solve) => {
                 set(prev => {
@@ -110,9 +112,11 @@ export const useSessionStore = create<SessionStore>()(
                     : true;
 
                 if (allEnabled || window.confirm("You will lose the cases you selected.")) {
-                    set(prev => ({
-                        sessions: updateSessionSet(prev.sessions, prev.activeSessionId, nextSetKey),
-                    }));
+                    set(prev => {
+                        const withSet = updateSessionSet(prev.sessions, prev.activeSessionId, nextSetKey);
+                        const withReset = updateSessionRecapState(withSet, prev.activeSessionId, null);
+                        return { sessions: withReset };
+                    });
                 }
             },
         }),
