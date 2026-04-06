@@ -25,11 +25,11 @@ function Header() {
                     Lambro Trainer
                 </Link>
 
-                <div className="flex items-center text-sm sm:text-base gap-2 min-w-0 sm:pl-6">
+                <div className="flex items-center text-sm sm:text-base gap-4 min-w-0 sm:pl-6">
                     <select
                         value={activeSessionId}
                         onChange={(e) => setActiveSessionId(e.target.value)}
-                        className="sm:hidden bg-primary text-text rounded shadow-md px-2 py-1 min-w-0 truncate cursor-pointer"
+                        className="sm:hidden bg-primary text-text rounded shadow-md px-2 py-1 min-w-0 mr-2 truncate cursor-pointer"
                     >
                         {sessions.map(s => (
                             <option key={s.id} value={s.id}>
@@ -48,9 +48,7 @@ function Header() {
                             </option>
                         ))}
                     </select>
-                    <div className="pr-2 sm:pr-0">
-                        {getSessionCount(activeSessionId)} Cases
-                    </div>
+                    <span className="hidden sm:inline">{getSessionCount(activeSessionId)} Cases</span>
                 </div>
             </div>
 
