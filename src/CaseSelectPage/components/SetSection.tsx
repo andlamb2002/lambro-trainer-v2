@@ -49,7 +49,7 @@ function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles,
             </div>
 
             {hasSubsets ? (
-                <div className="grid grid-cols-4 sm:grid-cols-8 gap-1">
+                <div className="grid grid-cols-4 sm:grid-cols-6 gap-1">
                     {setSubsets.map((subset) => {
                         const subsetCases = casesBySubset.get(subset.id) ?? [];
                         return (
@@ -77,7 +77,7 @@ function SetSection({ setName, casesBySet, subsetsBySet, casesBySubset, toggles,
                     )}
                 </div>
             ) : (
-                <div className="grid grid-cols-4 sm:grid-cols-8 gap-1">
+                <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-1">
                     {setCases.map((c) => (
                         <CaseItem
                             key={c.id}
