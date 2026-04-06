@@ -16,8 +16,8 @@ function SubsetCaseItem({ subset, cases, toggles, enableAll, disableAll, onOpen 
     const state = enabledCount === 0 ? 'none' : enabledCount === total ? 'all' : 'some';
 
     const bgClass =
-        state === 'all'  ? 'bg-success' :
-        state === 'some' ? 'bg-warning' :
+        state === 'all'  ? 'bg-success shadow-md' :
+        state === 'some' ? 'bg-warning shadow-md' :
         '';
 
     const handleToggleAll = () => {
@@ -44,7 +44,7 @@ function SubsetCaseItem({ subset, cases, toggles, enableAll, disableAll, onOpen 
                 />
             </div>
             <button
-                className="w-full text-base px-2 py-1 bg-secondary cursor-pointer hover:bg-secondary/60 text-center"
+                className="w-full text-base shadow-md px-2 py-1 bg-secondary cursor-pointer hover:bg-secondary/60 text-center"
                 onClick={onOpen}
                 title={`Open ${subset.id}`}
                 aria-label={`Open ${subset.id}`}

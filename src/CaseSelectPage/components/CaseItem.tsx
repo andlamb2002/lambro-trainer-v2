@@ -10,7 +10,7 @@ function CaseItem({ c, toggleCase, enabled }: Props) {
     return (
         <div
             onClick={() => toggleCase(c.id)}
-            className={`aspect-square flex items-center justify-center rounded cursor-pointer hover:opacity-60 ${enabled ? 'bg-success' : ''}`}
+            className={`aspect-square flex items-center justify-center rounded cursor-pointer hover:opacity-60 ${enabled ? 'bg-success shadow-md' : ''}`}
             title={`${c.label} (${c.id})`}
             role="button"
             aria-pressed={enabled}

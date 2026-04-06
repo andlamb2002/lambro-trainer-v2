@@ -65,7 +65,7 @@ function SolvesList({ solves, selectedSolveId, onSelectSolve, onDeleteSolve, onD
             </ul>
 
             <button
-                className={`btn btn-danger w-full ${count === 0 ? 'invisible' : ''}`}
+                className={`btn btn-danger w-full shadow-lg ${count === 0 ? 'invisible' : ''}`}
                 onClick={onDeleteAllSolves}
                 title="Delete All Solves"
                 aria-label="Delete All Solves"

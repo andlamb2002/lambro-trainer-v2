@@ -18,7 +18,7 @@ function ScrambleBar({ currentScramble, isActive, recapProgress, recapTotal, han
             <div className="flex items-center gap-2">
                 <Link
                     to="/cases"
-                    className="btn btn-primary flex items-center gap-1 text-2xl font-bold px-2 py-1 sm:px-4 sm:py-2"
+                    className="btn btn-primary flex items-center shadow-lg gap-1 text-2xl font-bold px-2 py-1 sm:px-4 sm:py-2"
                     title="Case Selection"
                     aria-label="Case Selection"
                 >
@@ -28,7 +28,7 @@ function ScrambleBar({ currentScramble, isActive, recapProgress, recapTotal, han
 
                 <div className="flex items-center gap-2 whitespace-nowrap">
                     <button
-                        className="btn btn-primary text-2xl font-bold px-2 py-1 sm:px-4 sm:py-2"
+                        className="btn btn-primary text-2xl font-bold shadow-lg px-2 py-1 sm:px-4 sm:py-2"
                         onMouseDown={(e) => e.preventDefault()}
                         onClick={isActive ? stopRecap : handleStartRecap}
                         title={isActive ? "End Recap" : "Recap Each Selected Case"}

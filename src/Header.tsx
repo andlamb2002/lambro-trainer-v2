@@ -13,7 +13,7 @@ function Header() {
     const { theme, toggleTheme } = useTheme();
     
     return (
-        <header className="flex items-center justify-between bg-secondary px-2 py-4 sm:p-6 shadow-lg">
+        <header className="flex items-center justify-between bg-secondary px-2 py-4 sm:p-6 shadow-xl">
             
             <div className="flex items-center gap-4 min-w-0">
                 <Link

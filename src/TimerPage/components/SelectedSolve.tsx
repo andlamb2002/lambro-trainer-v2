@@ -12,7 +12,7 @@ type Props = {
 function SelectedSolve({ solve, index, onDelete }: Props) {
     if (!solve) {
         return (
-            <div className="bg-secondary text-xl font-bold rounded shadow-md p-4 ml-1 sm:ml-0 sm:mr-4">
+            <div className="bg-secondary text-xl font-bold rounded shadow-lg p-4 ml-1 sm:ml-0 sm:mr-4">
                 No solves
             </div>
         );
@@ -21,7 +21,7 @@ function SelectedSolve({ solve, index, onDelete }: Props) {
     const hasSubset = solve.subset != null;
 
     return (
-        <div className="bg-secondary rounded shadow-md px-4 py-2 ml-1 sm:ml-0 sm:mr-4">
+        <div className="bg-secondary rounded shadow-lg px-4 py-2 ml-1 sm:ml-0 sm:mr-4">
 
             <div className="flex justify-between items-center">
                 <div className="text-xl font-bold">
