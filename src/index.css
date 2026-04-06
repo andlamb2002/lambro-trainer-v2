@@ -20,7 +20,7 @@
 
 @layer base {
     html, body { @apply bg-primary text-text; }
-    * { @apply font-sans select-none sm:select-text; }
+    * { @apply font-sans select-none sm:select-text transition-colors duration-150; }
 }
 
 @layer components {
