@@ -110,11 +110,14 @@ export const useSessionStore = create<SessionStore>()(
                 const allEnabled = active 
                     ? Object.values(active.toggles).every(Boolean)
                     : true;
+                const hasSolves = active ? active.solves.length > 0 : false;
+                const needsConfirm = !allEnabled || hasSolves;
 
-                if (allEnabled || window.confirm("You will lose the cases you selected.")) {
+                if (!needsConfirm || window.confirm("You will lose the cases your selected cases and solves.")) {
                     set(prev => {
                         const withSet = updateSessionSet(prev.sessions, prev.activeSessionId, nextSetKey);
-                        const withReset = updateSessionRecapState(withSet, prev.activeSessionId, null);
+                        const withSolves = updateSessionSolves(withSet, prev.activeSessionId, []);
+                        const withReset = updateSessionRecapState(withSolves, prev.activeSessionId, null);
                         return { sessions: withReset };
                     });
                 }
