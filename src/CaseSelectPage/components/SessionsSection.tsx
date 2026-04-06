@@ -60,7 +60,7 @@ function SessionSection({ sessions, activeSessionId, onSelect, onNew, onDelete }
                 ))}
             </ul>
             <button
-                className="btn btn-success w-full shadow-lg flex items-center justify-center gap-1 py-2"
+                className="btn btn-success w-full font-bold shadow-lg flex items-center justify-center gap-1 py-2"
                 onClick={handleAdd}
                 title="New Session"
                 aria-label="New Session"
