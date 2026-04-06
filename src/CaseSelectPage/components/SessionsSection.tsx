@@ -42,20 +42,9 @@ function SessionSection({ sessions, activeSessionId, onSelect, onNew, onDelete }
 
     return (
         <div className="sm:px-4 pt-4 md:pt-0">
-            <div className="flex items-center gap-2">
-                <h2 className="text-xl font-bold underline">Sessions</h2>
-                <button
-                    className="btn btn-success p-1"
-                    onClick={handleAdd}
-                    title="New Session"
-                    aria-label="New Session"
-                >
-                    <MdAdd size={20} />
-                </button>
+            <h2 className="text-xl font-bold underline">Sessions</h2>
 
-            </div>
-
-            <ul className="flex flex-col gap-2 py-2">
+            <ul className="flex flex-col gap-2 py-2 overflow-y-auto max-h-50 sm:max-h-100 scrollbar-hide">
                 {sessions.map((session) => (
                     <SessionItem
                         key={session.id}
@@ -70,6 +59,15 @@ function SessionSection({ sessions, activeSessionId, onSelect, onNew, onDelete }
                     />
                 ))}
             </ul>
+            <button
+                className="btn btn-success w-full flex items-center justify-center gap-1 mt-2"
+                onClick={handleAdd}
+                title="New Session"
+                aria-label="New Session"
+            >
+                <MdAdd size={20} />
+                New Session
+            </button>
         </div>
     );
 }
