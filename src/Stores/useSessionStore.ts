@@ -18,14 +18,14 @@ type SessionStore = SessionState & {
 }
 
 const pllSession = createSession("PLL", "pll");
-const ollSession = createSession("OLL", "pll");
-const ollcpSession = createSession("OLLCP", "pll");
-const zbllSession = createSession("ZBLL", "pll");
+// const ollSession = createSession("OLL", "pll");
+// const ollcpSession = createSession("OLLCP", "pll");
+// const zbllSession = createSession("ZBLL", "pll");
 
 export const useSessionStore = create<SessionStore>()(
     persist(
         (set, get) => ({
-            sessions: [pllSession, ollSession, ollcpSession, zbllSession],
+            sessions: [pllSession],
             activeSessionId: pllSession.id,
 
             setActiveSessionId: (id: string) => {
@@ -77,7 +77,8 @@ export const useSessionStore = create<SessionStore>()(
                 set(prev => {
                     const active = prev.sessions.find(s => s.id === prev.activeSessionId) ?? prev.sessions[0];
                     const trimmed = label.trim().slice(0, 30);
-                    const newSession = createSession(trimmed, active?.setId ?? "pll");
+                    const newSession = createSession(trimmed, active.setId);
+                    newSession.toggles = { ...active.toggles };
                     return {
                         sessions: [...prev.sessions, newSession],
                         activeSessionId: newSession.id,
