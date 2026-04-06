@@ -44,7 +44,7 @@ function SessionSection({ sessions, activeSessionId, onSelect, onNew, onDelete }
         <div className="sm:px-4 pt-4 md:pt-0">
             <h2 className="text-xl font-bold underline">Sessions</h2>
 
-            <ul className="flex flex-col gap-2 py-2 overflow-y-auto max-h-50 sm:max-h-100 scrollbar-hide">
+            <ul className="flex flex-col gap-2 py-2 overflow-y-auto max-h-60 md:max-h-100 scrollbar-hide">
                 {sessions.map((session) => (
                     <SessionItem
                         key={session.id}
