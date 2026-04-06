@@ -17,13 +17,16 @@ type SessionStore = SessionState & {
     handleChangeSet: (nextSetKey: string) => void;
 }
 
-const defaultSession = createSession("Session 1", "pll");
+const pllSession = createSession("PLL", "pll");
+const ollSession = createSession("OLL", "pll");
+const ollcpSession = createSession("OLLCP", "pll");
+const zbllSession = createSession("ZBLL", "pll");
 
 export const useSessionStore = create<SessionStore>()(
     persist(
         (set, get) => ({
-            sessions: [defaultSession],
-            activeSessionId: defaultSession.id,
+            sessions: [pllSession, ollSession, ollcpSession, zbllSession],
+            activeSessionId: pllSession.id,
 
             setActiveSessionId: (id: string) => {
                 set({ activeSessionId: id });
