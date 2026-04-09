@@ -45,7 +45,7 @@ function ScrambleBar({ currentScramble, isActive, recapProgress, recapTotal, han
             </div>
 
             <p className="font-bold text-2xl sm:pl-8">
-                {currentScramble}
+                {currentScramble ? currentScramble : "No Cases Selected"}
             </p>
         </div>
     );
