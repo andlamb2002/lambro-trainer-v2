@@ -1,5 +1,11 @@
 from utils import load_json, save_json, invert_alg, get_auf_moves, generate_case, generate_scramble
 
+def count_moves(scramble: str) -> int:
+    return len(scramble.split())
+
+def filter_short_scrambles(scrambles: list[str], min_moves: int) -> list[str]:
+    return [s for s in scrambles if count_moves(s) >= min_moves]
+
 def process_oll(oll_data: list[dict], pll_data: list[dict]):
     cases = []
     counter = 1
@@ -13,6 +19,8 @@ def process_oll(oll_data: list[dict], pll_data: list[dict]):
         for pll in pll_data:
             for auf in get_auf_moves(pll["label"]):
                 scrambles.append(invert_alg(generate_scramble(pll, auf, inv_oll)))
+
+        scrambles = filter_short_scrambles(scrambles, min_moves=11)
 
         case_id = f"OLL{str(counter).zfill(2)}"
         output_label = case_id

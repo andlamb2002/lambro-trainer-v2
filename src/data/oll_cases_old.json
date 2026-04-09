@@ -415,6 +415,7 @@
     "label": "OLL06",
     "originalAlg": "U r U2 R' U' R U' r'",
     "scrambles": [
+      "U' F R B' R B R2 F'",
       "U2 R2 U F2 U' F2 R2 D' F2 D F' R B' R B R2 F'",
       "D' L2 D R2 D' B2 D R2 U' L2 F' R B' R B R2 F'",
       "U F2 D R2 D' L2 D R2 D' L2 F' R B' R B R2 F'",
@@ -578,6 +579,7 @@
     "label": "OLL08",
     "originalAlg": "U l' U' L U' L' U2 l",
     "scrambles": [
+      "U' B' R2 F R F' R B",
       "U2 B2 L2 D' R2 D L2 D' R2 D B R2 F R F' R B",
       "U' B2 D L2 D' R2 D L2 D' R2 B R2 F R F' R B",
       "U B2 U L2 U' R2 U L2 U' R2 B R2 F R F' R B",
@@ -1971,6 +1973,7 @@
     "label": "OLL25",
     "originalAlg": "U2 F' r U R' U' r' F R",
     "scrambles": [
+      "U2 L2 D' R2 D L D' R2 D L",
       "F2 L2 D' L2 B2 U' L2 U L2 D F D' B2 D F U",
       "B2 D L2 D' B2 U2 R2 D' F2 D2 L' D' R2 D L D'",
       "F2 R2 L2 D R2 D' L2 D F2 L' B2 L' U L B2 L",
@@ -2089,6 +2092,7 @@
       "U' F2 U' R2 U R2 F2 D R2 D' R U2 R U R' U R",
       "F2 D R2 D' L2 D R2 D' L2 D B' D' F' D B D' F'",
       "U2 L2 U L2 D' L2 D L2 B2 D B' U B' U F R2 F'",
+      "U' F2 D B' D' F' D B D' F'",
       "U2 L2 D' B2 U' B2 D F' L2 F U' B' U' B L2",
       "F2 D R2 U' B2 U B2 D' R2 D B' D' F' D B D' F'",
       "F2 R2 U R2 U' R2 D R2 B' D' F' D B D' F'",
@@ -2189,6 +2193,7 @@
       "R2 D' F2 D R2 B2 D L2 D' B2 F U2 F' U' F U' F' U'",
       "U2 R2 L2 D L2 B2 L2 D' R2 F2 L' F2 L' U' R U' R'",
       "U B2 R2 U L2 F2 R2 D L' F2 L' U' R U' R'",
+      "U' F' U' F U' F' U2 F",
       "D' L2 F2 L2 U' L2 F2 L2 D R' U' R2 U R2 U' R'",
       "U2 R2 L2 D' L2 B2 L2 D R2 F2 L' F2 L' U' R U' R'",
       "F2 L2 B2 U R2 B2 L2 D R' U' R2 U R2 U' R'",
@@ -2251,6 +2256,7 @@
       "L2 U' L2 U' F2 R' F' R F2 L' F L",
       "F2 L2 U R2 U' B2 R2 D' L2 F2 R L' B' U2 B' R' L",
       "U2 L2 F2 D' F2 D' F2 D F2 D2 R' L' F' R2 F' R' L'",
+      "L2 F2 R' F' R F2 L' F L'",
       "B2 F2 D F2 U B2 R2 D B2 D' B' F' L U2 L B' F",
       "U L2 D F2 U' R2 U R2 D' R' F' R F2 L' F L'",
       "R2 L2 B2 D' B2 R2 L2 U' F2 U R B L' U2 L B' R'",
@@ -2341,6 +2347,7 @@
       "U2 F2 D R2 U' R2 D' B2 D B2 F' R' F2 R B2 F D' B2",
       "U' F2 U' F2 U' F2 U2 F U2 L F' L' F U2 F",
       "R2 D L2 D L2 D' B2 D' B2 R2 F' U2 L F' L' F U2 F",
+      "R2 B2 R F' U' F U R' B2 R2",
       "U F2 U F2 U F2 U2 F2 R2 D' F' D F R2 U R' F' R",
       "D R2 U2 R2 D B2 U B2 D2 F' U2 L F' L' F U2 F",
       "R2 U B2 U B2 R2 U2 R2 D' R2 F' U2 L F' L' F U2 F D",
@@ -2622,6 +2629,7 @@
     "label": "OLL33",
     "originalAlg": "R U R' U' R' F R F'",
     "scrambles": [
+      "F2 U F' R F U' F' R' F'",
       "L2 U F2 U' B2 D R2 D' B2 D F' R F U' F' R' F' D'",
       "F2 R2 D' L2 D R2 D' L2 U D F' R F U' F' R' F'",
       "U2 F2 R2 U' L2 U R2 U' L2 U2 F' R F U' F' R' F'",
@@ -2785,6 +2793,7 @@
     "label": "OLL35",
     "originalAlg": "U2 R U2 R2 F R F' R U2 R'",
     "scrambles": [
+      "U2 L U2 L' B L' B' L2 U2 L'",
       "U2 R2 B2 U B2 D' R2 F2 L2 U2 L U F U' F' L D F2",
       "D' L2 B2 D' R2 D B2 U2 L U F U' F' L D F2",
       "R2 B2 R2 U R2 D L2 D L2 D' B D' B2 R' B U B2 R'",
@@ -2998,6 +3007,7 @@
       "L2 U' B2 D' R2 D B2 U L2 D2 F' R' F2 R F D2",
       "R2 B2 D B2 R2 L2 F2 L2 U F R' F L2 F R F",
       "L2 D B2 L2 U' R2 F2 R2 L2 D' F' D' L' F U L' U2",
+      "U F2 U' F2 U F R' F2 R F",
       "U' F2 L2 D' F2 U' B2 U B2 F2 L' D F L' U' F",
       "R2 D' F2 D R2 B2 D L2 D' B2 R U R' U' R' F R F'",
       "L2 U' B2 D R2 U' L2 F2 U R2 F R' F2 R F D'",
@@ -3439,6 +3449,7 @@
     "label": "OLL43",
     "originalAlg": "U F' U' L' U L F",
     "scrambles": [
+      "U' R' F' U' F U R",
       "U2 R2 U B2 U' F2 U B2 U' F2 R F' U' F U R",
       "U' R2 B2 D' F2 D B2 D' F2 D R F' U' F U R",
       "U B2 U R2 U' R2 B2 D' R2 D R F' U' F U R",
@@ -3520,6 +3531,7 @@
     "label": "OLL44",
     "originalAlg": "F U R U' R' F'",
     "scrambles": [
+      "F R U R' U' F'",
       "D' L2 D R2 D' B2 D R2 U' L2 F' R U R' U' F'",
       "F2 R2 D' L2 D R2 D' L2 D F' R U R' U' F'",
       "U2 R2 U F2 U' F2 R2 D' F2 D F' R U R' U' F'",
@@ -3589,6 +3601,7 @@
       "R2 D' F2 R2 U R2 F2 D R' B R' U R B' R'",
       "F2 U' F2 U L2 D2 B2 D B2 D L F R' F' L F' R F",
       "U F2 L2 U' L2 U L2 D' L2 D2 B' R' B D' F2 L' U L",
+      "U' L F U' R U R' F' L'",
       "R2 B2 D L2 U2 B2 D' B2 R2 D2 F' R U R' U' F' L2 D2"
     ],
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=oll&bg=t&case=FURU'R'F'",
@@ -3600,6 +3613,7 @@
     "label": "OLL45",
     "originalAlg": "F R U R' U' F'",
     "scrambles": [
+      "F U R U' R' F'",
       "D' L2 D R2 D' B2 D R2 U' L2 F' U R U' R' F'",
       "F2 R2 D' L2 D R2 D' L2 D F' U R U' R' F'",
       "U2 R2 U F2 U' F2 R2 D' F2 D F' U R U' R' F'",
@@ -3659,6 +3673,7 @@
       "U B2 R2 F2 D' F2 R2 F' D L D' L' B2 F",
       "F2 D' B2 R2 F2 U2 B2 L2 F2 D' F' U R U' R' F'",
       "U2 B2 L2 B2 U B2 L2 F' D L D' L' B2 F",
+      "U' B' U' R' U R B",
       "B2 D F2 D R2 D R2 D B2 D B' F2 U' R' U R B D'",
       "R2 U' B2 D2 F2 L2 D' L2 B2 D2 B' F2 U' R' U R B R2 D",
       "B2 U R2 U2 F2 D' L2 D2 B D' L' D L F U2 B' F",

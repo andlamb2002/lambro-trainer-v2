@@ -162,12 +162,8 @@
     "label": "H",
     "originalAlg": "M2 U M2 U2 M2 U M2",
     "scrambles": [
-      "L2 F' B' L2 F B' L2 B2 L2 U2 B2",
-      "L R U2 R2 U' D' F2 U D L' R",
-      "L' R' B2 D2 L2 U2 F2 L2 D2 L R'",
-      "L2 D2 R L' U2 L2 D2 B2 R L B2",
-      "L2 B2 D2 F' B U2 F' B' R2 D2 B2",
-      "F B L2 U2 F2 U2 L2 F2 U2 F B'"
+      "L2 F2 B2 R2 D L2 F2 B2 R2 U'",
+      "L2 F2 B2 R2 D' L2 F2 B2 R2"
     ],
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&bg=t&case=M2UM2U2M2UM2"
   },
@@ -397,12 +393,14 @@
     "label": "Z",
     "originalAlg": "M' U' M2 U' M2 U' M' U2 M2",
     "scrambles": [
-      "L' R F' U2 D2 F U2 D2 F' L R' D2",
-      "D2 R L' F' U2 D2 F U2 D2 F' R' L",
-      "L2 U R2 B2 U' F2 L2 B2 D' F2 U' L2 U",
-      "L2 F2 R2 L2 B2 R2 U R2 L2 D R2 L2",
-      "D L2 U L2 D' B2 R2 B2 U' R2 U B2 R2",
-      "D L2 B2 U L2 U' B2 L2 B2 D' R2 U R2"
+      "L R' U2 L' R U' B2 U' B2 U' B2 U' B2 U' B2",
+      "L D2 L2 R2 U2 L' D' L2 R2 U L2 F2 L2 R2 B2 R2",
+      "D F B' U2 F' B U' L2 D' B2 U' B2 U' B2 U' B2",
+      "F B' U2 F' B U L2 U L2 U L2 U L2 U L2",
+      "L D2 L2 R2 U2 L' D L2 R2 U' L2 F2 L2 R2 B2 R2",
+      "L R' U2 L' R U B2 U B2 U B2 U B2 U B2",
+      "F B' U2 F' B U' L2 U' L2 U' L2 U' L2 U' L2",
+      "D L R' U2 L' R U' B2 D' R2 U' R2 U' R2 U' R2"
     ],
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&bg=t&case=M'U'M2U'M2U'M'U2M2"
   }
