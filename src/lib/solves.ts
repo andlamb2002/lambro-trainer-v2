@@ -1,11 +1,12 @@
 import type { Case, Solve } from "../types/types";
+import { removeLastUMove } from "./format";
 
 export function createSolve(currentCase: Case, scramble: string, time: number): Solve {
     const solve: Solve = {
         id: `${currentCase.id}-${Date.now()}`,
         caseId: currentCase.id,
         label: currentCase.label,
-        originalAlg: currentCase.originalAlg,
+        originalAlg: removeLastUMove(currentCase.originalAlg),
         scramble: scramble,
         img: currentCase.img,
         time: time,

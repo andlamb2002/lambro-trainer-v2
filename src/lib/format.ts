@@ -12,3 +12,7 @@ export function formatSetName(name: string): string {
         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' ');
 }
+
+export function removeLastUMove(scramble: string): string {
+    return scramble.replace(/(U'|U2|U)$/, '');
+}
