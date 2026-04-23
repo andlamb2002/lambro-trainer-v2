@@ -7,6 +7,9 @@ import ollcpSubsets from './ollcp_subsets.json'
 import pllCases from './pll_cases.json'
 import ollCases from './oll_cases.json'
 
+import egSubsets from './eg_subsets.json'
+import egCases from './eg_cases.json'
+
 export const ALG_SETS: Record<string, AlgSet> = {
     pll: {
         id: "pll",
@@ -30,6 +33,12 @@ export const ALG_SETS: Record<string, AlgSet> = {
         cases: zbllCases as Case[],
         subsets: zbllSubsets as Subset[],
     },
+    eg: {
+        id: "eg",
+        label: "EG",
+        cases: egCases as Case[],
+        subsets: egSubsets as Subset[],
+    }
 }
 
 export function getAlgSet(id: string): AlgSet {
