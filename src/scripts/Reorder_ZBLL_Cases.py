@@ -64,6 +64,13 @@ LABEL_RX = re.compile(r"^(?:ZBLL)?(H|Pi|U|T|L|AS|S)(\d{2})_(\d{2})$")
 
 SET_PRINT_ORDER = ["H", "Pi", "U", "T", "L", "AS", "S"]
 
+PLL_SET_TO_FSUBSET = {
+    "adj_swap":   "F01",
+    "diag_swap":  "F02",
+    "edges_only": "F03",
+}
+
+
 def reorder_zbll_cases(
     all_cases: list[dict],
     parent_order: dict[str, list[int]],
@@ -105,9 +112,9 @@ def reorder_zbll_cases(
             s_canons_present = sorted({c["_sCanon"] for c in group})
             base_code = f"{set_name}{disp_parent_idx:02d}"
             canon_key = f"{set_name}{canon_parent:02d}"
-            
-            disp_key  = base_code
-            custom_s  = subset_order.get(canon_key) or subset_order.get(disp_key, [])
+
+            disp_key = base_code
+            custom_s = subset_order.get(canon_key) or subset_order.get(disp_key, [])
             ordered_s_canons = [s for s in custom_s if s in s_canons_present] + \
                                [s for s in s_canons_present if s not in custom_s]
             s_map = {old: i for i, old in enumerate(ordered_s_canons, start=1)}
@@ -119,14 +126,14 @@ def reorder_zbll_cases(
                 c["id"] = f"ZBLL{base_code}_{new_subset:02d}"
                 c["label"] = f"{base_code}_{new_subset:02d}"
                 c["subset"] = base_code
-                c["variant"] = new_subset 
+                c["variant"] = new_subset
                 out.append(c)
 
     for c in out:
         c.pop("_set", None)
         c.pop("_pCanon", None)
         c.pop("_sCanon", None)
-        c.pop("enabled", None) 
+        c.pop("enabled", None)
 
     return out
 
@@ -145,9 +152,53 @@ def generate_zbll_subsets(cases: list[dict]) -> list[dict]:
             })
     return subsets
 
+def generate_f_cases(pll_cases: list[dict]) -> tuple[list[dict], list[dict]]:
+    groups: dict[str, list[dict]] = {"F01": [], "F02": [], "F03": []}
+
+    for pll in pll_cases:
+        fsubset = PLL_SET_TO_FSUBSET.get(pll.get("set", ""))
+        if not fsubset:
+            continue
+
+        groups[fsubset].append(pll)
+
+    all_f_cases: list[dict] = []
+    f_subsets: list[dict] = []
+
+    for fsubset, plls in groups.items():
+        first_scramble = ""
+        for variant_idx, pll in enumerate(plls, start=1):
+            case_id = f"ZBLL{fsubset}_{variant_idx:02d}"
+            label   = f"{fsubset}_{variant_idx:02d}"
+            scrambles = pll.get("scrambles", [])
+
+            if not first_scramble and scrambles:
+                first_scramble = scrambles[0].replace(" ", "")
+
+            all_f_cases.append({
+                "id":          case_id,
+                "set":         "F",
+                "label":       label,
+                "originalAlg": pll["originalAlg"],
+                "scrambles":   scrambles,
+                "img":         pll["img"],
+                "subset":      fsubset,
+                "variant":     variant_idx,
+            })
+
+        f_subsets.append({
+            "id":  fsubset,
+            "set": "F",
+            "img": f"https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=ll&bg=t&alg={first_scramble}",
+        })
+
+    return all_f_cases, f_subsets
+
+
 def main():
-    infile = "zbll_cases_unordered.json"
+    infile  = "zbll_cases_unordered.json"
     outfile = "zbll_cases.json"
+
     cases = load_json(infile)
     cases = reorder_zbll_cases(
         cases,
@@ -155,12 +206,20 @@ def main():
         subset_order=SUBSET_DISPLAY_ORDER,
         set_print_order=SET_PRINT_ORDER,
     )
-    save_json(cases, outfile)
-    print(f"Reordered {len(cases)} ZBLL cases -> {outfile}")
 
-    subsets = generate_zbll_subsets(cases)
-    save_json(subsets, "zbll_subsets.json")
-    print(f"Generated {len(subsets)} ZBLL subsets -> zbll_subsets.json")
+    zbll_subsets = generate_zbll_subsets(cases)
+
+    pll_cases = load_json("pll_cases.json")
+    f_cases, f_subsets = generate_f_cases(pll_cases)
+
+    cases.extend(f_cases)
+    zbll_subsets.extend(f_subsets)
+
+    save_json(cases, outfile)
+    print(f"Reordered {len(cases)} ZBLL cases (inc. {len(f_cases)} F cases) -> {outfile}")
+
+    save_json(zbll_subsets, "zbll_subsets.json")
+    print(f"Generated {len(zbll_subsets)} ZBLL subsets -> zbll_subsets.json")
 
 if __name__ == "__main__":
     main()
