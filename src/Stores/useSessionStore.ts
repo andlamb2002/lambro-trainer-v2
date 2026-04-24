@@ -22,6 +22,7 @@ const defaultSessions = [
     createSession("2", "oll"),
     createSession("3", "ollcp"),
     createSession("4", "zbll"),
+    createSession("5", "eg"),
 ];
 
 export const useSessionStore = create<SessionStore>()(
