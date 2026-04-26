@@ -25,6 +25,7 @@ function CaseSelectPage() {
     const setToggles = useSessionStore(s => s.setToggles);
     const getSessionCount = useSessionStore(s => s.getSessionCount);
     const handleNewSession = useSessionStore(s => s.handleNewSession);
+    const handleRenameSession = useSessionStore(s => s.handleRenameSession);
     const handleDeleteSession = useSessionStore(s => s.handleDeleteSession);
 
     const sessionsWithCount = sessions.map(s => ({
@@ -93,6 +94,7 @@ function CaseSelectPage() {
                     activeSessionId={activeSessionId}
                     onSelect={setActiveSessionId}
                     onNew={handleNewSession}
+                    onRename={handleRenameSession}
                     onDelete={handleDeleteSession}
                 />
             </div>

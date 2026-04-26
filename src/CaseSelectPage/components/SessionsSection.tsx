@@ -13,10 +13,11 @@ type Props = {
     activeSessionId: string;
     onSelect: (id: string) => void;
     onNew: (label: string) => void;
+    onRename: (id: string) => void;
     onDelete: (id: string) => void;
 };
 
-function SessionSection({ sessions, activeSessionId, onSelect, onNew, onDelete }: Props) {
+function SessionSection({ sessions, activeSessionId, onSelect, onNew, onRename, onDelete }: Props) {
 
     const handleSelect = (id: string) => {
         onSelect(id);
@@ -55,6 +56,7 @@ function SessionSection({ sessions, activeSessionId, onSelect, onNew, onDelete }
                         isActive={session.id === activeSessionId}
                         isOnly={sessions.length <= 1}
                         onSelect={handleSelect}
+                        onRename={onRename}
                         onDelete={handleDelete}
                     />
                 ))}

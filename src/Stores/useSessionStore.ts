@@ -13,6 +13,7 @@ type SessionStore = SessionState & {
     deleteAllSolves: () => void;
     updateRecap: (recapState: RecapState | null) => void;
     handleNewSession: (label: string) => void;
+    handleRenameSession: (id: string) => void;
     handleDeleteSession: (id: string) => void;
     handleChangeSet: (nextSetKey: string) => void;
 }
@@ -88,6 +89,21 @@ export const useSessionStore = create<SessionStore>()(
                         sessions: [...prev.sessions, newSession],
                         activeSessionId: newSession.id,
                     };
+                });
+            },
+            handleRenameSession: (id: string) => {
+                const session = get().sessions.find(s => s.id === id);
+                if (!session) return;
+                const newName = window.prompt("Session name:", session.label)?.trim().slice(0, 30);
+                if (!newName) return;
+                set(prev => {
+                    const updatedSessions = prev.sessions.map(s => {
+                        if (s.id === id) {
+                            return { ...s, label: newName };
+                        }
+                        return s;
+                    });
+                    return { sessions: updatedSessions };
                 });
             },
             handleDeleteSession: (id: string) => {
