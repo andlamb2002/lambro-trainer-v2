@@ -202,16 +202,16 @@
   {
     "id": "F01",
     "set": "F",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=ll&bg=t&alg=DL2D'L2UL2B2UB2U'L2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=DL2D'L2UL2B2UB2U'L2"
   },
   {
     "id": "F02",
     "set": "F",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=ll&bg=t&alg=LFL'B2LF'LF2D'R2DF2L2U'B2UB2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=LFL'B2LF'LF2D'R2DF2L2U'B2UB2"
   },
   {
     "id": "F03",
     "set": "F",
-    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=ll&bg=t&alg=L2F'B'L2FB'L2B2L2U2B2"
+    "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&view=plan&stage=coll&bg=t&alg=L2F'B'L2FB'L2B2L2U2B2"
   }
 ]
