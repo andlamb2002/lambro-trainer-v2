@@ -130,7 +130,7 @@ export const useSessionStore = create<SessionStore>()(
                 const hasSolves = active ? active.solves.length > 0 : false;
                 const needsConfirm = !allEnabled || hasSolves;
 
-                if (!needsConfirm || window.confirm("You will lose the cases your selected cases and solves.")) {
+                if (!needsConfirm || window.confirm("You will lose your selected cases and solves.")) {
                     set(prev => {
                         const withSet = updateSessionSet(prev.sessions, prev.activeSessionId, nextSetKey);
                         const withSolves = updateSessionSolves(withSet, prev.activeSessionId, []);
