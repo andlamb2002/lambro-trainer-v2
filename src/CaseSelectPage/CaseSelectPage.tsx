@@ -27,6 +27,7 @@ function CaseSelectPage() {
     const handleNewSession = useSessionStore(s => s.handleNewSession);
     const handleRenameSession = useSessionStore(s => s.handleRenameSession);
     const handleDeleteSession = useSessionStore(s => s.handleDeleteSession);
+    const reorderSessions = useSessionStore(s => s.reorderSessions);
 
     const sessionsWithCount = sessions.map(s => ({
         ...s,
@@ -96,6 +97,7 @@ function CaseSelectPage() {
                     onNew={handleNewSession}
                     onRename={handleRenameSession}
                     onDelete={handleDeleteSession}
+                    reorderSessions={reorderSessions}
                 />
             </div>
         </div>

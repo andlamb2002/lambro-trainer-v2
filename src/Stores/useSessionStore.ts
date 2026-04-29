@@ -1,6 +1,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
+import { arrayMove } from '@dnd-kit/sortable';
+
 import type { CaseToggles, RecapState, SessionState, Solve } from '../types/types'
 import { createSession, updateSessionRecapState, updateSessionSet, updateSessionSolves, updateSessionToggles } from '../lib/sessions';
 
@@ -16,6 +18,7 @@ type SessionStore = SessionState & {
     handleRenameSession: (id: string) => void;
     handleDeleteSession: (id: string) => void;
     handleChangeSet: (nextSetKey: string) => void;
+    reorderSessions: (oldIndex: number, newIndex: number) => void;
 }
 
 const defaultSessions = [
@@ -138,6 +141,11 @@ export const useSessionStore = create<SessionStore>()(
                         return { sessions: withReset };
                     });
                 }
+            },
+            reorderSessions: (oldIndex: number, newIndex: number) => {
+                set(prev => ({
+                    sessions: arrayMove(prev.sessions, oldIndex, newIndex)
+                }));
             },
         }),
         {name: "session_state"}

@@ -1,4 +1,6 @@
-import { MdDelete, MdDriveFileRenameOutline } from "react-icons/md";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { MdDelete, MdDragIndicator, MdDriveFileRenameOutline } from "react-icons/md";
 
 type Props = {
     id: string;
@@ -13,6 +15,14 @@ type Props = {
 };
 
 function SessionItem({ id, label, count, setLabel, isActive, isOnly, onSelect, onRename, onDelete }: Props) {
+
+    const {attributes, listeners, setNodeRef, transform, transition} = useSortable({ id });
+
+    const style = {
+        transition,
+        transform: CSS.Transform.toString(transform),
+    };
+
     return (
         <li
             className={`flex justify-between items-center bg-secondary p-2 rounded shadow-md cursor-pointer hover:bg-secondary/60 ${isActive ? 'font-bold' : ''}`}
@@ -20,8 +30,18 @@ function SessionItem({ id, label, count, setLabel, isActive, isOnly, onSelect, o
             title={`Switch to ${label}`}
             role="button"
             aria-pressed={isActive}
+            ref={setNodeRef}
+            style={style}
         >
             <div>
+                <button
+                    className="cursor-grab active:cursor-grabbing p-1 hover:text-accent"
+                    title="Drag to reorder"
+                    {...attributes}
+                    {...listeners}
+                >
+                <MdDragIndicator size={20} />
+            </button>
                 {label} ({setLabel}, {count})
             </div>
             <div className="flex gap-2">
