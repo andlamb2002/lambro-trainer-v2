@@ -25,25 +25,27 @@ function SessionItem({ id, label, count, setLabel, isActive, isOnly, onSelect, o
 
     return (
         <li
-            className={`flex justify-between items-center bg-secondary p-2 rounded shadow-md cursor-pointer hover:bg-secondary/60 ${isActive ? 'font-bold' : ''}`}
-            onClick={() => onSelect(id, label)}
-            title={`Switch to ${label}`}
-            role="button"
-            aria-pressed={isActive}
             ref={setNodeRef}
             style={style}
+            className={`flex justify-between items-center bg-secondary py-2 pr-2 rounded shadow-md ${isActive ? 'font-bold' : ''}`}
         >
-            <div>
-                <button
-                    className="cursor-grab active:cursor-grabbing p-1 hover:text-accent"
-                    title="Drag to reorder"
-                    {...attributes}
-                    {...listeners}
-                >
+            <button
+                className="cursor-grab active:cursor-grabbing p-1 hover:text-accent touch-none shrink-0"
+                title="Drag to reorder"
+                {...attributes}
+                {...listeners}
+            >
                 <MdDragIndicator size={20} />
             </button>
+
+            <div
+                onClick={() => onSelect(id, label)}
+                className="flex-1 pl-2 cursor-pointer hover:opacity-60"
+                title={`Switch to ${label}`}
+            >
                 {label} ({setLabel}, {count})
             </div>
+
             <div className="flex gap-2">
                 <button
                     className="btn btn-primary p-1"
@@ -54,7 +56,7 @@ function SessionItem({ id, label, count, setLabel, isActive, isOnly, onSelect, o
                     title={`Rename ${label}`}
                     aria-label={`Rename ${label}`}
                 >
-                    <MdDriveFileRenameOutline size={24} />
+                    <MdDriveFileRenameOutline size={20} />
                 </button>
                 <button
                     className="btn btn-danger p-1"
@@ -66,10 +68,9 @@ function SessionItem({ id, label, count, setLabel, isActive, isOnly, onSelect, o
                     title={`Delete ${label}`}
                     aria-label={`Delete ${label}`}
                 >
-                    <MdDelete size={24} />
+                    <MdDelete size={20} />
                 </button>
             </div>
-            
         </li>
     );
 }
