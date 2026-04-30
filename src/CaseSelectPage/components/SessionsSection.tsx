@@ -1,7 +1,7 @@
-import { closestCenter, DndContext, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors, type DragEndEvent } from "@dnd-kit/core";
+import { closestCenter, DndContext, PointerSensor, TouchSensor, useSensor, useSensors, type DragEndEvent } from "@dnd-kit/core";
 import { MdAdd } from "react-icons/md";
 import SessionItem from "./SessionItem";
-import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 
 type SessionItem = {
     id: string;
@@ -58,7 +58,6 @@ function SessionSection({ sessions, activeSessionId, onSelect, onNew, onRename, 
     const sensors = useSensors(
         useSensor(PointerSensor),
         useSensor(TouchSensor),
-        useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
     );
 
     return (
