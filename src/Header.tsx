@@ -18,11 +18,20 @@ function Header() {
             <div className="flex items-center gap-4 min-w-0">
                 <Link
                     to="/"
-                    className="link text-xl sm:text-2xl text-nowrap font-bold"
+                    className="link hidden sm:block text-2xl sm:text-2xl text-nowrap font-bold"
                     title="Home"
                     aria-label="Home"
                 >
                     Lambro Trainer
+                </Link>
+
+                <Link
+                    to="/"
+                    className="link block sm:hidden text-xl text-nowrap font-bold"
+                    title="Home"
+                    aria-label="Home"
+                >
+                    LT
                 </Link>
 
                 <div className="flex items-center text-sm sm:text-base gap-4 min-w-0 sm:pl-6">
