@@ -3,7 +3,7 @@
 
 ## Tech Stack
 - **Frontend**: React w/ Vite, Tailwind CSS, Zustand
-- **Data Pipeline**: Algorithm data generated with Python scripts using PyCuber and Kociemba libraries, stored and imported as JSON.
+- **Data Pipeline**: Algorithm data generated with Python scripts utilizing PyCuber, Kociemba, and [KSolve](https://cubing.net/ksolve.js/), stored and imported as JSON.
 
 ## Features
 - **Integrated Timer**: Spacebar and touch-based timer with millisecond accuracy.
@@ -16,6 +16,7 @@
 ## V2 Improvements
 - **Sessions Replacing Presets**: Sessions store the full context, including case toggles, solves, and recap state.
 - **Persistent Recap Progress**: Recap progess survives page reloads and navigation.
+- **EG Algorithms**: Added trainer for 2x2 EG algorithm set.
 
 ## Code Architecture Improvements
 - **Custom Hooks**: Encapsulates all major logic for separation of concerns, enhancing code readability and maintainability.
