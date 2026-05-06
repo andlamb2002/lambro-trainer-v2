@@ -43,7 +43,7 @@ function AlgSetSelect({ allSets, activeSetKey, handleChangeSet, toggleAllCases }
             </div>
             <Link
                 to="/"
-                className="btn btn-primary flex items-center shadow-lg gap-1 text-2xl font-bold px-2 py-1 sm:px-4 sm:py-2"
+                className="btn btn-primary hidden md:flex items-center shadow-lg gap-1 text-2xl font-bold px-2 py-1 sm:px-4 sm:py-2"
                 title="Timer"
                 aria-label="Timer"
             >

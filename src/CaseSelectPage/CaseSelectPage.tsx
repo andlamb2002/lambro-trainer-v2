@@ -13,6 +13,8 @@ import {
 } from '../lib/caseToggles'
 import { getAllAlgSets } from '../data/algSets';
 import { useCaseGroups } from '../hooks/useCaseGroups';
+import { Link } from 'react-router-dom';
+import { MdArrowForward } from 'react-icons/md';
 
 function CaseSelectPage() {
 
@@ -66,6 +68,17 @@ function CaseSelectPage() {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 px-2 py-2 sm:py-4">
+            <div className="col-span-2 md:hidden flex flex-col items-start gap-4 sm:px-4">
+                <Link
+                    to="/"
+                    className="btn btn-primary flex items-center shadow-lg gap-1 text-2xl font-bold mb-2 sm:mb-4 px-2 py-1 sm:px-4 sm:py-2"
+                    title="Timer"
+                    aria-label="Timer"
+                >
+                    Train
+                    <MdArrowForward size={24} />
+                </Link>
+            </div>
             <div className="col-span-2 flex flex-col gap-4 sm:px-4">
                 <AlgSetSelect
                     allSets={allSets}
