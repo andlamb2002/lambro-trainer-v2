@@ -68,7 +68,7 @@ function CaseSelectPage() {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 px-2 py-2 sm:py-4">
-            <div className="col-span-2 md:hidden flex flex-col items-start gap-4 sm:px-4">
+            <div className="order-1 col-span-2 md:hidden flex flex-col items-start gap-4 sm:px-4">
                 <Link
                     to="/"
                     className="btn btn-primary flex items-center shadow-lg gap-1 text-2xl font-bold mb-2 sm:mb-4 px-2 py-1 sm:px-4 sm:py-2"
@@ -79,7 +79,7 @@ function CaseSelectPage() {
                     <MdArrowForward size={24} />
                 </Link>
             </div>
-            <div className="col-span-2 flex flex-col gap-4 sm:px-4">
+            <div className="order-3 md:order-2 col-span-2 flex flex-col gap-4 sm:px-4">
                 <AlgSetSelect
                     allSets={allSets}
                     activeSetKey={activeSetKey}
@@ -102,7 +102,7 @@ function CaseSelectPage() {
                     ))}
                 </div>
             </div>
-            <div className="col-span-1">
+            <div className="order-2 md:order-3 col-span-1">
                 <SessionSection
                     sessions={sessionsWithCount}
                     activeSessionId={activeSessionId}

@@ -61,7 +61,7 @@ function SessionSection({ sessions, activeSessionId, onSelect, onNew, onRename, 
     );
 
     return (
-        <div className="sm:px-4 pt-4 md:pt-0">
+        <div className="sm:px-4 pb-4 md:pb-0">
             <h2 className="text-xl font-bold underline">Sessions</h2>
 
             <DndContext
