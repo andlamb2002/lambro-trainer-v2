@@ -71,7 +71,7 @@ function CaseSelectPage() {
             <div className="order-1 col-span-2 md:hidden flex flex-col items-end gap-4 sm:px-4">
                 <Link
                     to="/"
-                    className="btn btn-primary flex items-center shadow-lg gap-1 text-2xl font-bold mb-2 sm:mb-4 px-2 py-1 sm:px-4 sm:py-2"
+                    className="btn btn-primary flex items-center shadow-lg gap-1 text-2xl font-bold px-2 py-1 sm:px-4 sm:py-2"
                     title="Timer"
                     aria-label="Timer"
                 >
