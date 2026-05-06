@@ -35,7 +35,7 @@
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&pzl=2&view=plan&stage=oll&bg=t&alg=F'RUR'U2R'F2R"
   },
   {
-    "id": "CLL_F",
+    "id": "CLL_O",
     "set": "CLL",
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&pzl=2&view=plan&stage=oll&bg=t"
   },
@@ -75,7 +75,7 @@
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&pzl=2&view=plan&stage=oll&bg=t&alg=F'RUR'U2R'F2R"
   },
   {
-    "id": "EG1_F",
+    "id": "EG1_O",
     "set": "EG1",
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&pzl=2&view=plan&stage=oll&bg=t"
   },
@@ -115,7 +115,7 @@
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&pzl=2&view=plan&stage=oll&bg=t&alg=F'RUR'U2R'F2R"
   },
   {
-    "id": "EG2_F",
+    "id": "EG2_O",
     "set": "EG2",
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&pzl=2&view=plan&stage=oll&bg=t&"
   }

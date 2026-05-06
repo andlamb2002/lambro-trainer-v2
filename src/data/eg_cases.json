@@ -970,9 +970,9 @@
     "variant": 6
   },
   {
-    "id": "CLL_F_01",
+    "id": "CLL_O_01",
     "set": "CLL",
-    "label": "CLL_F_01",
+    "label": "CLL_O_01",
     "originalAlg": "R U R' F' R U R' U' R' F R2 U' R'",
     "scrambles": [
       "R U' R F2 R' U R F2 R2",
@@ -993,13 +993,13 @@
       "R2 F' U' R F2 R' F R' U' F2"
     ],
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&pzl=2&view=plan&stage=cll&bg=t&alg=RU'RF2R'URF2R2",
-    "subset": "CLL_F",
+    "subset": "CLL_O",
     "variant": 1
   },
   {
-    "id": "CLL_F_02",
+    "id": "CLL_O_02",
     "set": "CLL",
-    "label": "CLL_F_02",
+    "label": "CLL_O_02",
     "originalAlg": "R U' R' U' F2 U' R U R' U F2",
     "scrambles": [
       "R U' R2 U' F' R' U F2 R U' F",
@@ -1020,7 +1020,7 @@
       "F2 U' F R' U' R U2 R U F R'"
     ],
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&pzl=2&view=plan&stage=cll&bg=t&alg=RU'R2U'F'R'UF2RU'F",
-    "subset": "CLL_F",
+    "subset": "CLL_O",
     "variant": 2
   },
   {
@@ -1837,9 +1837,9 @@
     "variant": 6
   },
   {
-    "id": "EG1_F_01",
+    "id": "EG1_O_01",
     "set": "EG1",
-    "label": "EG1_F_01",
+    "label": "EG1_O_01",
     "originalAlg": "F2 R' F' U F U' F' U' F2 R F' U' F' U F'",
     "scrambles": [
       "R F' R F2 R' U F R2 F2",
@@ -1860,33 +1860,33 @@
       "F2 R' F R' U' F2 R2 F' U' R"
     ],
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&pzl=2&view=plan&stage=cll&bg=t&alg=RF'RF2R'UFR2F2",
-    "subset": "EG1_F",
+    "subset": "EG1_O",
     "variant": 1
   },
   {
-    "id": "EG1_F_02",
+    "id": "EG1_O_02",
     "set": "EG1",
-    "label": "EG1_F_02",
+    "label": "EG1_O_02",
     "originalAlg": "R2 U' R2 U2 F2 U' R2 U'",
     "scrambles": [
       "R2 U F2 U2 R2 U R2",
       "R2 U' R2 U2 F2 U' R2"
     ],
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&pzl=2&view=plan&stage=cll&bg=t&alg=R2UF2U2R2UR2U'",
-    "subset": "EG1_F",
+    "subset": "EG1_O",
     "variant": 2
   },
   {
-    "id": "EG1_F_03",
+    "id": "EG1_O_03",
     "set": "EG1",
-    "label": "EG1_F_03",
+    "label": "EG1_O_03",
     "originalAlg": "R U' R' U' R' F2 U' R U R",
     "scrambles": [
       "R U' F U2 F' U R'",
       "R' F U' R2 U F' R"
     ],
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&pzl=2&view=plan&stage=cll&bg=t&alg=RU'FU2F'UR'",
-    "subset": "EG1_F",
+    "subset": "EG1_O",
     "variant": 3
   },
   {
@@ -2876,9 +2876,9 @@
     "variant": 6
   },
   {
-    "id": "EG2_F_01",
+    "id": "EG2_O_01",
     "set": "EG2",
-    "label": "EG2_F_01",
+    "label": "EG2_O_01",
     "originalAlg": "F R U' R' U' R U R' F' R U R' U' R' F R F R2 F2",
     "scrambles": [
       "R2 U' R U' F' R U2 R U R F'",
@@ -2899,13 +2899,13 @@
       "F U' F U2 R F' U' F' U2 F' R"
     ],
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&pzl=2&view=plan&stage=cll&bg=t&alg=R2U'RU'F'RU2RURF'",
-    "subset": "EG2_F",
+    "subset": "EG2_O",
     "variant": 1
   },
   {
-    "id": "EG2_F_02",
+    "id": "EG2_O_02",
     "set": "EG2",
-    "label": "EG2_F_02",
+    "label": "EG2_O_02",
     "originalAlg": "R U' R F2 R' U R' U",
     "scrambles": [
       "R U' R F2 R' U R'",
@@ -2916,20 +2916,20 @@
       "F R' F R2 F' U F'"
     ],
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&pzl=2&view=plan&stage=cll&bg=t&alg=RU'RF2R'UR'U",
-    "subset": "EG2_F",
+    "subset": "EG2_O",
     "variant": 2
   },
   {
-    "id": "EG2_F_03",
+    "id": "EG2_O_03",
     "set": "EG2",
-    "label": "EG2_F_03",
+    "label": "EG2_O_03",
     "originalAlg": "R2 F2 R2",
     "scrambles": [
       "R2 F2 R2",
       "F2 R2 F2"
     ],
     "img": "https://visualcube.api.cubing.net/visualcube.php?fmt=svg&pzl=2&view=plan&stage=cll&bg=t&alg=R2F2R2",
-    "subset": "EG2_F",
+    "subset": "EG2_O",
     "variant": 3
   }
 ]
