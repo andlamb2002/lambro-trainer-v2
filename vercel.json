@@ -1,5 +1,9 @@
 {
   "rewrites": [
+    {
+      "source": "/v1/:path*",
+      "destination": "https://lambro-trainer.vercel.app/v1/:path*"
+    },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
