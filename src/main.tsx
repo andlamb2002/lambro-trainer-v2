@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter basename="/lambro-trainer-v2">
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </StrictMode>
